@@ -4,28 +4,31 @@ namespace RPG.PlayerSystem
 {
     public class Player
     {
-        public PlayerStat Health { get; private set; }
-        public PlayerStat Stamina { get; private set; }
+        private readonly PlayerStat _health;
+        private readonly PlayerStat _stamina;
+
+        public IPlayerStat Health => _health;
+        public IPlayerStat Stamina => _stamina;
 
         public Player(PlayerConfig config)
         {
-            Health = new PlayerStat(config.MaxHealth);
-            Stamina = new PlayerStat(config.MaxStamina);
+            _health = new PlayerStat(config.MaxHealth);
+            _stamina = new PlayerStat(config.MaxStamina);
 
             var health = PrefsProvider.LoadPlayerHealth();
-            Health.Set(health);
+            _health.Set(health);
         }
 
         public void Hit()
         {
-            Health.Decrease(10);
-            PrefsProvider.SavePlayerHealth(Health.Value);
+            _health.Decrease(10);
+            PrefsProvider.SavePlayerHealth(_health.Value);
         }
 
         public void SetMaxHP()
         {
-            Health.Set(Health.MaxValue);
-            PrefsProvider.SavePlayerHealth(Health.Value);
+            _health.Set(_health.MaxValue);
+            PrefsProvider.SavePlayerHealth(_health.Value);
         }
     }
 }

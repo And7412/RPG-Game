@@ -2,35 +2,47 @@
 
 public class PlayerLevel 
 {
-    public int XpVaule { get; private set; }
+    public int Xp { get; private set; }
     public int Level { get; private set; }
-    private int Ratio = 100;
-    private int XpToNextLevel;
+    public int XpToNextLevel { get; private set; }
 
-    public PlayerLevel(int XP, int LV,int ration)
+    private readonly int _ratio = 100;
+
+    public PlayerLevel(int xp, int lvl, int ratio)
     {
-        if (XP < 0 || LV < 0|| Ratio <= 0)
+        if (xp < 0 || lvl < 0|| _ratio <= 0)
         {
             throw new ArgumentException();
         }
-        XpVaule = XP;
-        Level = LV;
-        Ratio = ration;
-    }
-    public void IncreaseXp(int value)
-    {
-        XpVaule += value;
-        IncreaseLevel();
-    }
-    public void IncreaseLevel()
-    {
-        XpToNextLevel = Level * Ratio;
-        if (XpVaule >= XpToNextLevel)
-        {
-            XpVaule -= XpToNextLevel;
-            Level++;
-        }
-        
+
+        Xp = xp;
+        Level = lvl;
+        _ratio = ratio;
+        XpToNextLevel = Level * _ratio;
     }
 
+    public void IncreaseXp(int value)
+    {
+        if (value < 0)
+            throw new ArgumentException("xp is lower then zero");
+
+        Xp += value;
+        CheckXp();
+    }
+
+    private void CheckXp()
+    {
+        if (Xp < XpToNextLevel)
+            return;
+
+        var diff = Xp - XpToNextLevel;
+        IncreaseLvl();
+        Xp = diff;
+    }
+
+    private void IncreaseLvl()
+    {
+        Level++;
+        XpToNextLevel = Level * _ratio;
+    }
 }

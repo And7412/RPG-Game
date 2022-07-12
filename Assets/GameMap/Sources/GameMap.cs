@@ -17,7 +17,6 @@ namespace RPG.GameMap
             //player.SetMaxHP();
 
             player.Hit();
-            Debug.Log(player.Health.Value);
         }
     }
 }

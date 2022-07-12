@@ -2,9 +2,9 @@
 
 namespace RPG.PlayerSystem
 {
-    public class PlayerStat
+    public class PlayerStat : IPlayerStat
     {
-        public int MaxValue { get; private set; }
+        public int MaxValue { get;}
         public int Value { get; private set; }
         
         public PlayerStat(int maxValue)

@@ -12,20 +12,25 @@ namespace RPG.PlayerSystem
             {
                 throw new ArgumentException();
             }
+
             Value = value;
         }
 
         public void Increase(int value)
         {
+            if (value < 0)
+                throw new ArgumentException("value is lower then zero");
+
             Value += value;
         }
 
-        public bool Decrease(int value)
+        public bool TryDecrease(int value)
         {
             if (Value < value)
             {
                 return false;
             }
+
             Value -= value;
             return true;
         }
