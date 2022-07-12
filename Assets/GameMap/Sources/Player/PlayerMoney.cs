@@ -2,21 +2,16 @@
 
 namespace RPG.PlayerSystem
 {
-    public class PlayerStat
+    public class PlayerMoney
     {
-        public int MaxValue { get; private set; }
         public int Value { get; private set; }
-        
-        public PlayerStat(int maxValue)
-        {
-            MaxValue = maxValue;
-        }
 
-        public void Set(int value)
+        public PlayerMoney(int value)
         {
-            if (value < 0 || value > MaxValue)
+            if (value < 0)
+            {
                 throw new ArgumentException();
-
+            }
             Value = value;
         }
 
@@ -25,10 +20,14 @@ namespace RPG.PlayerSystem
             Value += value;
         }
 
-        public void Decrease(int value)
+        public bool Decrease(int value)
         {
+            if (Value < value)
+            {
+                return false;
+            }
             Value -= value;
+            return true;
         }
     }
 }
-
