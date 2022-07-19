@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a7f521304f7da84cba59f18b7612dea, type: 3}
+  m_Name: TavernHeroConfig
+  m_EditorClassIdentifier: 
+  _maxHealth: 100
+  _maxStamina: 100
+  _type: 1
+  _icon: {fileID: 21300000, guid: 912333e9a66e14149a63bd5bf38ddad9, type: 3}
+  _description: "\u042D\u0442\u043E \u0442\u0435\u0441\u0442\u043E\u0432\u044B\u0439
+    \u0433\u0435\u0440\u043E\u0439"

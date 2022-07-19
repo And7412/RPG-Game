@@ -16,7 +16,7 @@ namespace RPG.PlayerSystem
             _stamina = new PlayerStat(config.MaxStamina);
 
             var health = PrefsProvider.LoadPlayerHealth();
-            _health.Set(health);
+            SetMaxHP();
         }
 
         public void Hit()

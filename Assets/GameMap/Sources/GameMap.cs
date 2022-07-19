@@ -16,7 +16,7 @@ namespace RPG.GameMap
             var player = new Player(_playerConfig);
             //player.SetMaxHP();
 
-            player.Hit();
+            
         }
     }
 }
