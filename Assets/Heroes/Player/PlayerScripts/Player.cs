@@ -6,14 +6,18 @@ namespace RPG.PlayerSystem
     {
         private readonly PlayerStat _health;
         private readonly PlayerStat _stamina;
+        private readonly PlayerMoney _money;
 
         public IPlayerStat Health => _health;
         public IPlayerStat Stamina => _stamina;
+        public IPlayerTrade Money => _money;
 
         public Player(PlayerConfig config)
         {
             _health = new PlayerStat(config.MaxHealth);
             _stamina = new PlayerStat(config.MaxStamina);
+            var money = 10;
+            _money = new PlayerMoney(money);
 
             var health = PrefsProvider.LoadPlayerHealth();
             SetMaxHP();

@@ -2,7 +2,7 @@
 
 namespace RPG.PlayerSystem
 {
-    public class PlayerMoney
+    public class PlayerMoney : IPlayerTrade
     {
         public int Value { get; private set; }
 
