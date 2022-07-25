@@ -2,7 +2,7 @@
 
 namespace RPG.PlayerSystem
 {
-    public class Player
+    public class Player : IPlayerTrade
     {
         private readonly PlayerStat _health;
         private readonly PlayerStat _stamina;
@@ -10,7 +10,7 @@ namespace RPG.PlayerSystem
 
         public IPlayerStat Health => _health;
         public IPlayerStat Stamina => _stamina;
-        public IPlayerTrade Money => _money;
+        public PlayerMoney Money => _money;
 
         public Player(PlayerConfig config)
         {

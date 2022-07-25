@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.InteropServices;
-using RPG.Heroes.Tavern;
+﻿using RPG.Heroes.Tavern;
 using RPG.PlayerSystem;
 using RPG.Shared.Dialog;
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,6 +13,11 @@ namespace RPG.GameMap.Tavern
         [SerializeField] private Canvas _canvas;
         [SerializeField] private Image _heroIconImage;
         [SerializeField] private TextMeshProUGUI _descriptionText;
+        [SerializeField] private Button _hireButton;
+        [SerializeField] private Button _cancelButton;
+        [SerializeField] private TextMeshProUGUI _priceText;
+        [SerializeField] private DialogConfirm _confirmDialog;
+        [SerializeField] private string _confirmText;
 
         private TavernHeroConfig _current;
 
@@ -23,25 +25,44 @@ namespace RPG.GameMap.Tavern
 
         public void Open(HireMenuArgs args)
         {
+            _hireButton.onClick.AddListener(OnHireButtonClicked);
+            _cancelButton.onClick.AddListener(OnCancelButtonClicked);
             _current = args.HeroConfig;
+            _priceText.text = _current.Price.ToString();
+
             ShowHero(_current);
             ShowMenu(true);
         }
 
-        public void Close()
+        public void Close(bool hired)
         {
-            var result = new HireMenuResult(_current, false);
+            var result = new HireMenuResult(_current, hired);
+
+            _hireButton.onClick.RemoveListener(OnHireButtonClicked);
+            _cancelButton.onClick.RemoveListener(OnCancelButtonClicked);
+
             Closed?.Invoke(result);
             ShowMenu(false);
         }
 
         public void ShowMenu(bool value) => _canvas.enabled = value;
 
-        private void Hire()
+        private void OnHireButtonClicked()
         {
-            var result = new HireMenuResult(_current, true);
-            Closed?.Invoke(result);
-            ShowMenu(false);
+            var args = new DialogConfirmArgs(_confirmText);
+            _confirmDialog.Closed += Hire;
+            _confirmDialog.Open(args);
+        }
+
+        private void OnCancelButtonClicked()
+        {
+            Close(false);
+        }
+
+        private void Hire(DialogConfirmResult confirm)
+        {
+            _confirmDialog.Closed -= Hire;
+            Close(confirm.Confirm);
         }
 
         private void Awake()
@@ -59,7 +80,7 @@ namespace RPG.GameMap.Tavern
 
     public class HireMenuArgs : DialogArgs
     {
-        public Player Player { get; }
+        public IPlayerTrade Player { get; }
         public TavernHeroConfig HeroConfig { get; }
 
         public HireMenuArgs(TavernHeroConfig heroConfig)

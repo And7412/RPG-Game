@@ -1,0 +1,16 @@
+{
+    "Name": "Vasya",
+    "Level": "21",
+    "Quests": [
+        {
+            "Id": "7774",
+            "Status": "completed"
+        }
+    ],
+
+    "Inventory": [
+        "9985",
+        "55535",
+        "5553535"
+    ]
+}

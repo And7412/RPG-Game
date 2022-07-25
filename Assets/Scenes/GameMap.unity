@@ -1291,7 +1291,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1494002386218186737}
+      objectReference: {fileID: 0}
     - target: {fileID: 2927663893297754036, guid: 77e1e0a2fa049094386adedd92814f7e,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -1307,10 +1307,20 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 3674130536895238172, guid: 77e1e0a2fa049094386adedd92814f7e,
+        type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 3704775971412468549, guid: 77e1e0a2fa049094386adedd92814f7e,
         type: 3}
       propertyPath: m_Name
       value: TavernUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 4003930518538508761, guid: 77e1e0a2fa049094386adedd92814f7e,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -117.899994
       objectReference: {fileID: 0}
     - target: {fileID: 5276177100415977798, guid: 77e1e0a2fa049094386adedd92814f7e,
         type: 3}
@@ -1326,7 +1336,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1494002386218186737}
+      objectReference: {fileID: 0}
     - target: {fileID: 5276177100415977798, guid: 77e1e0a2fa049094386adedd92814f7e,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
@@ -1456,24 +1466,6 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1494002386218186734}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1494002386218186736 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6562355727220287771, guid: 77e1e0a2fa049094386adedd92814f7e,
-    type: 3}
-  m_PrefabInstance: {fileID: 1494002386218186734}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1494002386218186737
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1494002386218186736}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c76173f937449f844928febec6840394, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!222 &2186763594597816321
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1519,7 +1511,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &7263067951021334934
 MonoBehaviour:
   m_ObjectHideFlags: 0

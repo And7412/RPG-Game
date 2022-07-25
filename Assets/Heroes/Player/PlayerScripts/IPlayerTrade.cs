@@ -1,10 +1,8 @@
-﻿using UnityEngine;
-using System.Collections;
-
-public interface IPlayerTrade
+﻿namespace RPG.PlayerSystem
 {
-
-    
-    void Increase(int value);
-    bool TryDecrease(int value);
+    public interface IPlayerTrade
+    {
+        PlayerMoney Money { get; }
+    }
 }
+
