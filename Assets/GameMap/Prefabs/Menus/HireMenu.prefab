@@ -439,6 +439,7 @@ MonoBehaviour:
   _descriptionText: {fileID: 8133085112305170175}
   _hireButton: {fileID: 5545743774865529053}
   _cancelButton: {fileID: 3274091942519389743}
+  _priceText: {fileID: 8042154563570816992}
   _confirmDialog: {fileID: 3842943703822566655}
   _confirmText: "\u0412\u0430\u0448\u0435 \u0437\u043E\u043B\u043E\u0442\u043E: \u0421\u0442\u043E\u0438\u043C\u043E\u0441\u0442\u044C:
     \u041D\u0430\u043D\u044F\u0442\u044C?"
