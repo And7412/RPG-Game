@@ -1,9 +1,12 @@
 ﻿using UnityEngine;
-namespace RPG.Item.Config
+
+namespace RPG.Item
 {
     public class ItemConfig : ScriptableObject
     {
-        [SerializeField] protected TypeItem Type;
-        [SerializeField] protected ReceiptType ReceiptType;
+        [SerializeField] private string _id;
+        public virtual InventorySlot InventorySlot { get; }
+
+        public string Id => _id;
     }
 }

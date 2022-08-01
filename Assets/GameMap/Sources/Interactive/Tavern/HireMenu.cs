@@ -49,6 +49,8 @@ namespace RPG.GameMap.Tavern
 
         private void OnHireButtonClicked()
         {
+            $"Хотите ли вы приобрести героя {heroName} за {price} монет? 
+            У вас {n} монет"
             var args = new DialogConfirmArgs(_confirmText);
             _confirmDialog.Closed += Hire;
             _confirmDialog.Open(args);
