@@ -445,6 +445,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerConfig: {fileID: 11400000, guid: 1986c7515c5d1df44b63b13a34bb5748, type: 2}
+  _tavern: {fileID: 745849656}
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -587,6 +588,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cf4a2ededb67d3345966d47d971917fb, type: 3}
+--- !u!114 &745849656 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1534358212612609871, guid: 77e1e0a2fa049094386adedd92814f7e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1494002386218186734}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c66a0441ceade1f46ad8616326aec5ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &953458926
 GameObject:
   m_ObjectHideFlags: 0
@@ -2102,6 +2115,11 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 982747975763777706, guid: 77e1e0a2fa049094386adedd92814f7e,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1517671121
+      objectReference: {fileID: 0}
     - target: {fileID: 1534358212612609871, guid: 77e1e0a2fa049094386adedd92814f7e,
         type: 3}
       propertyPath: _clickHandler
@@ -2156,6 +2174,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -117.899994
+      objectReference: {fileID: 0}
+    - target: {fileID: 5250188566138381991, guid: 77e1e0a2fa049094386adedd92814f7e,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1517671121
       objectReference: {fileID: 0}
     - target: {fileID: 5276177100415977798, guid: 77e1e0a2fa049094386adedd92814f7e,
         type: 3}

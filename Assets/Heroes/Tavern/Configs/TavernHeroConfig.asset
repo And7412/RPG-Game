@@ -18,3 +18,4 @@ MonoBehaviour:
   _icon: {fileID: 21300000, guid: 912333e9a66e14149a63bd5bf38ddad9, type: 3}
   _description: "\u042D\u0442\u043E \u0442\u0435\u0441\u0442\u043E\u0432\u044B\u0439
     \u0433\u0435\u0440\u043E\u0439"
+  _price: 999999999
