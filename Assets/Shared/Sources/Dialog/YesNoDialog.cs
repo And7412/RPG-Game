@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace RPG.Shared.Dialog
 {
-    public class DialogConfirm : MonoBehaviour, IDialog<DialogConfirmArgs, DialogConfirmResult>
+    public class YesNoDialog : MonoBehaviour, IDialog<DialogConfirmArgs, DialogConfirmResult>
     {
         public event Action<DialogConfirmResult> Closed;
 
@@ -22,9 +22,16 @@ namespace RPG.Shared.Dialog
             _canvas.enabled = true;
         }
 
-        public void Confirm(bool value)
+        public void Accept()
         {
-            var result = new DialogConfirmResult(value);
+            var result = new DialogConfirmResult(true);
+            _canvas.enabled = false;
+            Closed?.Invoke(result);
+        }
+
+        public void Decline()
+        {
+            var result = new DialogConfirmResult(false);
             _canvas.enabled = false;
             Closed?.Invoke(result);
         }

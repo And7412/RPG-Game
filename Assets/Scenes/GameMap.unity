@@ -364,7 +364,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.000061035156, y: 0.00012207031}
+  m_AnchoredPosition: {x: -0.00012207031, y: 0.00012207031}
   m_SizeDelta: {x: 0.00024414062, y: -0.7328491}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &369876993
@@ -1382,7 +1382,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.000061035156, y: 0.00012207031}
+  m_AnchoredPosition: {x: -0.00012207031, y: 0.00012207031}
   m_SizeDelta: {x: 0.00024414062, y: -0.7328491}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1405849588
@@ -1882,7 +1882,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.000061035156, y: 0.00012207031}
+  m_AnchoredPosition: {x: -0.00012207031, y: 0.00012207031}
   m_SizeDelta: {x: 0.00024414062, y: -0.7328491}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1697078586
@@ -2147,6 +2147,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: TavernUI
       objectReference: {fileID: 0}
+    - target: {fileID: 3704775971412468549, guid: 77e1e0a2fa049094386adedd92814f7e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4003930518538508761, guid: 77e1e0a2fa049094386adedd92814f7e,
         type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -2346,7 +2351,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &7263067951021334934
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -34,5 +34,10 @@ namespace RPG.PlayerSystem
             Value -= value;
             return true;
         }
+
+        public bool IsEnough(int value)
+        {
+            return Value >= value;
+        }
     }
 }

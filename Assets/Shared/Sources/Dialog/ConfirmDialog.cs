@@ -5,7 +5,7 @@ using TMPro;
 using UnityEngine;
 namespace RPG.Shared.Dialog
 {
-    public class DialogConfitmTrue : MonoBehaviour, IDialog<DialogConfirmArgs, DialogResult>
+    public class ConfirmDialog : MonoBehaviour, IDialog<DialogConfirmArgs, DialogResult>
     {
         public event Action<DialogResult> Closed;
 

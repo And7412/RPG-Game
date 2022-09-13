@@ -17,22 +17,23 @@ namespace RPG.GameMap.Tavern
         [SerializeField] private Button _hireButton;
         [SerializeField] private Button _cancelButton;
         [SerializeField] private TextMeshProUGUI _priceText;
-        [SerializeField] private DialogConfirm _confirmDialog;
+        [SerializeField] private YesNoDialog _yesNoDialog;
         [SerializeField] private string _confirmText;
-        [SerializeField]private DialogConfitmTrue _confitmTrue;
-        private CheckMissingCoins _checkMissingCoins;
+        [SerializeField] private ConfirmDialog _confirmDialog;
 
         private TavernHeroConfig _current;
 
         public event Action<HireMenuResult> Closed;
 
+        private IPlayerTrade _player;
+
         public void Open(HireMenuArgs args)
         {
-            
             _hireButton.onClick.AddListener(OnHireButtonClicked);
             _cancelButton.onClick.AddListener(OnCancelButtonClicked);
             _current = args.HeroConfig;
             _priceText.text = _current.Price.ToString();
+            _player = args.Player;
 
             ShowHero(_current);
             ShowMenu(true);
@@ -53,23 +54,23 @@ namespace RPG.GameMap.Tavern
 
         private void OnHireButtonClicked()
         {
-            if (!_checkMissingCoins.TryMissingCoins(_current.Price))
+            if (_player.Money.IsEnough(_current.Price))
             {
                 //$"Хотите ли вы приобрести героя {heroName} за {price} монет? 
                 // У вас {n} монет"
                 var args = new DialogConfirmArgs(_confirmText);
-                _confirmDialog.Closed += Hire;
-                _confirmDialog.Open(args);
+                _yesNoDialog.Closed += Hire;
+                _yesNoDialog.Open(args);
             }
             else
             {
-                _confitmTrue.Closed += CloseDialogCnfirmTrue;
+                _confirmDialog.Closed += CloseDialogCnfirmTrue;
             }
         }
 
         private void CloseDialogCnfirmTrue(DialogResult result)
         {
-            _confitmTrue.Closed -= CloseDialogCnfirmTrue;
+            _confirmDialog.Closed -= CloseDialogCnfirmTrue;
             Close(false);
         }
         private void OnCancelButtonClicked()
@@ -79,7 +80,7 @@ namespace RPG.GameMap.Tavern
 
         private void Hire(DialogConfirmResult confirm)
         {
-            _confirmDialog.Closed -= Hire;
+            _yesNoDialog.Closed -= Hire;
             Close(confirm.Confirm);
         }
 
