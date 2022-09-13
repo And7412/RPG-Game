@@ -6,6 +6,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 namespace RPG.GameMap.Tavern
 {
     public class HireMenu : MonoBehaviour, IDialog<HireMenuArgs, HireMenuResult>
@@ -18,6 +19,8 @@ namespace RPG.GameMap.Tavern
         [SerializeField] private TextMeshProUGUI _priceText;
         [SerializeField] private DialogConfirm _confirmDialog;
         [SerializeField] private string _confirmText;
+        [SerializeField]private DialogConfitmTrue _confitmTrue;
+        private CheckMissingCoins _checkMissingCoins;
 
         private TavernHeroConfig _current;
 
@@ -25,6 +28,7 @@ namespace RPG.GameMap.Tavern
 
         public void Open(HireMenuArgs args)
         {
+            
             _hireButton.onClick.AddListener(OnHireButtonClicked);
             _cancelButton.onClick.AddListener(OnCancelButtonClicked);
             _current = args.HeroConfig;
@@ -49,13 +53,25 @@ namespace RPG.GameMap.Tavern
 
         private void OnHireButtonClicked()
         {
-            $"Хотите ли вы приобрести героя {heroName} за {price} монет? 
-            У вас {n} монет"
-            var args = new DialogConfirmArgs(_confirmText);
-            _confirmDialog.Closed += Hire;
-            _confirmDialog.Open(args);
+            if (!_checkMissingCoins.TryMissingCoins(_current.Price))
+            {
+                //$"Хотите ли вы приобрести героя {heroName} за {price} монет? 
+                // У вас {n} монет"
+                var args = new DialogConfirmArgs(_confirmText);
+                _confirmDialog.Closed += Hire;
+                _confirmDialog.Open(args);
+            }
+            else
+            {
+                _confitmTrue.Closed += CloseDialogCnfirmTrue;
+            }
         }
 
+        private void CloseDialogCnfirmTrue(DialogResult result)
+        {
+            _confitmTrue.Closed -= CloseDialogCnfirmTrue;
+            Close(false);
+        }
         private void OnCancelButtonClicked()
         {
             Close(false);
