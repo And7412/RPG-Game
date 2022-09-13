@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-namespace RPG.GameMap.Tavern
+namespace RPG.GameMap.TavernSystem
 {
     public class HireMenu : MonoBehaviour, IDialog<HireMenuArgs, HireMenuResult>
     {
@@ -20,6 +20,7 @@ namespace RPG.GameMap.Tavern
         [SerializeField] private YesNoDialog _yesNoDialog;
         [SerializeField] private string _confirmText;
         [SerializeField] private ConfirmDialog _confirmDialog;
+        [SerializeField] private string _NoMoneyText;
 
         private TavernHeroConfig _current;
 
@@ -64,13 +65,15 @@ namespace RPG.GameMap.Tavern
             }
             else
             {
-                _confirmDialog.Closed += CloseDialogCnfirmTrue;
+                _confirmDialog.Closed += OnNoMoneyConfirm;
+                var args = new DialogConfirmArgs(_NoMoneyText);
+                _confirmDialog.Open(args);
             }
         }
 
-        private void CloseDialogCnfirmTrue(DialogResult result)
+        private void OnNoMoneyConfirm(DialogResult result)
         {
-            _confirmDialog.Closed -= CloseDialogCnfirmTrue;
+            _confirmDialog.Closed -= OnNoMoneyConfirm;
             Close(false);
         }
         private void OnCancelButtonClicked()
@@ -102,9 +105,10 @@ namespace RPG.GameMap.Tavern
         public IPlayerTrade Player { get; }
         public TavernHeroConfig HeroConfig { get; }
 
-        public HireMenuArgs(TavernHeroConfig heroConfig)
+        public HireMenuArgs(TavernHeroConfig heroConfig, IPlayerTrade player)
         {
             HeroConfig = heroConfig;
+            Player = player;
         }
     }
 

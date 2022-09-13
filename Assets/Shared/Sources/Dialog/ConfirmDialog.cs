@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 namespace RPG.Shared.Dialog
 {
     public class ConfirmDialog : MonoBehaviour, IDialog<DialogConfirmArgs, DialogResult>
@@ -11,10 +12,12 @@ namespace RPG.Shared.Dialog
 
         [SerializeField] private TextMeshProUGUI _text;
         [SerializeField] private Canvas _canvas;
+        [SerializeField] private Button _button;
 
         private void Awake()
         {
             _canvas.enabled = false;
+            _button.onClick.AddListener(Confirm);
         }
 
         public void Open(DialogConfirmArgs args)

@@ -1,6 +1,7 @@
 ﻿using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace RPG.Shared.Dialog
 {
@@ -10,10 +11,14 @@ namespace RPG.Shared.Dialog
 
         [SerializeField] private TextMeshProUGUI _text;
         [SerializeField] private Canvas _canvas;
+        [SerializeField] private Button _buttonYes;
+        [SerializeField] private Button _buttonNo;
 
         private void Awake()
         {
             _canvas.enabled = false;
+            _buttonYes.onClick.AddListener(Accept);
+            _buttonNo.onClick.AddListener(Decline);
         }
 
         public void Open(DialogConfirmArgs args)

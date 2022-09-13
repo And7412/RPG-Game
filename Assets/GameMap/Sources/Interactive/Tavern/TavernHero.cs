@@ -5,7 +5,7 @@ using RPG.Heroes.Tavern;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace RPG.GameMap.Tavern
+namespace RPG.GameMap.TavernSystem
 {
     public class TavernHero : MonoBehaviour
     {
