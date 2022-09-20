@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using RPG.Shared.Dialog;
-using RPG.PlayerSystem;
+using RPG.InventorySystem;
 namespace RPG.Vendors
 {
     public class VendorDialog : IDialog<VendorDialogArgs>
@@ -12,11 +12,13 @@ namespace RPG.Vendors
     public class VendorDialogArgs : DialogArgs
     {
         private VendorConfig _config;
-        private IPlayerTrade _playermoney;
-        public VendorDialogArgs (VendorConfig config,IPlayerTrade player)
+        private int _playermoney;
+        private Inventory _inventory;
+        public VendorDialogArgs (VendorConfig config,int money, Inventory inventory)
         {
             _config = config;
-            _playermoney = player.Money;
+            _playermoney = money;
+            _inventory = inventory;
         }
     }
     public class VendorDialogResult : DialogResult
