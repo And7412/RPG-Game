@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace RPG.InventorySystem
 {
-    public class Inventory : ScriptableObject
+    public class Inventory : ScriptableObject, IInventoryRead
     {
         [SerializeField] private List<WeaponConfig> _weapons;
         [SerializeField] private List<ArmorConfig> _armors;
@@ -40,6 +40,12 @@ namespace RPG.InventorySystem
 
 
         }
+    }
+
+    public interface IInventoryRead
+    {
+        IReadOnlyList<WeaponConfig> Weapons { get; }
+        IReadOnlyList<ArmorConfig> Armors { get; }
     }
 }
 

@@ -9,6 +9,8 @@ namespace RPG.Vendors
     public class VendorConfig : ScriptableObject
     {
         [SerializeField] private Inventory _inventory;
+
+        public Inventory Inventory => _inventory;
     }
 }
 
