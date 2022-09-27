@@ -18,22 +18,21 @@ namespace RPG.InventorySystem
             _capacity = Config.GetCapacity();
         }
 
-        public int Add(int amount)
+        public bool TryAdd(int amount, out int difference)
         {
             int tmp = Amount + amount;
 
-            if (tmp > _capacity)
-            {
-                int difference = tmp - _capacity;
-                Amount = _capacity;
-                return difference;
-            }
-            else
+            bool success = tmp <= _capacity;
+            if (success)
             {
                 Amount = tmp;
-                return 0;
+                difference = 0;
+                return true;
             }
 
+            difference = tmp - _capacity;
+            Amount = _capacity;
+            return false;
         }
 
         public int Remove(int amount)
@@ -47,11 +46,9 @@ namespace RPG.InventorySystem
                 Amount = 0;
                 return difference;
             }
-            else
-            {
-                Amount = tmp;
-                return 0;
-            }
+
+            Amount = tmp;
+            return 0;
         }
     }
 }
