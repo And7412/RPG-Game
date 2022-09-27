@@ -3,7 +3,7 @@
 namespace RPG.Item
 {
     [CreateAssetMenu(fileName = "ArmorConfig", menuName = "RPG/ItemConfig/Armor", order = 0)]
-    public class ArmorConfig : EquipableItemConfig
+    public class ArmorConfig : ItemConfig
     {
         [SerializeField] private int _additionalHealth;
         public int AddedStat => _additionalHealth;
