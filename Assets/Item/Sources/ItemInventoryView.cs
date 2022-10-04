@@ -10,16 +10,16 @@ namespace RPG.InventorySystem
 {
     public class ItemInventoryView : MonoBehaviour
     {
-        public event Action<InventoryItem> Clicked;
-        private InventoryItem _item;
+        public event Action<InventoryCell> Clicked;
+        private InventoryCell _cell;
         [SerializeField] private Image _image;
         [SerializeField] private TMP_Text _text;
 
-        public void SetConfig(InventoryItem item)
+        public void SetConfig(InventoryCell cell)
         {
-            _item = item;
-            _image.sprite= item.Config.Sprite;
-            _text.text = item.Amount.ToString();
+            _cell = cell;
+            _image.sprite= cell.Config.Sprite;
+            _text.text = cell.Amount.ToString();
         }
     }
 }

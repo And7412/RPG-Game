@@ -1,17 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using RPG.Item;
+﻿using RPG.Item;
 using UnityEngine;
 
 namespace RPG.InventorySystem
 {
-    public class InventoryItem
+    public class InventoryCell
     {
         public ItemConfig Config { get; }
         public int Amount { get; private set; }
         private readonly int _capacity;
 
-        public InventoryItem(ItemConfig config, int amount)
+        public InventoryCell(ItemConfig config, int amount)
         {
             Config = config;
             Amount = amount;
