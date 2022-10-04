@@ -35,20 +35,21 @@ namespace RPG.InventorySystem
             return false;
         }
 
-        public int Remove(int amount)
+        public bool Remove(int amount, out int difference)
         {
             Amount -= amount;
             int tmp = Amount - amount;
 
             if (tmp < 1)
             {
-                int difference = Mathf.Abs(tmp);
+                difference = Mathf.Abs(tmp);
                 Amount = 0;
-                return difference;
+                return true;
             }
 
             Amount = tmp;
-            return 0;
+            difference = 0;
+            return false;
         }
     }
 }
