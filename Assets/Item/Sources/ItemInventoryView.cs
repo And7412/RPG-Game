@@ -15,7 +15,7 @@ namespace RPG.InventorySystem
         [SerializeField] private Image _image;
         [SerializeField] private TMP_Text _text;
 
-        public void SetConfig(InventoryCell cell)
+        public void SetCell(InventoryCell cell)
         {
             _cell = cell;
             _image.sprite= cell.Config.Sprite;

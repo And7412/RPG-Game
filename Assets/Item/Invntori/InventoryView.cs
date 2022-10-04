@@ -7,19 +7,43 @@ namespace RPG.InventorySystem
     {
         private IInventoryRead _inventory;
         private List<ItemInventoryView> _cellViews;
+
         public void Initialize(IInventoryRead inventory)
         {
             _inventory = inventory;
         }
-        public ItemInventoryView AddCell()
+
+        public void Show()
         {
-            return null;
+            ShowWeapon();
         }
-        public void Weapon()
+
+        public void AddCellView()
         {
-            foreach (var cell in _inventory.Weapons)
+            //_cellViews.Add(newView)
+        }
+
+        public void ShowWeapon()
+        {
+            ShowItems(_inventory.Weapons);
+        }
+
+        private void ShowItems(IReadOnlyList<InventoryCell> cells)
+        {
+            var amount = cells.Count;
+            var amountDiff = _cellViews.Count - amount;
+
+            for (int i = 0; i < amountDiff; i++)
             {
-                cell.
+                AddCellView();
+            }
+
+            int viewNum = 0;
+
+            foreach (var cell in cells)
+            {
+                _cellViews[viewNum].SetCell(cell);
+                viewNum++;
             }
         }
     }
