@@ -1,18 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class InventoryView : MonoBehaviour
+namespace RPG.InventorySystem
 {
-    // Start is called before the first frame update
-    void Start()
+    public class InventoryView : MonoBehaviour 
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        private IInventoryRead _inventory;
+        private List<ItemInventoryView> _cellViews;
+        public void Initialize(IInventoryRead inventory)
+        {
+            _inventory = inventory;
+        }
+        public ItemInventoryView AddCell()
+        {
+            return null;
+        }
+        public void Weapon()
+        {
+            foreach (var cell in _inventory.Weapons)
+            {
+                cell.
+            }
+        }
     }
 }

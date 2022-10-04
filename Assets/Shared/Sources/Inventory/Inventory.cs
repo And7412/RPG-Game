@@ -8,13 +8,13 @@ namespace RPG.InventorySystem
 {
     public class Inventory : ScriptableObject, IInventoryRead
     {
-        [SerializeField] private List<WeaponConfig> _weapons;
-        [SerializeField] private List<ArmorConfig> _armors;
+        [SerializeField] private List<InventoryCell> _weapons;
+        [SerializeField] private List<InventoryCell> _armors;
 
         private readonly List<string> _itemIds = new List<string>();
 
-        public IReadOnlyList<WeaponConfig> Weapons => _weapons;
-        public IReadOnlyList<ArmorConfig> Armors => _armors;
+        public IReadOnlyList<InventoryCell> Weapons => _weapons;
+        public IReadOnlyList<InventoryCell> Armors => _armors;
 
         public void AddItem(ItemConfig item)
         {
@@ -25,7 +25,7 @@ namespace RPG.InventorySystem
                 default:
                     throw new InvalidCastException("Unknown item slot type");
                 case InventorySlot.Weapon:
-                    _weapons.Add(item as WeaponConfig);
+//                    _weapons.Add(item as InventoryCell); //TODO
                     break;
                 //TODO fill
             }
@@ -44,8 +44,8 @@ namespace RPG.InventorySystem
 
     public interface IInventoryRead
     {
-        IReadOnlyList<WeaponConfig> Weapons { get; }
-        IReadOnlyList<ArmorConfig> Armors { get; }
+        IReadOnlyList<InventoryCell> Weapons { get; }
+        IReadOnlyList<InventoryCell> Armors { get; }
     }
 }
 
