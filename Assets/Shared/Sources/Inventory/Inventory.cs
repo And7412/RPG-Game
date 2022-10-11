@@ -6,6 +6,7 @@ using UnityEngine;
 
 namespace RPG.InventorySystem
 {
+    [CreateAssetMenu(menuName = "RPG/Inventory")]
     public class Inventory : ScriptableObject, IInventoryRead
     {
         [SerializeField] private List<InventoryCell> _weapons;

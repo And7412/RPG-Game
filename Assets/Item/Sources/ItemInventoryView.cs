@@ -1,25 +1,31 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using RPG.Item;
+﻿using Core.Patterns.Pool;
+using System;
+using Core.Patterns.Factory;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 namespace RPG.InventorySystem
 {
-    public class ItemInventoryView : MonoBehaviour
+    public class ItemInventoryView : MonoBehaviour, IPoolable
     {
+        public bool Active { get; private set; }
+
         public event Action<InventoryCell> Clicked;
         private InventoryCell _cell;
         [SerializeField] private Image _image;
         [SerializeField] private TMP_Text _text;
 
-        public void SetCell(InventoryCell cell)
+        public void SetActive(bool value)
         {
-            _cell = cell;
-            _image.sprite= cell.Config.Sprite;
-            _text.text = cell.Amount.ToString();
+            Active = value;
+        }
+
+        public void SetCell(InventoryCell args)
+        {
+            _cell = args;
+            _image.sprite = args.Config.Sprite;
+            _text.text = args.Amount.ToString();
         }
     }
 }

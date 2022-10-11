@@ -1,10 +1,14 @@
-﻿using System.Collections;
+﻿using Core.Patterns.Factory;
 using System.Collections.Generic;
 using UnityEngine;
+
 namespace RPG.InventorySystem
 {
-    public class InventoryView : MonoBehaviour 
+    public class InventoryView : MonoBehaviour
     {
+        [SerializeField] private ItemInventoryView _cellTemplate;
+        [SerializeField] private FactoryBehaviour _factoryBehaviour;
+
         private IInventoryRead _inventory;
         private List<ItemInventoryView> _cellViews;
 
@@ -20,12 +24,18 @@ namespace RPG.InventorySystem
 
         public void AddCellView()
         {
-            //_cellViews.Add(newView)
+            var cellView = _factoryBehaviour.Create(_cellTemplate);
+            _cellViews.Add(cellView);
         }
 
         public void ShowWeapon()
         {
             ShowItems(_inventory.Weapons);
+        }
+
+        public void ShowArmor()
+        {
+            ShowItems(_inventory.Armors);
         }
 
         private void ShowItems(IReadOnlyList<InventoryCell> cells)

@@ -1,51 +1,56 @@
-﻿using RPG.Item;
+﻿using System;
+using RPG.Item;
 using UnityEngine;
 
 namespace RPG.InventorySystem
 {
+    [Serializable]
     public class InventoryCell
     {
-        public ItemConfig Config { get; }
-        public int Amount { get; private set; }
-        private readonly int _capacity;
+        [SerializeField] private ItemConfig _config;
+        [SerializeField] private int _amount;
+
+        public ItemConfig Config => _config;
+        public int Amount => _amount;
+
+        private int capacity => _config.GetCapacity();
 
         public InventoryCell(ItemConfig config, int amount)
         {
-            Config = config;
-            Amount = amount;
-            _capacity = Config.GetCapacity();
+            _config = config;
+            _amount = amount;
         }
 
         public bool TryAdd(int amount, out int difference)
         {
-            int tmp = Amount + amount;
+            int tmp = _amount + amount;
 
-            bool success = tmp <= _capacity;
+            bool success = tmp <= capacity;
             if (success)
             {
-                Amount = tmp;
+                _amount = tmp;
                 difference = 0;
                 return true;
             }
 
-            difference = tmp - _capacity;
-            Amount = _capacity;
+            difference = tmp - capacity;
+            _amount = capacity;
             return false;
         }
 
         public bool Remove(int amount, out int difference)
         {
-            Amount -= amount;
-            int tmp = Amount - amount;
+            _amount -= amount;
+            int tmp = _amount - amount;
 
             if (tmp < 1)
             {
                 difference = Mathf.Abs(tmp);
-                Amount = 0;
+                _amount = 0;
                 return true;
             }
 
-            Amount = tmp;
+            _amount = tmp;
             difference = 0;
             return false;
         }
