@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b8a7b0fd0410c044a8eb8028697b0b6, type: 3}
   m_Name: TestWeaponConfig
   m_EditorClassIdentifier: 
-  _receiptType: 1
+  _id: 
+  _sprite: {fileID: 0}
+  _rarity: 0
   _additionalAttack: 10
