@@ -1,4 +1,5 @@
-﻿using RPG.Shared;
+﻿using RPG.InventorySystem;
+using RPG.Shared;
 
 namespace RPG.PlayerSystem
 {
@@ -7,10 +8,13 @@ namespace RPG.PlayerSystem
         private readonly PlayerStat _health;
         private readonly PlayerStat _stamina;
         private readonly PlayerMoney _money;
+        private readonly Inventory _inventory;
 
         public IPlayerStat Health => _health;
         public IPlayerStat Stamina => _stamina;
         public PlayerMoney Money => _money;
+
+        public IInventoryRead Inventory => _inventory;
 
         public Player(PlayerConfig config)
         {
@@ -18,6 +22,7 @@ namespace RPG.PlayerSystem
             _stamina = new PlayerStat(config.MaxStamina);
             var money = 10;
             _money = new PlayerMoney(money);
+            _inventory = config.Inventory;
 
             var health = PrefsProvider.LoadPlayerHealth();
             SetMaxHP();

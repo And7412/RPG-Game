@@ -13,8 +13,20 @@ namespace RPG.InventorySystem
 
         public event Action<InventoryCell> Clicked;
         private InventoryCell _cell;
-        [SerializeField] private Image _image;
+
+        [SerializeField] private Image _iconImage;
         [SerializeField] private TMP_Text _text;
+        [SerializeField] private Button _button;
+
+        private void Awake()
+        {
+            _button.onClick.AddListener(OnClick);
+        }
+
+        private void OnClick()
+        {
+            Clicked?.Invoke(_cell);
+        }
 
         public void SetActive(bool value)
         {
@@ -24,7 +36,7 @@ namespace RPG.InventorySystem
         public void SetCell(InventoryCell args)
         {
             _cell = args;
-            _image.sprite = args.Config.Sprite;
+            _iconImage.sprite = args.Config.Sprite;
             _text.text = args.Amount.ToString();
         }
     }

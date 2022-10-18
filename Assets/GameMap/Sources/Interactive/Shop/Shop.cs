@@ -1,23 +1,49 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
-using RPG.Shared;
+using RPG.PlayerSystem;
+using RPG.Vendors;
 using UnityEngine;
+using UnityEngine.UI;
+
 namespace RPG.GameMap.Shop
-{ 
+{
     public class Shop : MonoBehaviour
     {
-        [SerializeField] private PointClickHandler _clickHandler;
         [SerializeField] private Canvas _canvas;
+        [SerializeField] private VendorConfig _vendor;
+        [SerializeField] private Button _vendorButton;
+        [SerializeField] private Button _exitButton;
+        [SerializeField] private VendorDialog _vendorDialog;
+
+        private IPlayerTrade _player;
 
         private void Awake()
         {
-            _clickHandler.Clicked += OnClicked;
-            _canvas.enabled = false;
+            _vendorButton.onClick.AddListener(OnVendorClick);
+            _exitButton.onClick.AddListener(OnExitButtonClicked);
         }
 
-        private void OnClicked()
+        private void OnExitButtonClicked()
         {
-            _canvas.enabled = true;
+            SetActive(false);
+        }
+
+        public void Initialize(IPlayerTrade player)
+        {
+            _player = player;
+        }
+
+        private void OnVendorClick()
+        {
+            var args = new TradeDialogArgs(_player.Money.Value, _player.Inventory, _vendor.Inventory);
+            _vendorDialog.Open(args);
+        }
+
+        public void SetActive(bool value)
+        {
+            _canvas.enabled = value;
         }
     }
 }
+

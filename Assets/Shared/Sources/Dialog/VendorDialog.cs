@@ -8,34 +8,34 @@ using System;
 
 namespace RPG.Vendors
 {
-    public class VendorDialog : IDialog<VendorDialogArgs, VendorDialogResult>
+    public class VendorDialog : MonoBehaviour, IDialog<TradeDialogArgs, TradeDialogResult>
     {
-        public event Action<VendorDialogResult> Closed;
+        public event Action<TradeDialogResult> Closed;
 
-        public void Open(VendorDialogArgs args)
+        public void Open(TradeDialogArgs args)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
-    public class VendorDialogArgs : DialogArgs
+    public class TradeDialogArgs : DialogArgs
     {
         public int PlayerMoney { get; }
         public IInventoryRead PlayerInventory { get; }
         public IInventoryRead VendorInventory { get; }
 
-        public VendorDialogArgs (int money, IInventoryRead playerInventory, IInventoryRead pendorInventory)
+        public TradeDialogArgs (int money, IInventoryRead playerInventory, IInventoryRead vendorInventory)
         {
-            VendorInventory = pendorInventory;
+            VendorInventory = vendorInventory;
             PlayerMoney = money;
             PlayerInventory = playerInventory;
         }
     }
-    public class VendorDialogResult : DialogResult
+    public class TradeDialogResult : DialogResult
     {
         public ItemTransaction[] Transactions;
 
-        public VendorDialogResult(ItemTransaction[] transactions)
+        public TradeDialogResult(ItemTransaction[] transactions)
         {
             Transactions = transactions;
         }
