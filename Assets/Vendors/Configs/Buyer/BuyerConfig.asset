@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e468efdc10f0c794ea448d27272f4206, type: 3}
   m_Name: BuyerConfig
   m_EditorClassIdentifier: 
-  _inventory: {fileID: 0}
+  _inventory: {fileID: 11400000, guid: a81011628d143e744999b2e83f00a62a, type: 2}
