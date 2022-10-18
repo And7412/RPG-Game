@@ -8,10 +8,10 @@ namespace RPG.PlayerSystem
 {
     public class PlayerTrade
     {
-        private PlayerMoney _money;
+        private Money _money;
         private Inventory _inventory;
 
-        public PlayerTrade(PlayerMoney money, Inventory inventory)
+        public PlayerTrade(Money money, Inventory inventory)
         {
 
         }

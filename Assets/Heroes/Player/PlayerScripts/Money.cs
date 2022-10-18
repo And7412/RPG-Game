@@ -2,11 +2,12 @@
 
 namespace RPG.PlayerSystem
 {
-    public class PlayerMoney
+    public class Money
     {
         public int Value { get; private set; }
+        public event Action<int> MoneyChanged;
 
-        public PlayerMoney(int value)
+        public Money(int value)
         {
             if (value < 0)
             {
@@ -22,6 +23,7 @@ namespace RPG.PlayerSystem
                 throw new ArgumentException("value is lower then zero");
 
             Value += value;
+            MoneyChanged?.Invoke(Value);
         }
 
         public bool TryDecrease(int value)
@@ -30,8 +32,9 @@ namespace RPG.PlayerSystem
             {
                 return false;
             }
-
+            
             Value -= value;
+            MoneyChanged?.Invoke(Value);
             return true;
         }
 

@@ -4,7 +4,7 @@ namespace RPG.PlayerSystem
 {
     public interface IPlayerTrade
     {
-        PlayerMoney Money { get; }
+        Money Money { get; }
         IInventoryRead Inventory { get; }
     }
 }

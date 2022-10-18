@@ -4,17 +4,31 @@ using UnityEngine;
 using RPG.Shared.Dialog;
 using RPG.InventorySystem;
 using RPG.Item;
+using RPG.PlayerSystem;
 using System;
+using TMPro;
 
 namespace RPG.Vendors
 {
     public class VendorDialog : MonoBehaviour, IDialog<TradeDialogArgs, TradeDialogResult>
     {
+        [SerializeField] private TextView _playerMoneyText;
+        [SerializeField] private TextView _vendorMoneyText;
+        [SerializeField] private InventoryView _vendorInventory;
+        [SerializeField] private InventoryView _playerInventory;
+        private Money _vMoney;
+        private Money _pMoney;
+
         public event Action<TradeDialogResult> Closed;
 
         public void Open(TradeDialogArgs args)
         {
-            
+            _pMoney = new Money(args.PlayerMoney);
+            _vMoney = new Money(args.VendorMoney);
+            _pMoney.MoneyChanged += _playerMoneyText.SetText;
+            _vMoney.MoneyChanged += _vendorMoneyText.SetText;
+            _vendorInventory.Initialize(args.VendorInventory);
+            _playerInventory.Initialize(args.PlayerInventory);
         }
     }
 
@@ -23,11 +37,13 @@ namespace RPG.Vendors
         public int PlayerMoney { get; }
         public IInventoryRead PlayerInventory { get; }
         public IInventoryRead VendorInventory { get; }
+        public int VendorMoney { get; }
 
-        public TradeDialogArgs (int money, IInventoryRead playerInventory, IInventoryRead vendorInventory)
+        public TradeDialogArgs (int PMoney,int VMoney, IInventoryRead playerInventory, IInventoryRead vendorInventory)
         {
             VendorInventory = vendorInventory;
-            PlayerMoney = money;
+            PlayerMoney = PMoney;
+            VendorMoney = VMoney;
             PlayerInventory = playerInventory;
         }
     }
@@ -40,4 +56,5 @@ namespace RPG.Vendors
             Transactions = transactions;
         }
     }
+    
 }
