@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace RPG.Shared.InventorySystem.View
+namespace RPG.Metagame.InventorySystem.View
 {
     public class InventoryView : MonoBehaviour
     {

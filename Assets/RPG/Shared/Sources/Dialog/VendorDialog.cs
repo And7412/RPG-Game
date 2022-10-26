@@ -1,7 +1,7 @@
 ﻿using RPG.Metagame.Player;
 using RPG.Shared.Dialog;
-using RPG.Shared.InventorySystem;
-using RPG.Shared.InventorySystem.View;
+using RPG.Metagame.InventorySystem;
+using RPG.Metagame.InventorySystem.View;
 using System;
 using UnityEngine;
 

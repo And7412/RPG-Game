@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace RPG.Shared.InventorySystem.View
+namespace RPG.Metagame.InventorySystem.View
 {
     public class InventoryItemView : MonoBehaviour, IPoolable
     {

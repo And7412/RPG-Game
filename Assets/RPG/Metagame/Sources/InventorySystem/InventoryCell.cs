@@ -1,8 +1,8 @@
 ﻿using System;
-using RPG.Shared.InventorySystem;
+using RPG.Metagame.InventorySystem;
 using UnityEngine;
 
-namespace RPG.Shared.InventorySystem
+namespace RPG.Metagame.InventorySystem
 {
     [Serializable]
     public class InventoryCell

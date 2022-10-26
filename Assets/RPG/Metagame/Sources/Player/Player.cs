@@ -1,4 +1,4 @@
-﻿using RPG.Shared.InventorySystem;
+﻿using RPG.Metagame.InventorySystem;
 using RPG.Shared;
 
 namespace RPG.Metagame.Player

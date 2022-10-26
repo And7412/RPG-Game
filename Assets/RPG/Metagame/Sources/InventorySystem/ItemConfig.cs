@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-namespace RPG.Shared.InventorySystem
+namespace RPG.Metagame.InventorySystem
 {
     public abstract class ItemConfig : ScriptableObject
     {

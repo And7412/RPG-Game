@@ -1,12 +1,11 @@
-﻿using RPG.Shared.InventorySystem;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace RPG.Shared.InventorySystem
+namespace RPG.Metagame.InventorySystem
 {
-    [CreateAssetMenu(menuName = "RPG/Inventory")]
-    public class Inventory : ScriptableObject, IInventoryRead
+    [Serializable]
+    public class Inventory : IInventoryRead
     {
         [SerializeField] private List<InventoryCell> _weapons;
         [SerializeField] private List<InventoryCell> _armors;
@@ -15,6 +14,8 @@ namespace RPG.Shared.InventorySystem
 
         public IReadOnlyList<InventoryCell> Weapons => _weapons;
         public IReadOnlyList<InventoryCell> Armors => _armors;
+
+        public Inventory() { }
 
         public void AddItem(ItemConfig item)
         {

@@ -1,4 +1,4 @@
-﻿namespace RPG.Shared.InventorySystem
+﻿namespace RPG.Metagame.InventorySystem
 {
     public enum InventorySlot
     {

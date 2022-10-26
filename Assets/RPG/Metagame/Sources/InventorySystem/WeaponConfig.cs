@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace RPG.Shared.InventorySystem
+namespace RPG.Metagame.InventorySystem
 {
     [CreateAssetMenu(fileName = "WeaponConfig", menuName = "RPG/ItemConfig/Weapon", order = 0)]
     public class WeaponConfig : ItemConfig
