@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace RPG.InventorySystem
+namespace RPG.Shared.InventorySystem
 {
     public class Pool<T> where T: IPoolable
     {
