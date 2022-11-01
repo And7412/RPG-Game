@@ -17,27 +17,21 @@ namespace RPG.Metagame.InventorySystem
 
         public InventoryCell() { }
 
-        public InventoryCell(ItemConfig config, int amount)
+        public InventoryCell(ItemConfig config)
         {
             _config = config;
-            _amount = amount;
         }
 
-        public bool TryAdd(int amount, out int difference)
+        public bool TryAdd()
         {
-            int tmp = _amount + amount;
+            var resultAmount = _amount + 1;
+            var canAdd =  resultAmount <= capacity;
 
-            bool success = tmp <= capacity;
-            if (success)
-            {
-                _amount = tmp;
-                difference = 0;
-                return true;
-            }
+            if (canAdd)
+                return false;
 
-            difference = tmp - capacity;
-            _amount = capacity;
-            return false;
+            _amount = resultAmount;
+            return true;
         }
 
         public bool Remove(int amount, out int difference)
