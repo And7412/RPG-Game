@@ -15,6 +15,8 @@ namespace RPG.Metagame.InventorySystem
 
         private int capacity => _config.GetCapacity();
 
+        public InventoryCell() { }
+
         public InventoryCell(ItemConfig config, int amount)
         {
             _config = config;

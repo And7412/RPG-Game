@@ -9,11 +9,19 @@ namespace RPG.Metagame.InventorySystem
     {
         [SerializeField] private List<InventoryCell> _weapons;
         [SerializeField] private List<InventoryCell> _armors;
-
-        private readonly List<string> _itemIds = new List<string>();
+        [SerializeField] private List<InventoryCell> _consumables;
+        [SerializeField] private List<InventoryCell> _materials;
+        [SerializeField] private List<InventoryCell> _misc;
+        [SerializeField] private List<InventoryCell> _quest;
 
         public IReadOnlyList<InventoryCell> Weapons => _weapons;
         public IReadOnlyList<InventoryCell> Armors => _armors;
+        public IReadOnlyList<InventoryCell> Consumables => _consumables;
+        public IReadOnlyList<InventoryCell> Materials => _materials;
+        public IReadOnlyList<InventoryCell> Misc => _misc;
+        public IReadOnlyList<InventoryCell> Quest => _quest;
+
+        private readonly List<string> _itemIds = new List<string>();
 
         public Inventory() { }
 

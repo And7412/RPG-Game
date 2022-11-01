@@ -11,7 +11,6 @@ namespace RPG.GameMap.TavernSystem
 {
     public class HireMenu :Dialog<HireMenuArgs, HireMenuResult>
     {
-        [SerializeField] private Canvas _canvas;
         [SerializeField] private Image _heroIconImage;
         [SerializeField] private TextMeshProUGUI _descriptionText;
         [SerializeField] private Button _hireButton;
@@ -37,21 +36,14 @@ namespace RPG.GameMap.TavernSystem
             _player = args.Player;
 
             ShowHero(_current);
-            ShowMenu(true);
         }
 
-        public void Close(bool hired)
+        protected override void OnClose(HireMenuResult args)
         {
-            var result = new HireMenuResult(_current, hired);
-
             _hireButton.onClick.RemoveListener(OnHireButtonClicked);
             _cancelButton.onClick.RemoveListener(OnCancelButtonClicked);
-
-            Closed?.Invoke(result);
-            ShowMenu(false);
         }
 
-        public void ShowMenu(bool value) => _canvas.enabled = value;
 
         private void OnHireButtonClicked()
         {
@@ -74,22 +66,19 @@ namespace RPG.GameMap.TavernSystem
         private void OnNoMoneyConfirm(DialogResult result)
         {
             _confirmDialog.Closed -= OnNoMoneyConfirm;
-            Close(false);
+
+            Close(new HireMenuResult(_current, false));
         }
+
         private void OnCancelButtonClicked()
         {
-            Close(false);
+            Close(new HireMenuResult(_current, false));
         }
 
         private void Hire(DialogConfirmResult confirm)
         {
             _yesNoDialog.Closed -= Hire;
-            Close(confirm.Confirm);
-        }
-
-        private void Awake()
-        {
-            _canvas.enabled = false;
+            Close(new HireMenuResult(_current, confirm.Confirm));
         }
 
         private void ShowHero(TavernHeroConfig config)

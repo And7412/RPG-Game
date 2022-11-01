@@ -7,38 +7,35 @@ namespace RPG.Shared.Dialog
 {
     public class YesNoDialog :Dialog<DialogConfirmArgs, DialogConfirmResult>
     {
-        public event Action<DialogConfirmResult> Closed;
-
         [SerializeField] private TextMeshProUGUI _text;
-        [SerializeField] private Canvas _canvas;
         [SerializeField] private Button _buttonYes;
         [SerializeField] private Button _buttonNo;
 
-        private void Awake()
-        {
-            _canvas.enabled = false;
-            _buttonYes.onClick.AddListener(Accept);
-            _buttonNo.onClick.AddListener(Decline);
-        }
-
-        public void Accept()
-        {
-            var result = new DialogConfirmResult(true);
-            _canvas.enabled = false;
-            Closed?.Invoke(result);
-        }
-
-        public void Decline()
-        {
-            var result = new DialogConfirmResult(false);
-            _canvas.enabled = false;
-            Closed?.Invoke(result);
-        }
+        public event Action<DialogConfirmResult> Closed;
 
         protected override void OnOpen(DialogConfirmArgs args)
         {
+            _buttonYes.onClick.AddListener(Accept);
+            _buttonNo.onClick.AddListener(Decline);
             _text.text = args.Text;
-            _canvas.enabled = true;
+        }
+
+        protected override void OnClose(DialogConfirmResult args)
+        {
+            _buttonYes.onClick.RemoveListener(Accept);
+            _buttonNo.onClick.RemoveListener(Decline);
+        }
+
+        private void Accept()
+        {
+            var result = new DialogConfirmResult(true);
+            Closed?.Invoke(result);
+        }
+
+        private void Decline()
+        {
+            var result = new DialogConfirmResult(false);
+            Closed?.Invoke(result);
         }
     }
     public class DialogConfirmResult : DialogResult
