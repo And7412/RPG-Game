@@ -7,25 +7,20 @@ namespace RPG.Metagame.InventorySystem
     [Serializable]
     public class Inventory : IInventoryRead
     {
-        [SerializeField] private List<InventoryCell> _weapons;
-        [SerializeField] private List<InventoryCell> _armors;
-        [SerializeField] private List<InventoryCell> _consumables;
-        [SerializeField] private List<InventoryCell> _materials;
-        [SerializeField] private List<InventoryCell> _misc;
-        [SerializeField] private List<InventoryCell> _quest;
-
-        public IReadOnlyList<InventoryCell> Weapons => _weapons;
-        public IReadOnlyList<InventoryCell> Armors => _armors;
-        public IReadOnlyList<InventoryCell> Consumables => _consumables;
-        public IReadOnlyList<InventoryCell> Materials => _materials;
-        public IReadOnlyList<InventoryCell> Misc => _misc;
-        public IReadOnlyList<InventoryCell> Quest => _quest;
+        [SerializeField] private InventorySection[] _sections;
+        
+        //[SerializeField] private List<InventoryCell> _weapons;
+        //[SerializeField] private List<InventoryCell> _armors;
+        //[SerializeField] private List<InventoryCell> _consumables;
+        //[SerializeField] private List<InventoryCell> _materials;
+        //[SerializeField] private List<InventoryCell> _misc;
+        //[SerializeField] private List<InventoryCell> _quest;
 
         private readonly List<string> _itemIds = new List<string>();
 
         public Inventory() { }
 
-        public void AddItem(ItemConfig item)
+        public void AddItem(ItemConfig item,int count)
         {
             _itemIds.Add(item.Id);
 
@@ -34,6 +29,7 @@ namespace RPG.Metagame.InventorySystem
                 default:
                     throw new InvalidCastException("Unknown item slot type");
                 case InventorySlot.Weapon:
+                    _weapons.Add(new InventoryCell(item, count));
 //                    _weapons.Add(item as InventoryCell); //TODO
                     break;
                 //TODO fill
