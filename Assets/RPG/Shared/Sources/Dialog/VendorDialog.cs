@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace RPG.GameMap.Market
 {
-    public class VendorDialog : MonoBehaviour, IDialog<TradeDialogArgs, TradeDialogResult>
+    public class VendorDialog : Dialog<TradeDialogArgs, TradeDialogResult>
     {
         [SerializeField] private TextView _playerMoneyText;
         [SerializeField] private TextView _vendorMoneyText;
@@ -18,7 +18,7 @@ namespace RPG.GameMap.Market
 
         public event Action<TradeDialogResult> Closed;
 
-        public void Open(TradeDialogArgs args)
+        protected override void OnOpen(TradeDialogArgs args)
         {
             _pMoney = new Money(args.PlayerMoney);
             _vMoney = new Money(args.VendorMoney);

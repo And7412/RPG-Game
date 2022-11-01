@@ -1,22 +1,27 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace RPG.Shared.Dialog
 {
-    public abstract class Dialog : MonoBehaviour
+    public abstract class Dialog<V,T> : MonoBehaviour where V:DialogArgs where T : DialogResult
     {
-        // Start is called before the first frame update
-        void Start()
+        public event Action<T> Closed;
+        [SerializeField] private Canvas _canvas;
+        public void Open(V args)
         {
-
+            _canvas.enabled = true;
+            OnOpen(args);
         }
-
-        // Update is called once per frame
-        void Update()
+        protected abstract void OnOpen(V args);
+        protected void Close(T Arg)
         {
-
+            Closed?.Invoke(Arg);
+            _canvas.enabled = false;
         }
     }
+    public class DialogArgs { }
+    public class DialogResult { }
 }
 

@@ -9,7 +9,7 @@ using UnityEngine.UI;
 
 namespace RPG.GameMap.TavernSystem
 {
-    public class HireMenu : MonoBehaviour, IDialog<HireMenuArgs, HireMenuResult>
+    public class HireMenu :Dialog<HireMenuArgs, HireMenuResult>
     {
         [SerializeField] private Canvas _canvas;
         [SerializeField] private Image _heroIconImage;
@@ -28,7 +28,7 @@ namespace RPG.GameMap.TavernSystem
 
         private IPlayerTrade _player;
 
-        public void Open(HireMenuArgs args)
+        protected override void OnOpen(HireMenuArgs args)
         {
             _hireButton.onClick.AddListener(OnHireButtonClicked);
             _cancelButton.onClick.AddListener(OnCancelButtonClicked);

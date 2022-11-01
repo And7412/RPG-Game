@@ -6,10 +6,8 @@ using UnityEngine;
 using UnityEngine.UI;
 namespace RPG.Shared.Dialog
 {
-    public class ConfirmDialog : MonoBehaviour, IDialog<DialogConfirmArgs, DialogResult>
+    public class ConfirmDialog :Dialog<DialogConfirmArgs, DialogResult>
     {
-        public event Action<DialogResult> Closed;
-
         [SerializeField] private TextMeshProUGUI _text;
         [SerializeField] private Canvas _canvas;
         [SerializeField] private Button _button;
@@ -20,16 +18,15 @@ namespace RPG.Shared.Dialog
             _button.onClick.AddListener(Confirm);
         }
 
-        public void Open(DialogConfirmArgs args)
+        protected override void OnOpen(DialogConfirmArgs args)
         {
             _text.text = args.Text;
             _canvas.enabled = true;
         }
         public void Confirm()
         {
+            Close(new DialogResult());
             
-            _canvas.enabled = false;
-            Closed?.Invoke(new DialogResult());
         }
     }
 }

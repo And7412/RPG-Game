@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace RPG.Shared.Dialog
 {
-    public class YesNoDialog : MonoBehaviour, IDialog<DialogConfirmArgs, DialogConfirmResult>
+    public class YesNoDialog :Dialog<DialogConfirmArgs, DialogConfirmResult>
     {
         public event Action<DialogConfirmResult> Closed;
 
@@ -21,12 +21,6 @@ namespace RPG.Shared.Dialog
             _buttonNo.onClick.AddListener(Decline);
         }
 
-        public void Open(DialogConfirmArgs args)
-        {
-            _text.text = args.Text;
-            _canvas.enabled = true;
-        }
-
         public void Accept()
         {
             var result = new DialogConfirmResult(true);
@@ -39,6 +33,12 @@ namespace RPG.Shared.Dialog
             var result = new DialogConfirmResult(false);
             _canvas.enabled = false;
             Closed?.Invoke(result);
+        }
+
+        protected override void OnOpen(DialogConfirmArgs args)
+        {
+            _text.text = args.Text;
+            _canvas.enabled = true;
         }
     }
     public class DialogConfirmResult : DialogResult
