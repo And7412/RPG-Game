@@ -6,7 +6,7 @@ using UnityEngine;
 namespace RPG.Metagame.InventorySystem
 {
     [Serializable]
-    public class Inventory 
+    public class Inventory : IInventoryRead
     {
         [SerializeField] private InventorySection[] _sections;
 
@@ -37,8 +37,7 @@ namespace RPG.Metagame.InventorySystem
 
     public interface IInventoryRead
     {
-        IReadOnlyList<InventoryCell> Weapons { get; }
-        IReadOnlyList<InventoryCell> Armors { get; }
+
     }
 }
 

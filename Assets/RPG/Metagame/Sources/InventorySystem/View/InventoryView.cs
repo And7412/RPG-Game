@@ -30,12 +30,12 @@ namespace RPG.Metagame.InventorySystem.View
 
         public void ShowWeapon()
         {
-            ShowItems(_inventory.Weapons);
+            //ShowItems(_inventory.Weapons);
         }
 
         public void ShowArmor()
         {
-            ShowItems(_inventory.Armors);
+            //ShowItems(_inventory.Armors);
         }
 
         private void ShowItems(IReadOnlyList<InventoryCell> cells)
