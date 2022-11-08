@@ -1,6 +1,6 @@
 ﻿namespace RPG.Metagame.InventorySystem
 {
-    public enum InventorySlot
+    public enum InventorySlotType
     {
         None,
         Weapon,

@@ -7,6 +7,6 @@ namespace RPG.Metagame.InventorySystem
     {
         [SerializeField] private int _additionalHealth;
         public int AddedStat => _additionalHealth;
-        public override InventorySlot InventorySlot => InventorySlot.Armor;
+        public override InventorySlotType InventorySlot => InventorySlotType.Armor;
     }
 }

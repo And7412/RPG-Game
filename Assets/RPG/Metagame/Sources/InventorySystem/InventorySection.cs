@@ -11,25 +11,21 @@ namespace RPG.Metagame.InventorySystem
     {
         [SerializeField] private List<InventoryCell> _cells = new List<InventoryCell>();
         public IReadOnlyList<InventoryCell> Cells => _cells;
-        public InventorySlot slot { get; }
+        public InventorySlotType slot { get; }
 
-        public InventorySection(InventorySlot inventorySlot)
+        public InventorySection(InventorySlotType inventorySlot)
         {
             slot = inventorySlot;
         }
 
         public void AddItems(ItemConfig item, int count)
         {
-            var cell = _cells.FirstOrDefault(x => x.Config.Id == item.Id);
-
-            if (cell == null)
-            {
-                cell = new InventoryCell(item);
-                _cells.Add(cell);
-            }
+            var cell = GetCell(item.Id);
+        
 
             for (int i = 0; i < count; i++)
             {
+                
                 var hasSpace = cell.TryAdd();
                 if (!hasSpace)
                 {
@@ -37,6 +33,32 @@ namespace RPG.Metagame.InventorySystem
                     _cells.Add(cell);
                 }
             }
+
+        }
+        public void RemoveItems(ItemConfig item, int count)
+        {
+            var cell = GetCell(item.Id);
+            for (int i= 0;i<count ; i++)
+            {
+                bool value = cell.Remove();
+                if (!value)
+                {
+                    _cells.Remove(cell);
+                    cell = GetCell(item.Id);
+                }
+            }
+            
+            
+        }
+        private InventoryCell GetCell(string ID)
+        {
+            var cell = _cells.FirstOrDefault(x => x.Config.Id == ID);
+
+            if (cell == null)
+            {
+                throw new ArgumentException($"Cant find Cell {ID}");
+            }
+            return cell;
         }
     }
 }

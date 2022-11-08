@@ -8,6 +8,6 @@ namespace RPG.Metagame.InventorySystem
         [SerializeField] private int _additionalAttack;
         public int AddedStat => _additionalAttack;
 
-        public override InventorySlot InventorySlot => InventorySlot.Weapon;
+        public override InventorySlotType InventorySlot => InventorySlotType.Weapon;
     }
 }

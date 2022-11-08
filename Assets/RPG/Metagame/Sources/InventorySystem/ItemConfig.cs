@@ -6,7 +6,7 @@ namespace RPG.Metagame.InventorySystem
         [SerializeField] private string _id;
         [SerializeField] private Sprite _sprite;
         [SerializeField] private ItemRarity itemRarity = ItemRarity.Simple;
-        public abstract InventorySlot InventorySlot { get; }
+        public abstract InventorySlotType InventorySlot { get; }
 
         public int GetCapacity()
         {
@@ -14,7 +14,7 @@ namespace RPG.Metagame.InventorySystem
             {
                 default:
                     return 1;
-                case InventorySlot.Misc:
+                case InventorySlotType.Misc:
                     return 128;
             }
             

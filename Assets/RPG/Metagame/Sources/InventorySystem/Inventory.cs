@@ -10,28 +10,30 @@ namespace RPG.Metagame.InventorySystem
     {
         [SerializeField] private InventorySection[] _sections;
 
-        private readonly List<string> _itemIds = new List<string>();
-
         public Inventory() { }
 
         public void AddItems(ItemConfig item, int count)
         {
-            _itemIds.Add(item.Id);
 
-            var section = _sections.FirstOrDefault(x => x.slot == item.InventorySlot);
-
-            if (section == null)
-                throw new ArgumentException($"Cant find section {item.InventorySlot}");
+            var section = GetInventorySection(item);
 
             section.AddItems(item, count);
         }
 
         public void RemoveItems(ItemConfig item, int count)
         {
-            if (_itemIds.Contains(item.Id) == false)
+            var section = GetInventorySection(item);
+            if (section == item.Id )
                 throw new ArgumentException($"Inventory has no item {item.Id}");
 
-            //TODO
+            
+        }
+        public InventorySection GetInventorySection(ItemConfig item)
+        {
+            var section = _sections.FirstOrDefault(x => x.slot == item.InventorySlot);
+            if (section == null)
+                throw new ArgumentException($"Cant find section {item.InventorySlot}");
+            return section;
         }
     }
 

@@ -34,21 +34,16 @@ namespace RPG.Metagame.InventorySystem
             return true;
         }
 
-        public bool Remove(int amount, out int difference)
+        public bool Remove()
         {
-            _amount -= amount;
-            int tmp = _amount - amount;
+            var resultAmount = _amount - 1;
+            var canremove = resultAmount > 0;
 
-            if (tmp < 1)
-            {
-                difference = Mathf.Abs(tmp);
-                _amount = 0;
-                return true;
-            }
+            if (canremove)
+                return false;
 
-            _amount = tmp;
-            difference = 0;
-            return false;
+            _amount = resultAmount;
+            return true;
         }
     }
 }
