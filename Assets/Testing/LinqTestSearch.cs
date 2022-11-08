@@ -30,12 +30,24 @@ namespace Testing
            _tests.Add(new LinqTest(0, "F"));
            _tests.Add(new LinqTest(0, "Foo"));
 
-            SelectIds();
+            Combine();
+        }
+
+        public void Combine()
+        {
+            bool result = _tests
+                .Where(x => x.Number == 1)
+                .Select(x => x.Id)
+                .Any(x => x == "F");
+
+            Debug.Log(result);
         }
 
         public void FindWhere()
         {
-            IEnumerable<LinqTest> result = _tests.Where(x => x.Number == 1);
+            var result = _tests
+                .Where(x => x.Number == 1)
+                .ToArray();
 
             foreach (var item in result)
             {
