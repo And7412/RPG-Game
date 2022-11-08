@@ -19,9 +19,16 @@ namespace Testing
                 _id = "Goo";
         }
     }
-    public class LinqTestSearch
+    public class LinqTestSearch:MonoBehaviour
     {
         private List<LinqTest> tests;
-        
+        public void Start()
+        {
+            for (int i = 0; i < tests.Capacity; i++)
+            {
+              
+            }
+        }
+
     }
 }
