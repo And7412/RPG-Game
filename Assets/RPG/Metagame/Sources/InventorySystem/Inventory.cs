@@ -23,8 +23,11 @@ namespace RPG.Metagame.InventorySystem
         public void RemoveItems(ItemConfig item, int count)
         {
             var section = GetInventorySection(item);
-            if (section == item.Id )
-                throw new ArgumentException($"Inventory has no item {item.Id}");
+            if (section.currentObject == item.Id)
+            {
+                section.RemoveItems(item ,count);
+            }
+               // throw new ArgumentException($"Inventory has no item {item.Id}");
 
             
         }

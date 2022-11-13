@@ -12,6 +12,8 @@ namespace RPG.Metagame.InventorySystem
         [SerializeField] private List<InventoryCell> _cells = new List<InventoryCell>();
         public IReadOnlyList<InventoryCell> Cells => _cells;
         public InventorySlotType slot { get; }
+        public string currentObject { get; private set; }
+        
 
         public InventorySection(InventorySlotType inventorySlot)
         {
@@ -27,6 +29,7 @@ namespace RPG.Metagame.InventorySystem
             {
                 
                 var hasSpace = cell.TryAdd();
+                currentObject = item.Id;
                 if (!hasSpace)
                 {
                     cell = new InventoryCell(item);
