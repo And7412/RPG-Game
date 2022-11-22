@@ -37,9 +37,9 @@ namespace RPG.Metagame.InventorySystem
         public bool Remove()
         {
             var resultAmount = _amount - 1;
-            var canremove = resultAmount > 0;
+            var canremove = resultAmount >= 0;
 
-            if (canremove)
+            if (!canremove)
                 return false;
 
             _amount = resultAmount;
