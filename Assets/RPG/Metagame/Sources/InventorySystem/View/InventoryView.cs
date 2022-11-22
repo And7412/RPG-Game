@@ -28,15 +28,12 @@ namespace RPG.Metagame.InventorySystem.View
             _cellViews.Add(cellView);
         }
 
-        public void ShowWeapon()
-        {
-            ShowItems(_inventory.WeaponSection);
-        }
+        public void ShowWeapon() => ShowItems(_inventory.WeaponSection);
+        public void ShowArmor() => ShowItems(_inventory.ArmorSection);
+        public void ShowConsumables() => ShowItems(_inventory.ConsumeSection);
+        public void ShowMisc() => ShowItems(_inventory.MiscSection);
+        public void ShowQuest() => ShowItems(_inventory.QuestSection);
 
-        public void ShowArmor()
-        {
-            ShowItems(_inventory.ArmorSection);
-        }
 
         private void ShowItems(IInventorySectionRead inventorySection)
         {
