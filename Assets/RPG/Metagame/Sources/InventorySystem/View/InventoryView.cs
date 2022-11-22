@@ -30,17 +30,17 @@ namespace RPG.Metagame.InventorySystem.View
 
         public void ShowWeapon()
         {
-            //ShowItems(_inventory.Weapons);
+            ShowItems(_inventory.WeaponSection);
         }
 
         public void ShowArmor()
         {
-            //ShowItems(_inventory.Armors);
+            ShowItems(_inventory.ArmorSection);
         }
 
-        private void ShowItems(IReadOnlyList<InventoryCell> cells)
+        private void ShowItems(IInventorySectionRead inventorySection)
         {
-            var amount = cells.Count;
+            var amount = inventorySection.Cells.Count;
             var amountDiff = _cellViews.Count - amount;
 
             for (int i = 0; i < amountDiff; i++)
@@ -50,7 +50,7 @@ namespace RPG.Metagame.InventorySystem.View
 
             int viewNum = 0;
 
-            foreach (var cell in cells)
+            foreach (var cell in inventorySection.Cells)
             {
                 _cellViews[viewNum].SetCell(cell);
                 viewNum++;

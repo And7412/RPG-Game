@@ -5,7 +5,7 @@ using UnityEngine;
 namespace RPG.Metagame.InventorySystem
 {
     [Serializable]
-    public class InventoryCell
+    public class InventoryCell :IInventoryCell
     {
         [SerializeField] private ItemConfig _config;
         [SerializeField] private int _amount;
@@ -45,6 +45,11 @@ namespace RPG.Metagame.InventorySystem
             _amount = resultAmount;
             return true;
         }
+    }
+    public  interface IInventoryCell
+    {
+        ItemConfig Config { get; }
+        int Amount { get; }
     }
 }
 

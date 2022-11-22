@@ -7,10 +7,10 @@ using UnityEngine;
 namespace RPG.Metagame.InventorySystem
 {
     [Serializable]
-    public class InventorySection
+    public class InventorySection:IInventorySectionRead
     {
         [SerializeField] private List<InventoryCell> _cells = new List<InventoryCell>();
-        public IReadOnlyList<InventoryCell> Cells => _cells;
+        public IReadOnlyList<IInventoryCell> Cells => _cells;
         public InventorySlotType Slot { get; }
         public string currentObject { get; private set; }
         
@@ -61,5 +61,10 @@ namespace RPG.Metagame.InventorySystem
 
             return cell;
         }
+    }
+    public interface IInventorySectionRead
+    {
+        IReadOnlyList<IInventoryCell> Cells { get; }
+        InventorySlotType Slot { get; }
     }
 }

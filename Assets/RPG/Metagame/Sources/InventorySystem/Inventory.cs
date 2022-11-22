@@ -16,6 +16,12 @@ namespace RPG.Metagame.InventorySystem
 
         private InventorySection[] _sections;
 
+        public IInventorySectionRead WeaponSection => _weaponSection;
+        public IInventorySectionRead ArmorSection => _armorSection;
+        public IInventorySectionRead ConsumeSection => _consumeSection;
+        public IInventorySectionRead MiscSection => _miscSection;
+        public IInventorySectionRead QuestSection => _questSection;
+
         public Inventory()
         {
             _sections = new []
@@ -59,7 +65,11 @@ namespace RPG.Metagame.InventorySystem
 
     public interface IInventoryRead
     {
-        //TODO Read properties
+        IInventorySectionRead WeaponSection { get; }
+        IInventorySectionRead ArmorSection { get; }
+        IInventorySectionRead ConsumeSection { get; }
+        IInventorySectionRead MiscSection { get; }
+        IInventorySectionRead QuestSection { get; }
     }
 }
 

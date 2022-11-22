@@ -10,8 +10,8 @@ namespace RPG.Metagame.InventorySystem.View
     {
         public bool Active { get; private set; }
 
-        public event Action<InventoryCell> Clicked;
-        private InventoryCell _cell;
+        public event Action<IInventoryCell> Clicked;
+        private IInventoryCell _cell;
 
         [SerializeField] private Image _iconImage;
         [SerializeField] private TMP_Text _text;
@@ -32,7 +32,7 @@ namespace RPG.Metagame.InventorySystem.View
             Active = value;
         }
 
-        public void SetCell(InventoryCell args)
+        public void SetCell(IInventoryCell args)
         {
             _cell = args;
             _iconImage.sprite = args.Config.Sprite;
