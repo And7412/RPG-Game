@@ -1,5 +1,5 @@
 ﻿using System;
-using RPG.GameMap.Tavern;
+using RPG.GameMap.TavernSystem;
 using RPG.Shared;
 using UnityEngine;
 using RPG.Metagame.Player;

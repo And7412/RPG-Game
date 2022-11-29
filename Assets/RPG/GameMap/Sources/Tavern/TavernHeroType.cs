@@ -1,4 +1,4 @@
-﻿namespace RPG.GameMap.Tavern
+﻿namespace RPG.GameMap.TavernSystem
 {
     public enum TavernHeroType 
     {

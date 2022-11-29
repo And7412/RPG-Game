@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using RPG.Metagame.Player;
-using RPG.GameMap.Market;
+﻿using RPG.Metagame.Player;
 using UnityEngine;
 using UnityEngine.UI;
 

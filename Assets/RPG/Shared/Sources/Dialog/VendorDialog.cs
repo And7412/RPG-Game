@@ -5,7 +5,7 @@ using RPG.Metagame.InventorySystem.View;
 using System;
 using UnityEngine;
 
-namespace RPG.GameMap.Market
+namespace RPG.GameMap.Shop
 {
     public class VendorDialog : Dialog<TradeDialogArgs, TradeDialogResult>
     {

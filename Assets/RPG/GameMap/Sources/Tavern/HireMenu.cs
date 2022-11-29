@@ -1,4 +1,4 @@
-﻿using RPG.GameMap.Tavern;
+﻿using RPG.GameMap.TavernSystem;
 using RPG.Metagame.Player;
 using RPG.Shared.Dialog;
 using System;

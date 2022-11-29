@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using RPG.GameMap.Tavern;
+using RPG.GameMap.TavernSystem;
 using UnityEngine;
 using UnityEngine.UI;
 

@@ -1,7 +1,7 @@
 ﻿using RPG.Metagame.Heroes;
 using UnityEngine;
 
-namespace RPG.GameMap.Tavern
+namespace RPG.GameMap.TavernSystem
 {
     [CreateAssetMenu(fileName = "TavernHeroConfig", menuName = "RPG/Heroes/TavernHeroConfig")]
     public class TavernHeroConfig : HeroConfig
