@@ -17,10 +17,10 @@ namespace RPG.Metagame.InventorySystem.View
             _inventory = inventory;
         }
 
-        public void Show()
-        {
-            ShowWeapon();
-        }
+        //public void Show()
+        //{
+        //    ShowWeapon();
+        //}
 
         public void AddCellView()
         {
