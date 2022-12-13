@@ -14,17 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _inventory:
     _weaponSection:
-      _cells: []
-      _slotType: 1
+      _cells:
+      - _config: {fileID: 11400000, guid: fd9eb4c81738af244b32e268064fff77, type: 2}
+        _amount: 4
     _armorSection:
-      _cells: []
-      _slotType: 2
+      _cells:
+      - _config: {fileID: 11400000, guid: fd9eb4c81738af244b32e268064fff77, type: 2}
+        _amount: 2
     _consumeSection:
       _cells: []
-      _slotType: 4
     _miscSection:
       _cells: []
-      _slotType: 3
     _questSection:
       _cells: []
-      _slotType: 5

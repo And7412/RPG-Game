@@ -7,17 +7,17 @@ namespace RPG.GameMap.Shop
     public class ShopIcon : MonoBehaviour
     {
         [SerializeField] private PointClickHandler _clickHandler;
-        [SerializeField] private Canvas _canvas;
+        [SerializeField] private Shop _shop;
 
         private void Awake()
         {
             _clickHandler.Clicked += OnClicked;
-            _canvas.enabled = false;
+            _shop.SetActive(false);
         }
 
         private void OnClicked()
         {
-            _canvas.enabled = true;
+            _shop.SetActive(true);
         }
     }
 }

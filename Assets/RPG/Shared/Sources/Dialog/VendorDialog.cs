@@ -9,8 +9,8 @@ namespace RPG.GameMap.Shop
 {
     public class VendorDialog : Dialog<TradeDialogArgs, TradeDialogResult>
     {
-        [SerializeField] private TextView _playerMoneyText;
-        [SerializeField] private TextView _vendorMoneyText;
+        [SerializeField] private StatPanel _playerMoneyText;
+        [SerializeField] private StatPanel _vendorMoneyText;
         [SerializeField] private InventoryView _vendorInventory;
         [SerializeField] private InventoryView _playerInventory;
         private Money _vMoney;
@@ -22,10 +22,12 @@ namespace RPG.GameMap.Shop
         {
             _pMoney = new Money(args.PlayerMoney);
             _vMoney = new Money(args.VendorMoney);
-            _pMoney.MoneyChanged += _playerMoneyText.SetText;
-            _vMoney.MoneyChanged += _vendorMoneyText.SetText;
+            _playerMoneyText.Initialized(_pMoney.Value);
+            _vendorMoneyText.Initialized(_vMoney.Value);
             _vendorInventory.Initialize(args.VendorInventory);
+            _vendorInventory.Show();
             _playerInventory.Initialize(args.PlayerInventory);
+            _playerInventory.Show();
         }
     }
 

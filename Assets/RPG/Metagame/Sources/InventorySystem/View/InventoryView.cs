@@ -15,12 +15,13 @@ namespace RPG.Metagame.InventorySystem.View
         public void Initialize(IInventoryRead inventory)
         {
             _inventory = inventory;
+            _cellViews = new List<InventoryItemView>();
         }
 
-        //public void Show()
-        //{
-        //    ShowWeapon();
-        //}
+        public void Show()
+        {
+            ShowWeapon();
+        }
 
         public void AddCellView()
         {
@@ -38,7 +39,7 @@ namespace RPG.Metagame.InventorySystem.View
         private void ShowItems(IInventorySectionRead inventorySection)
         {
             var amount = inventorySection.Cells.Count;
-            var amountDiff = _cellViews.Count - amount;
+            var amountDiff = amount - _cellViews.Count;
 
             for (int i = 0; i < amountDiff; i++)
             {
