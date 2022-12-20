@@ -1,6 +1,7 @@
 ﻿using Core.Patterns.Factory;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace RPG.Metagame.InventorySystem.View
 {
