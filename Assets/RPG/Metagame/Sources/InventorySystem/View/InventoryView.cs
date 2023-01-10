@@ -5,10 +5,11 @@ using UnityEngine.UI;
 
 namespace RPG.Metagame.InventorySystem.View
 {
-    public class InventoryView : MonoBehaviour
+    public class InventoryView : MonoBehaviour, IInventoryView
     {
         [SerializeField] private InventoryItemView _cellTemplate;
         [SerializeField] private FactoryBehaviour _factoryBehaviour;
+        [SerializeField] private InventoryButtons _buttons;
 
         private IInventoryRead _inventory;
         private List<InventoryItemView> _cellViews;
@@ -17,6 +18,7 @@ namespace RPG.Metagame.InventorySystem.View
         {
             _inventory = inventory;
             _cellViews = new List<InventoryItemView>();
+            _buttons.Initialize(this);
         }
 
         public void Show()
@@ -55,5 +57,14 @@ namespace RPG.Metagame.InventorySystem.View
                 viewNum++;
             }
         }
+    }
+
+    public interface IInventoryView
+    {
+        void ShowWeapon();
+        void ShowArmor();
+        void ShowConsumables();
+        void ShowMisc();
+        void ShowQuest();
     }
 }

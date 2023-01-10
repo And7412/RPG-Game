@@ -17,9 +17,23 @@ MonoBehaviour:
       _cells:
       - _config: {fileID: 11400000, guid: fd9eb4c81738af244b32e268064fff77, type: 2}
         _amount: 4
+      - _config: {fileID: 11400000, guid: fd9eb4c81738af244b32e268064fff77, type: 2}
+        _amount: 4
+      - _config: {fileID: 11400000, guid: fd9eb4c81738af244b32e268064fff77, type: 2}
+        _amount: 4
     _armorSection:
       _cells:
-      - _config: {fileID: 11400000, guid: fd9eb4c81738af244b32e268064fff77, type: 2}
+      - _config: {fileID: 11400000, guid: 65be4192c23549542a8a873e63f8a8b7, type: 2}
+        _amount: 2
+      - _config: {fileID: 11400000, guid: 65be4192c23549542a8a873e63f8a8b7, type: 2}
+        _amount: 2
+      - _config: {fileID: 11400000, guid: 65be4192c23549542a8a873e63f8a8b7, type: 2}
+        _amount: 2
+      - _config: {fileID: 11400000, guid: 65be4192c23549542a8a873e63f8a8b7, type: 2}
+        _amount: 2
+      - _config: {fileID: 11400000, guid: 65be4192c23549542a8a873e63f8a8b7, type: 2}
+        _amount: 2
+      - _config: {fileID: 11400000, guid: 65be4192c23549542a8a873e63f8a8b7, type: 2}
         _amount: 2
     _consumeSection:
       _cells: []
