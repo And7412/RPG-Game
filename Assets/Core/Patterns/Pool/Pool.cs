@@ -16,6 +16,10 @@ namespace RPG.Metagame.InventorySystem
             }
             _items = new List<T>(item);
         }
+        public Pool()
+        {
+            _items = new List<T>();
+        }
 
         public T Pop()
         {

@@ -11,6 +11,8 @@ namespace RPG.Metagame.InventorySystem.View
         [SerializeField] private FactoryBehaviour _factoryBehaviour;
         [SerializeField] private InventoryButtons _buttons;
 
+        private Pool<InventoryItemView> pool;
+
         private IInventoryRead _inventory;
         private List<InventoryItemView> _cellViews;
 
@@ -19,6 +21,7 @@ namespace RPG.Metagame.InventorySystem.View
             _inventory = inventory;
             _cellViews = new List<InventoryItemView>();
             _buttons.Initialize(this);
+            pool = new Pool<InventoryItemView>();
         }
 
         public void Show()
@@ -30,6 +33,7 @@ namespace RPG.Metagame.InventorySystem.View
         {
             var cellView = _factoryBehaviour.Create(_cellTemplate);
             _cellViews.Add(cellView);
+            pool.Pop(cellView);
         }
 
         public void ShowWeapon() => ShowItems(_inventory.WeaponSection);
