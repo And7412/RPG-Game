@@ -32,7 +32,7 @@ namespace RPG.GameMap.Shop
 
         private void OnVendorClick()
         {
-            var args = new TradeDialogArgs(_player.Money.Value,10, _player.Inventory, _vendor.Inventory);
+            var args = new TradeDialogArgs(_player.Money.Value,_vendor.DefaultMoneyValue, _player.Inventory, _vendor.Inventory);
             _vendorDialog.Open(args);
         }
 

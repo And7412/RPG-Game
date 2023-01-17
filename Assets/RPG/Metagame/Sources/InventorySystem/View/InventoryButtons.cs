@@ -9,7 +9,7 @@ namespace RPG.Metagame.InventorySystem
 
         private IInventoryView _inventory;
 
-        public void Initialize(IInventoryView inventory)
+        public void Initialize(IInventoryView inventory, InventorySlotType defaultButtonType)
         {
             _inventory = inventory;
 
@@ -18,7 +18,7 @@ namespace RPG.Metagame.InventorySystem
                 button.Clicked += OnButtonClicked;
             }
 
-            OnButtonClicked(_buttons[0]);
+            SelectButton(defaultButtonType);
         }
 
         private void OnButtonClicked(InventorySectionButton button)

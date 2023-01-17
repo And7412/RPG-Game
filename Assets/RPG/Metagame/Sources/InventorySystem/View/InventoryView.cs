@@ -11,17 +11,17 @@ namespace RPG.Metagame.InventorySystem.View
         [SerializeField] private FactoryBehaviour _factoryBehaviour;
         [SerializeField] private InventoryButtons _buttons;
 
-        private Pool<InventoryItemView> pool;
+        private Pool<InventoryItemView> _inactiveCells;
 
         private IInventoryRead _inventory;
-        private List<InventoryItemView> _cellViews;
+        private List<InventoryItemView> _activeCells;
 
         public void Initialize(IInventoryRead inventory)
         {
             _inventory = inventory;
-            _cellViews = new List<InventoryItemView>();
-            _buttons.Initialize(this);
-            pool = new Pool<InventoryItemView>();
+            _activeCells = new List<InventoryItemView>();
+            _inactiveCells = new Pool<InventoryItemView>();
+            _buttons.Initialize(this, InventorySlotType.Weapon);
         }
 
         public void Show()
@@ -29,11 +29,10 @@ namespace RPG.Metagame.InventorySystem.View
             ShowWeapon();
         }
 
-        public void AddCellView()
+        private void CreateInactiveCellView()
         {
             var cellView = _factoryBehaviour.Create(_cellTemplate);
-            _cellViews.Add(cellView);
-            pool.AddedPool(cellView);
+            _inactiveCells.Push(cellView);
         }
 
         public void ShowWeapon() => ShowItems(_inventory.WeaponSection);
@@ -46,26 +45,44 @@ namespace RPG.Metagame.InventorySystem.View
         private void ShowItems(IInventorySectionRead inventorySection)
         {
             var amount = inventorySection.Cells.Count;
-            var amountDiff = amount - _cellViews.Count;
+            var amountDiff = amount - _activeCells.Count;
 
-            for (int i = 0; i < amountDiff; i++)
+            if (amountDiff > 0)
             {
-                AddCellView();
+                AddCells(amountDiff);
             }
-
-            for (int i = 0; i > amountDiff; i--)
+            else
             {
-                int x = _cellViews.Count + amountDiff;
-                _cellViews[x].SetActive(false);
-                amountDiff++;
+                RemoveCells(Mathf.Abs(amountDiff));
             }
 
             int viewNum = 0;
 
             foreach (var cell in inventorySection.Cells)
             {
-                _cellViews[viewNum].SetCell(cell);
+                _activeCells[viewNum].SetCell(cell);
                 viewNum++;
+            }
+        }
+
+        private void AddCells(int amountDiff)
+        {
+            for (int i = 0; i < amountDiff; i++)
+            {
+                if (!_inactiveCells.HasItems)
+                    CreateInactiveCellView();
+
+                _activeCells.Add(_inactiveCells.Pop());
+            }
+        }
+
+        private void RemoveCells(int amountDiff)
+        {
+            for (int i = 0; i < amountDiff; i++)
+            {
+                var cellView = _activeCells[0];
+                _activeCells.Remove(cellView);
+                _inactiveCells.Push(cellView);
             }
         }
     }

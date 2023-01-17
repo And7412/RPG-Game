@@ -30,6 +30,7 @@ namespace RPG.Metagame.InventorySystem.View
         public void SetActive(bool value)
         {
             Active = value;
+            gameObject.SetActive(value);
         }
 
         public void SetCell(IInventoryCell args)
