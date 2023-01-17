@@ -33,7 +33,7 @@ namespace RPG.Metagame.InventorySystem.View
         {
             var cellView = _factoryBehaviour.Create(_cellTemplate);
             _cellViews.Add(cellView);
-            pool.Pop(cellView);
+            pool.AddedPool(cellView);
         }
 
         public void ShowWeapon() => ShowItems(_inventory.WeaponSection);

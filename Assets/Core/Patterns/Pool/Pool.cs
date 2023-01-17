@@ -21,6 +21,12 @@ namespace RPG.Metagame.InventorySystem
             _items = new List<T>();
         }
 
+        public void AddedPool(T Obj)
+        {
+            _items.Add(Obj);
+
+        }
+
         public T Pop()
         {
             foreach (var obj in _items)
