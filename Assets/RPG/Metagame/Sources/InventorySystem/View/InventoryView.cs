@@ -1,7 +1,7 @@
 ﻿using Core.Patterns.Factory;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using Core.Patterns.Pool;
 
 namespace RPG.Metagame.InventorySystem.View
 {
@@ -51,6 +51,13 @@ namespace RPG.Metagame.InventorySystem.View
             for (int i = 0; i < amountDiff; i++)
             {
                 AddCellView();
+            }
+
+            for (int i = 0; i > amountDiff; i--)
+            {
+                int x = _cellViews.Count + amountDiff;
+                _cellViews[x].SetActive(false);
+                amountDiff++;
             }
 
             int viewNum = 0;

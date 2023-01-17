@@ -44,5 +44,10 @@ namespace RPG.Metagame.InventorySystem
         {
             obj.SetActive(false);
         }
+        //public void GetObject(int obj)
+        //{
+            
+            
+        //}
     }
 }
