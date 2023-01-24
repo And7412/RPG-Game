@@ -1,18 +1,17 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class VendorSave : MonoBehaviour
+﻿using System;
+namespace RPG.Shared
 {
-    // Start is called before the first frame update
-    void Start()
+    [Serializable]
+    public class VendorSave
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public string name { get; set; }
+        public int Money { get; set; }
+        public InventoryItemCount Inventory { get; set; }
+        [Serializable]
+        public class InventoryItemCount
+        {
+            public string Id { get; set; }
+            public int Count { get; set; }
+        }
     }
 }

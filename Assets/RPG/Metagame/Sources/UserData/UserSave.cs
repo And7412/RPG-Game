@@ -25,8 +25,6 @@ namespace RPG.Shared
 
         public Difficulty DifficultyEnum => (Difficulty) Difficulty;
 
-        public string SaveName { get; }
-
         [Serializable]
         public class InventoryItemCount
         {
@@ -35,4 +33,3 @@ namespace RPG.Shared
         }
     }
 }
-
