@@ -1,5 +1,6 @@
 ﻿using RPG.Metagame.InventorySystem;
 using RPG.Shared;
+using System.Linq;
 
 namespace RPG.Metagame.Player
 {
@@ -26,6 +27,21 @@ namespace RPG.Metagame.Player
 
             var health = PrefsProvider.LoadPlayerHealth();
             SetMaxHP();
+        }
+
+        public Player(UserSave save)
+        {
+            PlayerLevel level = new PlayerLevel(save.Level.Xp, save.Level.Level, save.Level.Ratio);
+            _health = new PlayerStat(level.PlayerUpdateState());
+            _stamina = new PlayerStat(level.PlayerUpdateState());
+            var money = save.Money;
+            _money = new Money(money);
+            _inventory = new Inventory();
+            foreach(var item in save.InventoryItemsId)
+            {
+                _inventory.AddItems(item, 1);
+                
+            }
         }
 
         public void Hit()

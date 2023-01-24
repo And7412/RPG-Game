@@ -6,8 +6,9 @@ namespace RPG.Shared
     public class UserSave
     {
         public string Name { get; set; }
-        public int Level { get; set; }
-        public string[] Inventory { get; set; }
+        public LevelClass Level { get; set; }
+        public int Money { get; set; }
+        public string[] InventoryItemsId { get; set; }
         public Quest[] Quests { get; set; }
 
         [Serializable]
@@ -15,6 +16,14 @@ namespace RPG.Shared
         {
             public string Id { get; set; }
             public string Status { get; set; }
+        }
+
+        [Serializable]
+        public class LevelClass
+        {
+            public int Level { get; set; }
+            public int Xp { get; set; }
+            public int Ratio { get; set; }
         }
     }
 }

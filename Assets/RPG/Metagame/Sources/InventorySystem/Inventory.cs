@@ -15,6 +15,7 @@ namespace RPG.Metagame.InventorySystem
         [SerializeField] private InventorySection _questSection;
 
         private InventorySection[] _sections;
+        private ItemConfig[] _itemsConfig;
 
         public IInventorySectionRead WeaponSection => _weaponSection;
         public IInventorySectionRead ArmorSection => _armorSection;
@@ -37,6 +38,15 @@ namespace RPG.Metagame.InventorySystem
         public void AddItems(ItemConfig item, int count)
         {
             var section = GetInventorySection(item);
+            section.AddItems(item, count);
+        }
+        public void AddItems(string id, int count)
+        {
+            foreach()
+            {
+
+            }
+            var section = GetInventorySection();
             section.AddItems(item, count);
         }
 
