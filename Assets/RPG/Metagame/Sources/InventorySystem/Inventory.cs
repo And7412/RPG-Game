@@ -40,15 +40,6 @@ namespace RPG.Metagame.InventorySystem
             var section = GetInventorySection(item);
             section.AddItems(item, count);
         }
-        public void AddItems(string id, int count)
-        {
-            foreach()
-            {
-
-            }
-            var section = GetInventorySection();
-            section.AddItems(item, count);
-        }
 
         public void RemoveItems(ItemConfig item, int count)
         {

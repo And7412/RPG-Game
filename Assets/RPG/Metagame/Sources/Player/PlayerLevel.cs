@@ -7,40 +7,43 @@ namespace RPG.Metagame.Player
         public int Level { get; private set; }
         public int XpToNextLevel { get; private set; }
 
-        private int _diffikaltyFactor=1;
+        private int _difficultyFactor=1;
 
-        private const int ConstentFactor = 100;
+        private const int ConstantFactor = 100;
+        private readonly int _xpRatio = 100;
 
+        private int StatModifier => (Level-1) * ConstantFactor / _difficultyFactor;
 
-        private readonly int _ratio = 100;
-
-        public PlayerLevel(int xp, int lvl, int ratio )
+        public PlayerLevel(int xp, int lvl, int xpRatio, Difficulty difficulty)
         {
-            if (xp < 0 || lvl < 0 || _ratio <= 0)
+            if (xp < 0 || lvl < 0 || _xpRatio <= 0)
             {
                 throw new ArgumentException();
             }
 
-            if (_diffikaltyFactor <= 0)
-                _diffikaltyFactor = 1;
+            if (_difficultyFactor <= 0)
+                _difficultyFactor = 1;
 
-            if (_diffikaltyFactor > 100)
-                _diffikaltyFactor = 100;
+            if (_difficultyFactor > 100)
+                _difficultyFactor = 100;
 
             Xp = xp;
             Level = lvl;
-            _ratio = ratio;
-            XpToNextLevel = Level * _ratio;
+            _xpRatio = xpRatio;
+            XpToNextLevel = Level * _xpRatio;
+            SetDifficultyFactor(difficulty);
         }
 
-        public int PlayerUpdateState()
+        public int GetMaxHp(int defaultMaxHp)
         {
-            var Result = Level * ConstentFactor / _diffikaltyFactor;
-            if(Level * ConstentFactor % _diffikaltyFactor != 0)
-            {
-                Result -= Level * ConstentFactor % _diffikaltyFactor;
-            }
-            return Result;
+            var result = defaultMaxHp + StatModifier;
+            return result;
+        }
+
+        public int GetMaxStamina(int defaultMaxStamina)
+        {
+            var result = defaultMaxStamina + StatModifier;
+            return result;
         }
 
         public void IncreaseXp(int value)
@@ -66,7 +69,15 @@ namespace RPG.Metagame.Player
         private void IncreaseLvl()
         {
             Level++;
-            XpToNextLevel = Level * _ratio;
+            XpToNextLevel = Level * _xpRatio;
+        }
+
+        private void SetDifficultyFactor(Difficulty difficulty)
+        {
+            _difficultyFactor = (int) difficulty;
+
+            if (_difficultyFactor <= 0)
+                _difficultyFactor = 1;
         }
     }
 }

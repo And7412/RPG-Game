@@ -25,35 +25,41 @@ namespace RPG.Metagame.Player
             _money = new Money(money);
             _inventory = config.Inventory;
 
-            var health = PrefsProvider.LoadPlayerHealth();
+            //var health = PrefsProvider.LoadPlayerHealth();
             SetMaxHP();
         }
 
-        public Player(UserSave save)
+        public Player(PlayerConfig config, UserSave save)
         {
-            PlayerLevel level = new PlayerLevel(save.Level.Xp, save.Level.Level, save.Level.Ratio);
-            _health = new PlayerStat(level.PlayerUpdateState());
-            _stamina = new PlayerStat(level.PlayerUpdateState());
+            PlayerLevel level = new PlayerLevel(save.Xp, save.Level, config.XpRatio, save.DifficultyEnum);
+
+            _health = new PlayerStat(level.GetMaxHp(config.MaxHealth));
+            _health.Set(save.Health);
+
+            _stamina = new PlayerStat(level.GetMaxStamina(config.MaxStamina));
+            _stamina.Set(save.Stamina);
+
             var money = save.Money;
             _money = new Money(money);
+
             _inventory = new Inventory();
-            foreach(var item in save.InventoryItemsId)
-            {
-                _inventory.AddItems(item, 1);
-                
-            }
+
+            //foreach(var item in save.InventoryItems)
+            //{
+            //    _inventory.AddItems(item.Id, item.Count);
+            //}
         }
 
         public void Hit()
         {
             _health.Decrease(10);
-            PrefsProvider.SavePlayerHealth(_health.Value);
+            //PrefsProvider.SavePlayerHealth(_health.Value);
         }
 
         public void SetMaxHP()
         {
             _health.Set(_health.MaxValue);
-            PrefsProvider.SavePlayerHealth(_health.Value);
+            //PrefsProvider.SavePlayerHealth(_health.Value);
         }
     }
 }

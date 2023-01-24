@@ -2,6 +2,7 @@
 using UnityEngine;
 using RPG.GameMap.Shop;
 using RPG.GameMap.TavernSystem;
+using RPG.Shared;
 
 namespace RPG.GameMap
 {
@@ -13,8 +14,9 @@ namespace RPG.GameMap
 
         private void Awake()
         {
+            var userSave = PrefsJsonProvider.Load<UserSave>();
+            var player = new Player(_playerConfig, userSave);
 
-            var player = new Player(_playerConfig);
             //player.SetMaxHP();
             _tavern.Initialize(player);
             _market.Initialize(player);
