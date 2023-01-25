@@ -9,6 +9,8 @@ namespace RPG.Metagame.Player
 
         private int _difficultyFactor=1;
         private const int ConstantFactor = 100;
+        private int _classFactorHp=100;
+        private int _classFactorStamina=100;
 
         private readonly int _xpRatio = 100;
 
@@ -36,13 +38,13 @@ namespace RPG.Metagame.Player
 
         public int GetMaxHp(int defaultMaxHp)
         {
-            var result = defaultMaxHp + StatModifier;
+            var result = defaultMaxHp + StatModifier+_classFactorHp;
             return result;
         }
 
         public int GetMaxStamina(int defaultMaxStamina)
         {
-            var result = defaultMaxStamina + StatModifier;
+            var result = defaultMaxStamina + StatModifier + _classFactorStamina;
             return result;
         }
 
