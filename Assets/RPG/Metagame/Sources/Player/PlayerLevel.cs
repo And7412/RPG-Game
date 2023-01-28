@@ -28,7 +28,7 @@ namespace RPG.Metagame.Player
 
             if (_difficultyFactor > 100)
                 _difficultyFactor = 100;
-
+            
             Xp = xp;
             Level = lvl;
             _xpRatio = xpRatio;
@@ -36,15 +36,27 @@ namespace RPG.Metagame.Player
             SetDifficultyFactor(difficulty);
         }
 
-        public int GetMaxHp(int defaultMaxHp)
+        public int GetMaxHealth(int defaultMaxHp)
         {
-            var result = defaultMaxHp + StatModifier+_classFactorHp;
+            var result = defaultMaxHp + StatModifier + _classFactorHp;
+            return result;
+        }
+
+        public int GetMaxHealth(int defaultMaxHp,int armorStamiHealthFactor)
+        {
+            var result = defaultMaxHp + StatModifier+_classFactorHp + armorStamiHealthFactor;
             return result;
         }
 
         public int GetMaxStamina(int defaultMaxStamina)
         {
-            var result = defaultMaxStamina + StatModifier + _classFactorStamina;
+            var result = defaultMaxStamina + StatModifier;
+            return result;
+        }
+
+        public int GetMaxStamina(int defaultMaxStamina,int armorStaminaFactor)
+        {
+            var result = defaultMaxStamina + StatModifier + _classFactorStamina + armorStaminaFactor;
             return result;
         }
 

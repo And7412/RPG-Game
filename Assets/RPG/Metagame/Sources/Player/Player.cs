@@ -33,7 +33,7 @@ namespace RPG.Metagame.Player
         {
             PlayerLevel level = new PlayerLevel(save.Xp, save.Level, config.XpRatio, save.DifficultyEnum);
 
-            _health = new PlayerStat(level.GetMaxHp(config.MaxHealth));
+            _health = new PlayerStat(level.GetMaxHealth(config.MaxHealth));
             _health.Set(save.Health);
 
             _stamina = new PlayerStat(level.GetMaxStamina(config.MaxStamina));
