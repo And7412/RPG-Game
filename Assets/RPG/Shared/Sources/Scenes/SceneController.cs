@@ -36,7 +36,7 @@ namespace RPG.Shared.Scenes
             }
 
             var bootstrap = FindObjectOfType<SceneRunner<T>>();
-            bootstrap.Run(args);
+            bootstrap.DoRun(args, this);
         }
     }
 }

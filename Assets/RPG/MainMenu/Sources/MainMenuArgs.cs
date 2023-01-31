@@ -1,12 +1,14 @@
-﻿using RPG.Shared.Scenes;
+﻿using RPG.Shared;
+using RPG.Shared.Scenes;
 
 namespace RPG.MainMenu
 {
     public class MainMenuArgs : SceneArgs
     {
-        public MainMenuArgs(SceneController sceneController) : base(sceneController)
+        public PrefsJsonProvider PrefsProvider { get; }
+        public MainMenuArgs(PrefsJsonProvider prefsJsonProvider)
         {
-
+            PrefsProvider = prefsJsonProvider;
         }
     }
 }

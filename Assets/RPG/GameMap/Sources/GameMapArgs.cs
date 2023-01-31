@@ -1,16 +1,19 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using RPG.Shared;
 using RPG.Shared.Scenes;
-using UnityEngine;
+using RPG.Shared.UserData;
 
 namespace RPG.GameMap
 {
     public class GameMapArgs : SceneArgs
     {
-        public GameMapArgs(SceneController sceneController) : base(sceneController)
+        public PlayerSave Save { get; }
+        public PrefsJsonProvider PrefsProvider { get; }
+        public GameMapArgs(PrefsJsonProvider prefsJsonProvider, PlayerSave save)
         {
-
+            Save = save;
+            PrefsProvider = prefsJsonProvider;
         }
+
     }
 }
 

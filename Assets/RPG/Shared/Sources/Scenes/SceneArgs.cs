@@ -6,12 +6,6 @@ namespace RPG.Shared.Scenes
 {
     public class SceneArgs
     {
-        public SceneController SceneController { get; }
-
-        public SceneArgs(SceneController sceneController)
-        {
-            SceneController = sceneController;
-        }
     }
 }
 

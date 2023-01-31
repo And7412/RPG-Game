@@ -1,15 +1,14 @@
 ﻿using RPG.GameMap;
 using RPG.Shared;
+using UnityEngine;
 
 namespace RPG.MainMenu
 {
     public class MainMenuSceneRunner : SceneRunner<MainMenuArgs>
     {
-        public override async void Run(MainMenuArgs args)
+        protected override void Run(MainMenuArgs args)
         {
-            //WAIT FOR LOAD BUTTON PRESS
-
-            args.SceneController.LoadGameMap(new GameMapArgs(args.SceneController));
+            Debug.Log("3456");
         }
     }
 }

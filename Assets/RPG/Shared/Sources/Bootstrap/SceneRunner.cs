@@ -5,7 +5,13 @@ namespace RPG.Shared
 {
     public abstract class SceneRunner<T> : MonoBehaviour where T: SceneArgs
     {
-        public abstract void Run(T args);
+        protected SceneController SceneController { get; private set; }
+        public void DoRun(T args,SceneController sceneController)
+        {
+            SceneController = sceneController;
+            Run(args);
+        }
+        protected abstract void Run(T args);
     }
 }
 

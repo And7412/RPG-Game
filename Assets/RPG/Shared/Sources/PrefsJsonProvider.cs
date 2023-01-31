@@ -4,9 +4,14 @@ using Object = UnityEngine.Object;
 
 namespace RPG.Shared
 {
-    public class PrefsJsonProvider
+    public class PrefsJsonProvider :MonoBehaviour
     {
-        public static T Load<T>() where T: new()
+        public void Initializ()
+        {
+            DontDestroyOnLoad(gameObject);
+        }
+
+        public T Load<T>() where T: new()
         {
             var data = PlayerPrefs.GetString(typeof(T).Name);
             T result;
@@ -23,7 +28,7 @@ namespace RPG.Shared
             return result;
         }
 
-        public static void Save<T>(T value) where T : new()
+        public void Save<T>(T value) where T : new()
         {
             var data = JsonUtility.ToJson(value);
             PlayerPrefs.SetString(typeof(T).Name, data);
