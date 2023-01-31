@@ -1,6 +1,7 @@
 ﻿using RPG.Metagame.InventorySystem;
 using RPG.Shared;
 using System.Linq;
+using RPG.Shared.UserData;
 
 namespace RPG.Metagame.Player
 {
@@ -29,7 +30,8 @@ namespace RPG.Metagame.Player
             SetMaxHP();
         }
 
-        public Player(PlayerConfig config, UserSave save)
+
+        public Player(PlayerConfig config, PlayerSave save)
         {
             PlayerLevel level = new PlayerLevel(save.Xp, save.Level, config.XpRatio, save.DifficultyEnum);
 

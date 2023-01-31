@@ -1,10 +1,10 @@
 ﻿using System;
 using RPG.Metagame;
 
-namespace RPG.Shared
+namespace RPG.Shared.UserData
 {
     [Serializable]
-    public class UserSave
+    public class PlayerSave
     {
         public string Name { get; set; }
         public int Level { get; set; }
@@ -24,12 +24,5 @@ namespace RPG.Shared
         }
 
         public Difficulty DifficultyEnum => (Difficulty) Difficulty;
-
-        [Serializable]
-        public class InventoryItemCount
-        {
-            public string Id { get; set; }
-            public int Count { get; set; }
-        }
     }
 }

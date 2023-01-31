@@ -3,6 +3,7 @@ using UnityEngine;
 using RPG.GameMap.Shop;
 using RPG.GameMap.TavernSystem;
 using RPG.Shared;
+using RPG.Shared.UserData;
 
 namespace RPG.GameMap
 {
@@ -14,7 +15,7 @@ namespace RPG.GameMap
 
         private void Awake()
         {
-            var userSave = PrefsJsonProvider.Load<UserSave>();
+            var userSave = PrefsJsonProvider.Load<PlayerSave>();
             var player = new Player(_playerConfig, userSave);
 
             //player.SetMaxHP();
