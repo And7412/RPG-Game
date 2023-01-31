@@ -2,6 +2,7 @@
 using RPG.MainMenu;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace RPG.Shared.Scenes
 {
@@ -27,7 +28,12 @@ namespace RPG.Shared.Scenes
 
         private async Task LoadScene<T>(T args, string name) where T: SceneArgs
         {
-            //loadin scene from name
+            var operation = SceneManager.LoadSceneAsync(name);
+
+            while (!operation.isDone)
+            {
+                await Task.Yield();
+            }
 
             var bootstrap = FindObjectOfType<SceneRunner<T>>();
             bootstrap.Run(args);
