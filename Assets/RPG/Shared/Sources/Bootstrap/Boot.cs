@@ -14,7 +14,7 @@ namespace RPG.Shared
             _sceneController.Initialize();
             _prefsJsonProvider.Initializ();
             //LOAD ALL SAVES
-            _sceneController.LoadMainMenu(new MainMenuArgs(_prefsJsonProvider));
+            _sceneController.LoadMainMenu(new MainMenuArgs(_prefsJsonProvider,new UserData.PlayerSave()));//TODO
         }
     }
 }

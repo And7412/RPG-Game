@@ -151,7 +151,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mainMenu: MainMenu
-  _gameMap: 
+  _gameMap: GameMap
 --- !u!4 &252670420
 Transform:
   m_ObjectHideFlags: 0
