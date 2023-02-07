@@ -1,4 +1,5 @@
-﻿using RPG.MainMenu;
+﻿using Core.Patterns.ServiceLocator;
+using RPG.MainMenu;
 using RPG.Shared.Scenes;
 using UnityEngine;
 
@@ -16,8 +17,11 @@ namespace RPG.Shared
             DontDestroyOnLoad(_loadScreen.gameObject);
             _sceneController.Initialize();
             _prefsJsonProvider.Initializ();
-            //LOAD ALL SAVES
-            _sceneController.LoadMainMenu(new MainMenuArgs());//TODO
+
+            var locator = ServiceLocator.Initialize();
+            locator.Register(_prefsJsonProvider);
+            
+            _sceneController.LoadMainMenu(new MainMenuArgs());
         }
     }
 }

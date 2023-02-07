@@ -1,4 +1,5 @@
-﻿using RPG.GameMap.Shop;
+﻿using Core.Patterns.ServiceLocator;
+using RPG.GameMap.Shop;
 using RPG.GameMap.TavernSystem;
 using RPG.Metagame.Player;
 using RPG.Shared;
@@ -25,11 +26,14 @@ namespace RPG.GameMap
 
         private void Initialize(GameMapArgs args)
         {
-            ////var player = new Player(_playerConfig, args.Save);
+            var provider = ServiceLocator.Instance.GetService<PrefsJsonProvider>();
+            var save = provider.Load<PlayerSave>();
 
-            ////player.SetMaxHP();
-            //_tavern.Initialize(player);
-            //_market.Initialize(player);
+            var player = new Player(_playerConfig, save);
+
+            player.SetMaxHP();
+            _tavern.Initialize(player);
+            _market.Initialize(player);
         }
     }
 }

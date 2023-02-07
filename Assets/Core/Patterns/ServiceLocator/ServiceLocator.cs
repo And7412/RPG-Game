@@ -1,32 +1,52 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System;
+using Object = UnityEngine.Object;
 
 namespace Core.Patterns.ServiceLocator
 {
-    public class ServiceLocator<T> : IServiceLocator<T>
+    public class ServiceLocator : IServiceLocator
     {
-        public T Service { get; set; }
+        private static ServiceLocator _locator;
+        private TypeDictionary _dict = new TypeDictionary();
 
-        private static ServiceLocator<T> _locator;
+        public static ServiceLocator Initialize()
+        {
+            if (_locator != null)
+                throw new InvalidOperationException("Cant overwrite service locator");
 
-        public static IServiceLocator<T> Instance
+            _locator = new ServiceLocator();
+            return _locator;
+        }
+
+        public static IServiceLocator Instance
         {
             get
             {
                 if (_locator == null)
-                {
-                    _locator = new ServiceLocator<T>();
-                }
+                    throw new InvalidOperationException("Locator is not initialized");
 
                 return _locator;
             }
         }
+
+        public void Register<T>(T obj) where T: Object
+        {
+            _dict.Add(obj);
+        }
+
+        public void UnRegister<T>(T obj) where T : Object
+        {
+            _dict.Remove<T>();
+        }
+
+        public T GetService<T>() where T : Object
+        {
+            return _dict.Get<T>();
+        }
     }
 
-    public interface IServiceLocator<T>
+    public interface IServiceLocator
     {
-        T Service { get; }
+        T GetService<T>() where T : Object;
     }
 }
 
