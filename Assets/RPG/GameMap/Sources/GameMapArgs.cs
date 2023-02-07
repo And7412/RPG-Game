@@ -6,12 +6,9 @@ namespace RPG.GameMap
 {
     public class GameMapArgs : SceneArgs
     {
-        public PlayerSave Save { get; }
-        public PrefsJsonProvider PrefsProvider { get; }
-        public GameMapArgs(PrefsJsonProvider prefsJsonProvider, PlayerSave save)
+        public GameMapArgs()
         {
-            Save = save;
-            PrefsProvider = prefsJsonProvider;
+
         }
 
     }

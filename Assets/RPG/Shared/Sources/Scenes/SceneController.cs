@@ -10,6 +10,7 @@ namespace RPG.Shared.Scenes
     {
         [SerializeField] private string _mainMenu;
         [SerializeField] private string _gameMap;
+        [SerializeField] private LoadScreen _loadScreen;
 
         public void Initialize()
         {
@@ -29,14 +30,18 @@ namespace RPG.Shared.Scenes
         private async Task LoadScene<T>(T args, string name) where T: SceneArgs
         {
             var operation = SceneManager.LoadSceneAsync(name);
+            _loadScreen.SetVisible(true);
 
             while (!operation.isDone)
             {
+                _loadScreen.UpdateProgressbar(operation.progress);
                 await Task.Yield();
             }
 
+            await Task.Delay(1000);
             var bootstrap = FindObjectOfType<SceneRunner<T>>();
             bootstrap.DoRun(args, this);
+            _loadScreen.SetVisible(false);
         }
     }
 }

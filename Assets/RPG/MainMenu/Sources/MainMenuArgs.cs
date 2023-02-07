@@ -6,12 +6,8 @@ namespace RPG.MainMenu
 {
     public class MainMenuArgs : SceneArgs
     {
-        public PrefsJsonProvider PrefsProvider { get; }
-        public PlayerSave Save { get; }
-        public MainMenuArgs(PrefsJsonProvider prefsJsonProvider,PlayerSave save)
+        public MainMenuArgs()
         {
-            Save = save;
-            PrefsProvider = prefsJsonProvider;
         }
     }
 }

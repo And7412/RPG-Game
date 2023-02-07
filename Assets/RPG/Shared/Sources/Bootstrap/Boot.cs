@@ -8,13 +8,16 @@ namespace RPG.Shared
     {
         [SerializeField] private SceneController _sceneController;
         [SerializeField] private PrefsJsonProvider _prefsJsonProvider;
+        [SerializeField] private LoadScreen _loadScreen;
+
 
         private void Awake()
         {
+            DontDestroyOnLoad(_loadScreen.gameObject);
             _sceneController.Initialize();
             _prefsJsonProvider.Initializ();
             //LOAD ALL SAVES
-            _sceneController.LoadMainMenu(new MainMenuArgs(_prefsJsonProvider,new UserData.PlayerSave()));//TODO
+            _sceneController.LoadMainMenu(new MainMenuArgs());//TODO
         }
     }
 }

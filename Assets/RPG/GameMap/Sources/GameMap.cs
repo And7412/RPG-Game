@@ -2,6 +2,7 @@
 using RPG.GameMap.TavernSystem;
 using RPG.Metagame.Player;
 using RPG.Shared;
+using RPG.Shared.UserData;
 using UnityEngine;
 
 namespace RPG.GameMap
@@ -11,8 +12,11 @@ namespace RPG.GameMap
         [SerializeField] private PlayerConfig _playerConfig;
         [SerializeField] private Tavern _tavern;
         [SerializeField] private Market _market;
-        
 
+        protected override GameMapArgs GetTestArgs()
+        {
+            return new GameMapArgs();
+        }
 
         protected override void Run(GameMapArgs args)
         {
@@ -21,11 +25,11 @@ namespace RPG.GameMap
 
         private void Initialize(GameMapArgs args)
         {
-            var player = new Player(_playerConfig, args.Save);
+            ////var player = new Player(_playerConfig, args.Save);
 
-            //player.SetMaxHP();
-            _tavern.Initialize(player);
-            _market.Initialize(player);
+            ////player.SetMaxHP();
+            //_tavern.Initialize(player);
+            //_market.Initialize(player);
         }
     }
 }

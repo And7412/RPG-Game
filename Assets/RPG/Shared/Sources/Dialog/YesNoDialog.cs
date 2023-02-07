@@ -29,13 +29,13 @@ namespace RPG.Shared.Dialog
         private void Accept()
         {
             var result = new DialogConfirmResult(true);
-            Closed?.Invoke(result);
+            Close(result);
         }
 
         private void Decline()
         {
             var result = new DialogConfirmResult(false);
-            Closed?.Invoke(result);
+            Close(result);
         }
     }
     public class DialogConfirmResult : DialogResult
