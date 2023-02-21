@@ -17,24 +17,15 @@ namespace RPG.Metagame.Player
         public Money Money => _money;
 
         public IInventoryRead Inventory => _inventory;
+        public IPlayerLevelStat Level => _level;
+        public string Name { get; }
 
-        public Player(PlayerConfig config)
-        {
-            _health = new PlayerStat(config.MaxHealth);
-            _stamina = new PlayerStat(config.MaxStamina);
-            var money = 10;
-            _money = new Money(money);
-            _inventory = config.Inventory;
-
-            //var health = PrefsProvider.LoadPlayerHealth();
-            SetMaxHP();
-        }
-
+        private PlayerLevel _level;
 
         public Player(PlayerConfig config, PlayerSave save)
         {
             PlayerLevel level = new PlayerLevel(save.Xp, save.Level, config.XpRatio, save.DifficultyEnum);
-
+            Name = save.Name;
             _health = new PlayerStat(level.GetMaxHealth(config.MaxHealth));
             _health.Set(save.Health);
 
@@ -62,6 +53,18 @@ namespace RPG.Metagame.Player
         {
             _health.Set(_health.MaxValue);
             //PrefsProvider.SavePlayerHealth(_health.Value);
+        }
+
+        public PlayerSave GetSave()
+        {
+            return new PlayerSave
+            {
+                Name = Name,
+                Level = _level.Level,
+                Xp = _level.Xp,
+                //TODO
+            };
+
         }
     }
 }

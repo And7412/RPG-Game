@@ -1,7 +1,7 @@
 ﻿using System;
 namespace RPG.Metagame.Player
 {
-    public class PlayerLevel
+    public class PlayerLevel : IPlayerLevelStat
     {
         public int Xp { get; private set; }
         public int Level { get; private set; }
@@ -93,5 +93,12 @@ namespace RPG.Metagame.Player
             if (_difficultyFactor <= 0)
                 _difficultyFactor = 1;
         }
+    }
+
+    public interface IPlayerLevelStat
+    {
+        int Xp { get; }
+        int Level { get; }
+        int XpToNextLevel { get; }
     }
 }

@@ -19,40 +19,35 @@ namespace RPG.Shared.Dialog
         {
             _buttonMainMenu.onClick.AddListener(ToMain);
             _ExitButton.onClick.AddListener(ToExit);
-            _text.text = args.Text;
         }
 
         private void ToMain()
         {
-            Closed?.Invoke(new ExitDialogResult(false));
+            Closed?.Invoke(new ExitDialogResult(ExitType.MainMenu));
         }
         private void ToExit()
         {
-            Closed?.Invoke(new ExitDialogResult(true));
+            Closed?.Invoke(new ExitDialogResult(ExitType.Game));
         }
-
-
     }
+
     public class ExitDialogArgs : DialogArgs
     {
-        public string Text;
-        public string TextButtonMainMenu;
-        public string TextButtonExit;
-        public ExitDialogArgs(string text, string textButtonExit, string textButtonMainMenu)
-        {
-            Text = text;
-            TextButtonExit = textButtonExit;
-            TextButtonMainMenu = textButtonMainMenu;
-        }
 
     }
+
     public class ExitDialogResult : DialogResult
     {
-        public bool ToExit { get; }
-        public ExitDialogResult(bool toExit)
+        public ExitDialogResult(ExitType type)
         {
-            ToExit = toExit;
+            Type = type;
         }
 
+        public ExitType Type { get; }
+    }
+
+    public enum ExitType
+    {
+        None, MainMenu, Game
     }
 }

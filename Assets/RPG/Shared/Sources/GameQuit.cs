@@ -1,4 +1,5 @@
-﻿using RPG.Shared.Dialog;
+﻿using Core.Patterns.ServiceLocator;
+using RPG.Shared.Dialog;
 using UnityEngine;
 using UnityEngine.UI;
 

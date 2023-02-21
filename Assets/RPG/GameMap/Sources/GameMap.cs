@@ -37,8 +37,10 @@ namespace RPG.GameMap
 
         private void Initialize(GameMapArgs args)
         {
-            var provider = ServiceLocator.Instance.GetService<PrefsJsonProvider>();
-            var save = provider.Load<PlayerSave>();
+            var save = ServiceLocator.Instance
+                .GetService<PrefsJsonProvider>()
+                .Load<PlayerSave>();
+
             _exitDialog = new ExitDialog();
 
             _player = new Player(_playerConfig, save);
@@ -54,7 +56,7 @@ namespace RPG.GameMap
         }
         private void Exit()
         {
-            _exitDialog.Open(new ExitDialogArgs(_textExitDialog,_textExitButton,_textExitButtonToMainMenu));
+            _exitDialog.Open(new ExitDialogArgs());
         }
     }
 }
