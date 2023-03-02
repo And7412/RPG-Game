@@ -1,4 +1,5 @@
-﻿using RPG.GameMap;
+﻿using Core.Saves;
+using RPG.GameMap;
 using RPG.Shared;
 using RPG.Shared.Dialog;
 using RPG.Shared.Scenes;
@@ -13,7 +14,7 @@ namespace RPG.MainMenu
         [SerializeField] private Button _startButton;
 
         private PlayerSave _save;
-        private PrefsJsonProvider _jsonProvider;
+        //private PrefsJsonProvider _jsonProvider;
 
         protected override MainMenuArgs GetTestArgs()
         {

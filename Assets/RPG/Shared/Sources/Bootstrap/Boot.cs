@@ -8,7 +8,7 @@ namespace RPG.Shared
     public class Boot : MonoBehaviour
     {
         [SerializeField] private SceneController _sceneController;
-        [SerializeField] private PrefsJsonProvider _prefsJsonProvider;
+        [SerializeField] private UserS _prefsJsonProvider;
         [SerializeField] private LoadScreen _loadScreen;
 
 
