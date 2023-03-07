@@ -9,8 +9,8 @@ namespace RPG.Metagame.Player
 
         private int _difficultyFactor=1;
         private const int ConstantFactor = 100;
-        private int _classFactorHp=100;
-        private int _classFactorStamina=100;
+        private int _statfactorHelse;
+        private int _statefactorStamina;
 
         private readonly int _xpRatio = 100;
 
@@ -36,28 +36,46 @@ namespace RPG.Metagame.Player
             SetDifficultyFactor(difficulty);
         }
 
-        public int GetMaxHealth(int defaultMaxHp)
+        public int GetMaxStamina(int defaltMaxStamina, int armorStaminaFactor,int StatFactor)
         {
-            var result = defaultMaxHp + StatModifier + _classFactorHp;
-            return result;
+            _statefactorStamina = StatFactor;
+            return GetMaxStat(defaltMaxStamina, armorStaminaFactor, StatFactor);
         }
 
-        public int GetMaxHealth(int defaultMaxHp,int armorStamiHealthFactor)
+        public int GetMaxHealth(int defaltMaxHelse, int armorHelseFactor, int StatFactor)
         {
-            var result = defaultMaxHp + StatModifier+_classFactorHp + armorStamiHealthFactor;
-            return result;
+            _statfactorHelse = StatFactor;
+            return GetMaxStat(defaltMaxHelse, armorHelseFactor, StatFactor);
         }
 
-        public int GetMaxStamina(int defaultMaxStamina)
+        public int GetMaxStamina(int defaltMaxStamina, int StatFactor)
         {
-            var result = defaultMaxStamina + StatModifier;
-            return result;
+            _statefactorStamina = StatFactor;
+            return GetMaxStat(defaltMaxStamina, 0, StatFactor);
         }
 
-        public int GetMaxStamina(int defaultMaxStamina,int armorStaminaFactor)
+        public int GetMaxHealth(int defaltMaxHelse,  int StatFactor)
         {
-            var result = defaultMaxStamina + StatModifier + _classFactorStamina + armorStaminaFactor;
-            return result;
+            _statfactorHelse = StatFactor;
+            return GetMaxStat(defaltMaxHelse, 0, StatFactor);
+        }
+
+        public int GetMaxStamina(int defaltMaxStamina)
+        {
+            _statefactorStamina = 0;
+            return GetMaxStat(defaltMaxStamina, 0, 0);
+        }
+
+        public int GetMaxHealth(int defaltMaxHelse)
+        {
+            _statfactorHelse = 0;
+            return GetMaxStat(defaltMaxHelse, 0, 0);
+        }
+
+        private int GetMaxStat(int maxdefault, int armorFactor, int StatFactor)
+        {
+            
+            return maxdefault + StatModifier + armorFactor+StatFactor;
         }
 
         public void IncreaseXp(int value)

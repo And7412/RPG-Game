@@ -6,6 +6,7 @@ namespace RPG.Shared.UserData
     [Serializable]
     public class PlayerSave
     {
+        public string Name { get; set; }
         public int Level { get; set; }
         public int Xp { get; set; }
         public int Money { get; set; }

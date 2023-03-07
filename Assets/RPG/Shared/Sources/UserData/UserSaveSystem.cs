@@ -1,5 +1,6 @@
 ﻿using Core.Saves;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace RPG.Shared.UserData
@@ -36,7 +37,14 @@ namespace RPG.Shared.UserData
 
         public UserSave[] LoadAllSaves()
         {
-
+            var keysVault = PrefsJsonProvider.Load<PreferencesKeysVault>();
+            var keys = keysVault.Keys;
+            List<UserSave> list = new List< UserSave >();
+            foreach (var key in keys)
+            {
+                list.Add(PrefsJsonProvider.LoadByName<UserSave>(key)); 
+            }
+            return list.ToArray();
         }
 
         public void DeleteSave(string name)
@@ -53,12 +61,21 @@ namespace RPG.Shared.UserData
 
             UserSave result;
             DateTime resultDate;
-
             foreach (var save in saves)
             {
                 var longDate = save.SaveDate;
                 var date = DateTime.FromBinary(longDate);
-                
+                if (resultDate != null)
+                {
+                    if (DateTime.Compare(resultDate, date) > 0)
+                    {
+                        resultDate = date;
+                    }
+                }
+                else
+                {
+                    resultDate = date;
+                }
                 //TODO compare dates
             }
 
