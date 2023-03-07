@@ -37,17 +37,17 @@ namespace RPG.GameMap
 
         private void Initialize(GameMapArgs args)
         {
-            var save = ServiceLocator.Instance
-                .GetService<PrefsJsonProvider>()
-                .Load<PlayerSave>();
+            //var save = ServiceLocator.Instance
+            //    .GetService<UserSaveSystem>()
+            //    .Load<PlayerSave>();
 
-            _exitDialog = new ExitDialog();
+            //_exitDialog = new ExitDialog();
 
-            _player = new Player(_playerConfig, save);
+            //_player = new Player(_playerConfig, save);
 
-            _player.SetMaxHP();
-            _tavern.Initialize(_player);
-            _market.Initialize(_player);
+            //_player.SetMaxHP();
+            //_tavern.Initialize(_player);
+            //_market.Initialize(_player);
         }
 
         private void Save()

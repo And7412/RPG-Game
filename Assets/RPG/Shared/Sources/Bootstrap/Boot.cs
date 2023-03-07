@@ -2,6 +2,7 @@
 using Core.Saves;
 using RPG.MainMenu;
 using RPG.Shared.Scenes;
+using RPG.Shared.UserData;
 using UnityEngine;
 
 namespace RPG.Shared
@@ -9,20 +10,29 @@ namespace RPG.Shared
     public class Boot : MonoBehaviour
     {
         [SerializeField] private SceneController _sceneController;
-        [SerializeField] private UserS _prefsJsonProvider;
         [SerializeField] private LoadScreen _loadScreen;
-
 
         private void Awake()
         {
+            RegisterServices();
             DontDestroyOnLoad(_loadScreen.gameObject);
-            _sceneController.Initialize();
-            _prefsJsonProvider.Initializ();
 
-            var locator = ServiceLocator.Initialize();
-            locator.Register(_prefsJsonProvider);
-            
+            _sceneController.Initialize();
             _sceneController.LoadMainMenu(new MainMenuArgs());
+        }
+
+        private void RegisterServices()
+        {
+            var locator = ServiceLocator.Initialize();
+            var userStorage = new UserStorage();
+            var userSaveSystem = new UserSaveSystem(userStorage);
+
+            locator.Register(userSaveSystem);
+        }
+
+        private void LoadNextScene()
+        {
+
         }
     }
 }

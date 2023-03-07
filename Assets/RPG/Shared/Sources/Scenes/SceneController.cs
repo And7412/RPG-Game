@@ -1,6 +1,7 @@
 ﻿using RPG.GameMap;
 using RPG.MainMenu;
 using System.Threading.Tasks;
+using RPG.CharacterCreation;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -10,6 +11,7 @@ namespace RPG.Shared.Scenes
     {
         [SerializeField] private string _mainMenu;
         [SerializeField] private string _gameMap;
+        [SerializeField] private string _characterCreation;
         [SerializeField] private LoadScreen _loadScreen;
 
         public void Initialize()
@@ -25,6 +27,11 @@ namespace RPG.Shared.Scenes
         public async void LoadGameMap(GameMapArgs args)
         {
             await LoadScene(args, _gameMap);
+        }
+
+        public async void LoadCharacterCreation(CharacterCreationArgs args)
+        {
+            await LoadScene(args, _characterCreation);
         }
 
         private async Task LoadScene<T>(T args, string name) where T: SceneArgs

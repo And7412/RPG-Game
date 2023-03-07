@@ -1,5 +1,4 @@
 ﻿using System;
-using Object = UnityEngine.Object;
 
 namespace Core.Patterns.ServiceLocator
 {
@@ -28,17 +27,17 @@ namespace Core.Patterns.ServiceLocator
             }
         }
 
-        public void Register<T>(T obj) where T: Object
+        public void Register<T>(T obj) where T: class
         {
             _dict.Add(obj);
         }
 
-        public void UnRegister<T>(T obj) where T : Object
+        public void UnRegister<T>(T obj) where T : class
         {
             _dict.Remove<T>();
         }
 
-        public T GetService<T>() where T : Object
+        public T GetService<T>() where T : class
         {
             return _dict.Get<T>();
         }
@@ -46,7 +45,7 @@ namespace Core.Patterns.ServiceLocator
 
     public interface IServiceLocator
     {
-        T GetService<T>() where T : Object;
+        T GetService<T>() where T : class;
     }
 }
 

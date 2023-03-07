@@ -11,9 +11,9 @@ namespace RPG.Shared.UserData
 
         private UserSave _currentSave;
 
-        public UserSaveSystem(UserStorage provider)
+        public UserSaveSystem(UserStorage storage)
         {
-            _storage = provider;
+            _storage = storage;
             _currentSave = GetDefaultSave();
         }
 
@@ -39,7 +39,8 @@ namespace RPG.Shared.UserData
         {
             var keysVault = PrefsJsonProvider.Load<PreferencesKeysVault>();
             var keys = keysVault.Keys;
-            List<UserSave> list = new List< UserSave >();
+            List<UserSave> list = new List<UserSave>();
+
             foreach (var key in keys)
             {
                 list.Add(PrefsJsonProvider.LoadByName<UserSave>(key)); 
@@ -59,28 +60,21 @@ namespace RPG.Shared.UserData
             if (saves.Length == 0)
                 return new UserSave();
 
-            UserSave result;
-            DateTime resultDate;
+            UserSave result = saves[0];
+            DateTime resultDate = DateTime.MinValue;
             foreach (var save in saves)
             {
                 var longDate = save.SaveDate;
                 var date = DateTime.FromBinary(longDate);
-                if (resultDate != null)
+
+                if (date > resultDate)
                 {
-                    if (DateTime.Compare(resultDate, date) > 0)
-                    {
-                        resultDate = date;
-                    }
-                }
-                else
-                {
+                    result = save;
                     resultDate = date;
                 }
-                //TODO compare dates
             }
 
-            //temporary
-            return saves[saves.Length - 1];
+            return result;
         }
     }
 }

@@ -9,8 +9,6 @@ namespace RPG.Metagame.Player
 
         private int _difficultyFactor=1;
         private const int ConstantFactor = 100;
-        private int _statfactorHelse;
-        private int _statefactorStamina;
 
         private readonly int _xpRatio = 100;
 
@@ -36,46 +34,14 @@ namespace RPG.Metagame.Player
             SetDifficultyFactor(difficulty);
         }
 
-        public int GetMaxStamina(int defaltMaxStamina, int armorStaminaFactor,int StatFactor)
+        public int GetMaxStamina(int defaultMaxStamina)
         {
-            _statefactorStamina = StatFactor;
-            return GetMaxStat(defaltMaxStamina, armorStaminaFactor, StatFactor);
+            return defaultMaxStamina + StatModifier;
         }
 
-        public int GetMaxHealth(int defaltMaxHelse, int armorHelseFactor, int StatFactor)
+        public int GetMaxHealth(int defaultMaxHealth)
         {
-            _statfactorHelse = StatFactor;
-            return GetMaxStat(defaltMaxHelse, armorHelseFactor, StatFactor);
-        }
-
-        public int GetMaxStamina(int defaltMaxStamina, int StatFactor)
-        {
-            _statefactorStamina = StatFactor;
-            return GetMaxStat(defaltMaxStamina, 0, StatFactor);
-        }
-
-        public int GetMaxHealth(int defaltMaxHelse,  int StatFactor)
-        {
-            _statfactorHelse = StatFactor;
-            return GetMaxStat(defaltMaxHelse, 0, StatFactor);
-        }
-
-        public int GetMaxStamina(int defaltMaxStamina)
-        {
-            _statefactorStamina = 0;
-            return GetMaxStat(defaltMaxStamina, 0, 0);
-        }
-
-        public int GetMaxHealth(int defaltMaxHelse)
-        {
-            _statfactorHelse = 0;
-            return GetMaxStat(defaltMaxHelse, 0, 0);
-        }
-
-        private int GetMaxStat(int maxdefault, int armorFactor, int StatFactor)
-        {
-            
-            return maxdefault + StatModifier + armorFactor+StatFactor;
+            return defaultMaxHealth + StatModifier;
         }
 
         public void IncreaseXp(int value)

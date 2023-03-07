@@ -1,19 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using Object = UnityEngine.Object;
 
 namespace Core.Patterns.ServiceLocator
 {
     public class TypeDictionary
     {
-        private Dictionary<Type, Object> _dict;
+        private Dictionary<Type, object> _dict;
 
         public TypeDictionary()
         {
-            _dict = new Dictionary<Type, Object>();
+            _dict = new Dictionary<Type, object>();
         }
 
-        public void Add<T>(T obj) where T: Object
+        public void Add<T>(T obj) where T: class
         {
             var type = typeof(T);
 
@@ -23,7 +22,7 @@ namespace Core.Patterns.ServiceLocator
             _dict.Add(type, obj);
         }
 
-        public void Remove<T>() where T : Object
+        public void Remove<T>() where T : class
         {
             var type = typeof(T);
 
@@ -33,7 +32,7 @@ namespace Core.Patterns.ServiceLocator
             _dict.Remove(type);
         }
 
-        public T Get<T>() where T: Object
+        public T Get<T>() where T: class
         {
             var type = typeof(T);
 
