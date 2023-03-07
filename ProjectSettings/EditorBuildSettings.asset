@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/RPG/Shared/Bootstrap.unity
     guid: d0267e0ebd3368d42816df09a8634f4c
   - enabled: 1
+    path: Assets/RPG/CharacterCreation/CreateUseScene.unity
+    guid: 0105db80604089943b59bdffce507843
+  - enabled: 1
     path: Assets/RPG/MainMenu/MainMenu.unity
     guid: 6f5e2a7b99d08234bb5c5d53012bf516
   - enabled: 1

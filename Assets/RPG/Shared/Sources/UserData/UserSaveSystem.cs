@@ -9,19 +9,18 @@ namespace RPG.Shared.UserData
     {
         private readonly UserStorage _storage;
 
-        private UserSave _currentSave;
+        public UserSave CurrentSave { get; private set; }
 
         public UserSaveSystem(UserStorage storage)
         {
             _storage = storage;
-            _currentSave = GetDefaultSave();
+            CurrentSave = GetDefaultSave();
         }
 
         public void Save(string name)
         {
-            //TODO how to save in long
-            //_currentSave.SaveDate = DateTime.DateTime.Now;
-            _storage.SaveByName(_currentSave, name);
+            CurrentSave.SaveDate = DateTime.Now.ToBinary();
+            _storage.SaveByName(CurrentSave, name);
         }
 
         public bool DoesSaveExist(string name)
@@ -37,13 +36,13 @@ namespace RPG.Shared.UserData
 
         public UserSave[] LoadAllSaves()
         {
-            var keysVault = PrefsJsonProvider.Load<PreferencesKeysVault>();
+            var keysVault = _storage.Load<PreferencesKeysVault>();
             var keys = keysVault.Keys;
             List<UserSave> list = new List<UserSave>();
 
             foreach (var key in keys)
             {
-                list.Add(PrefsJsonProvider.LoadByName<UserSave>(key)); 
+                list.Add(_storage.LoadByName<UserSave>(key)); 
             }
             return list.ToArray();
         }
@@ -75,6 +74,12 @@ namespace RPG.Shared.UserData
             }
 
             return result;
+        }
+        
+        public bool DoesSavesExist()
+        {
+            var saves = LoadAllSaves();
+            return saves.Length != 0;
         }
     }
 }

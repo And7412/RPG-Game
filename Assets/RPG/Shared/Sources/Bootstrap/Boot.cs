@@ -1,5 +1,6 @@
 ﻿using Core.Patterns.ServiceLocator;
 using Core.Saves;
+using RPG.CharacterCreation;
 using RPG.MainMenu;
 using RPG.Shared.Scenes;
 using RPG.Shared.UserData;
@@ -14,15 +15,11 @@ namespace RPG.Shared
 
         private void Awake()
         {
-            RegisterServices();
+            
             DontDestroyOnLoad(_loadScreen.gameObject);
 
             _sceneController.Initialize();
-            _sceneController.LoadMainMenu(new MainMenuArgs());
-        }
-
-        private void RegisterServices()
-        {
+            
             var locator = ServiceLocator.Initialize();
             var userStorage = new UserStorage();
             var userSaveSystem = new UserSaveSystem(userStorage);
@@ -30,9 +27,17 @@ namespace RPG.Shared
             locator.Register(userSaveSystem);
         }
 
-        private void LoadNextScene()
+        private void LoadNextScene(UserSaveSystem userSave)
         {
-
+            var saves = userSave.DoesSavesExist();
+            if (saves)
+            {
+                _sceneController.LoadMainMenu(new MainMenuArgs());
+            }
+            else
+            {
+                _sceneController.LoadCharacterCreation(new CharacterCreationArgs());
+            }
         }
     }
 }
