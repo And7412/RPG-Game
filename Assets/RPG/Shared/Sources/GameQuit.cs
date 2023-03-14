@@ -14,22 +14,17 @@ namespace RPG.Shared
         private void Awake()
         {
             _exitButton.onClick.AddListener(OnExitButtonClicked);
-            _yesNoDialog.Closed += OnExit;
         }
 
         private void OnDestroy()
         {
             _exitButton.onClick.RemoveListener(OnExitButtonClicked);
-            _yesNoDialog.Closed -= OnExit;
         }
 
-        private void OnExitButtonClicked()
+        private async void OnExitButtonClicked()
         {
-            _yesNoDialog.Open(new DialogConfirmArgs(_textYesNoDialog));
-        }
-
-        private void OnExit(DialogConfirmResult x)
-        {
+            var x = await _yesNoDialog.Run(new DialogConfirmArgs(_textYesNoDialog));
+            
             if (x.Confirm)
             {
                 Application.Quit();

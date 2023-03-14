@@ -56,7 +56,7 @@ namespace RPG.GameMap
         }
         private void Exit()
         {
-            _exitDialog.Open(new ExitDialogArgs());
+           // _exitDialog.Open(new ExitDialogArgs());
         }
     }
 }

@@ -14,7 +14,7 @@ namespace RPG.CharacterCreation
         {
             foreach(var config in _configs)
             {
-                _dialog.Open(new CreationQuestionnareArgs(config));
+                var answer = await _dialog.Run(new CreationQuestionnareArgs(config));
                 
             }
             

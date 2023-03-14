@@ -18,7 +18,7 @@ namespace RPG.Shared.Dialog
         public void Confirm()
         {
             _button.onClick.RemoveListener(Confirm);
-            Close(new DialogResult());
+            SetResult(new DialogResult());
         }
     }
 }

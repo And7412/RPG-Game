@@ -26,10 +26,10 @@ namespace RPG.GameMap.TavernSystem
             _testHero.Initialize(_testConfig);
         }
 
-        private void OnHeroClicked(TavernHero hero)
+        private async void OnHeroClicked(TavernHero hero)
         {
             var args = new HireMenuArgs(hero.Config,_player);
-            _hireMenu.Open(args);
+            await _hireMenu.Run(args);
         }
 
         private void OnDestroy()

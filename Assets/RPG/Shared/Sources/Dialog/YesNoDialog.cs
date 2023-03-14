@@ -11,8 +11,6 @@ namespace RPG.Shared.Dialog
         [SerializeField] private Button _buttonYes;
         [SerializeField] private Button _buttonNo;
 
-        public event Action<DialogConfirmResult> Closed;
-
         protected override void OnOpen(DialogConfirmArgs args)
         {
             _buttonYes.onClick.AddListener(Accept);
@@ -29,15 +27,16 @@ namespace RPG.Shared.Dialog
         private void Accept()
         {
             var result = new DialogConfirmResult(true);
-            Close(result);
+            SetResult(result);
         }
 
         private void Decline()
         {
             var result = new DialogConfirmResult(false);
-            Close(result);
+            SetResult(result);
         }
     }
+    
     public class DialogConfirmResult : DialogResult
     {
         public bool Confirm { get; }

@@ -17,14 +17,13 @@ namespace RPG.GameMap.TavernSystem
         [SerializeField] private Button _cancelButton;
         [SerializeField] private TextMeshProUGUI _priceText;
         [SerializeField] private YesNoDialog _yesNoDialog;
-        [SerializeField] private string _confirmText;
         [SerializeField] private ConfirmDialog _confirmDialog;
-        [SerializeField] private string _NoMoneyText;
+
+        [Header("Formats")]
+        [SerializeField] private string _noMoneyTextFormat = "У вас {0} монет";
+        [SerializeField] private string _confirmTextFormat = "Хотите ли вы приобрести героя {0} за {1} монет?";
 
         private TavernHeroConfig _current;
-
-        public event Action<HireMenuResult> Closed;
-
         private IPlayerTrade _player;
 
         protected override void OnOpen(HireMenuArgs args)
@@ -45,40 +44,37 @@ namespace RPG.GameMap.TavernSystem
         }
 
 
-        private void OnHireButtonClicked()
+        private async void OnHireButtonClicked()
         {
             if (_player.Money.IsEnough(_current.Price))
             {
-                //$"Хотите ли вы приобрести героя {heroName} за {price} монет? 
-                // У вас {n} монет"
-                var args = new DialogConfirmArgs(_confirmText);
-                _yesNoDialog.Closed += Hire;
-                _yesNoDialog.Open(args);
+                var confirmText = string.Format(_confirmTextFormat, _current.Name, _current.Price);
+                var args = new DialogConfirmArgs(confirmText);
+                var confirmResult = await _yesNoDialog.Run(args);
+                Hire(confirmResult);
             }
             else
             {
-                _confirmDialog.Closed += OnNoMoneyConfirm;
-                var args = new DialogConfirmArgs(_NoMoneyText);
-                _confirmDialog.Open(args);
+                var noMoneyText = string.Format(_noMoneyTextFormat, _player.Money.Value);
+                var args = new DialogConfirmArgs(noMoneyText);
+                var confirmResult = await _confirmDialog.Run(args);
+                OnNoMoneyConfirm(confirmResult);
             }
         }
 
         private void OnNoMoneyConfirm(DialogResult result)
         {
-            _confirmDialog.Closed -= OnNoMoneyConfirm;
-
-            Close(new HireMenuResult(_current, false));
+            SetResult(new HireMenuResult(_current, false));
         }
 
         private void OnCancelButtonClicked()
         {
-            Close(new HireMenuResult(_current, false));
+            SetResult(new HireMenuResult(_current, false));
         }
 
         private void Hire(DialogConfirmResult confirm)
         {
-            _yesNoDialog.Closed -= Hire;
-            Close(new HireMenuResult(_current, confirm.Confirm));
+            SetResult(new HireMenuResult(_current, confirm.Confirm));
         }
 
         private void ShowHero(TavernHeroConfig config)
