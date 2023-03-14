@@ -24,11 +24,13 @@ namespace RPG.Shared.Dialog
 
         protected void Close(T Arg)
         {
+            OnClose(Arg);
             Closed?.Invoke(Arg);
             _canvas.enabled = false;
         }
 
         protected virtual void OnClose(T args) { }
+
     }
 
     public class DialogArgs { }
