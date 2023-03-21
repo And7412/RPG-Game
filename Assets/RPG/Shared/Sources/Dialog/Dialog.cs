@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using UnityEngine;
 
 namespace RPG.Shared.Dialog
@@ -13,6 +12,7 @@ namespace RPG.Shared.Dialog
         private void Awake()
         {
             _canvas.enabled = false;
+            OnAwake();
         }
 
         private void Open()
@@ -43,6 +43,7 @@ namespace RPG.Shared.Dialog
 
         protected virtual void OnOpen(V args) {}
         protected virtual void OnClose(T args) {}
+        protected virtual void OnAwake() {}
 
         protected void SetResult(T arg)
         {

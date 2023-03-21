@@ -1,19 +1,20 @@
 ﻿using RPG.Shared;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+
 namespace RPG.CharacterCreation
 {
     public class CharacterCreationSceneRunner : SceneRunner<CharacterCreationArgs>
     {
+        [SerializeField] private CharacterCreationQuestionnare _questionnare;
+        
         protected override CharacterCreationArgs GetTestArgs()
         {
             return new CharacterCreationArgs();
         }
 
-        protected override void Run(CharacterCreationArgs args)
+        protected override async void Run(CharacterCreationArgs args)
         {
-            
+            var attributes = await _questionnare.Run();
         }
     }
 }

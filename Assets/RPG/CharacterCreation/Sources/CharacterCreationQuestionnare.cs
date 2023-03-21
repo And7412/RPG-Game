@@ -10,7 +10,6 @@ namespace RPG.CharacterCreation
     {
         [SerializeField] private CreationQuestionnareDialog _dialog;
         [SerializeField] private QuestionConfig[] _configs;
-
         
         public async Task<AttributeMock[]> Run()
         {
