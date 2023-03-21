@@ -33,7 +33,7 @@ namespace RPG.CharacterCreation
 
         private void Genrration(AttributeMockButton[] _attributeMocks)
         {
-            List<AttributeMock> attributes=new List<AttributeMock>;
+            List<AttributeMock> attributes=new List<AttributeMock>();
              foreach(AttributeMockButton attributeMock in _attributeMockButtons)
              {
                 attributes.Add(attributeMock._attributeMock);
@@ -42,7 +42,7 @@ namespace RPG.CharacterCreation
 
         public void SetAtrebuts(AttributeMockButton attributs)
         {
-            List<AttributeMock> result=new List<AttributeMock>;
+            List<AttributeMock> result=new List<AttributeMock>();
             result.AddRange(_resultAttributes);
             result.Add(attributs._attributeMock);
             _resultAttributes = result.ToArray();
