@@ -1,11 +1,10 @@
-﻿using System.Collections;
+﻿using RPG.Metagame.Player;
 using System;
-using System.Collections.Generic;
 using UnityEngine;
-using RPG.Metagame.Player;
 
 namespace RPG.CharacterCreation
 {
+    [CreateAssetMenu(fileName = "QuestionConfig",menuName = "RPG/CharacterCreation/QuestionConfig")]
     public class QuestionConfig : ScriptableObject
     {
         [SerializeField] private string _questionText;

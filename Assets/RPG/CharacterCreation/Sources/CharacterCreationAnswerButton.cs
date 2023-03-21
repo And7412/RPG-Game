@@ -27,7 +27,7 @@ namespace RPG.CharacterCreation
             _text.SetText(model.AnswerModelText);
         }
 
-        public void SetActive(bool value) => gameObject.SetActive(false);
+        public void SetActive(bool value) => gameObject.SetActive(value);
 
         private void OnClick()
         {

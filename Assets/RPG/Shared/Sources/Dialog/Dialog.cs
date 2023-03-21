@@ -11,7 +11,6 @@ namespace RPG.Shared.Dialog
 
         private void Awake()
         {
-            _canvas.enabled = false;
             OnAwake();
         }
 

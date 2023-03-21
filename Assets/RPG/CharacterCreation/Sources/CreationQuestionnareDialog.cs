@@ -1,5 +1,6 @@
 ﻿using System;
 using RPG.Shared.Dialog;
+using TMPro;
 using UnityEngine;
 
 namespace RPG.CharacterCreation
@@ -7,6 +8,7 @@ namespace RPG.CharacterCreation
     public class CreationQuestionnareDialog : Dialog<CreationQuestionnareArgs, CreationQuestionnareResult>
     {
         [SerializeField] private CharacterCreationAnswerButton[] _answerButtons;
+        [SerializeField] private TMP_Text _questionText;
         private AttributeMock[] _resultAttributes;
         
         protected override void OnAwake()
@@ -25,7 +27,7 @@ namespace RPG.CharacterCreation
         protected override void OnOpen(CreationQuestionnareArgs args)
         {
             var answers = args.Config.AnswerModel;
-            
+            _questionText.SetText(args.Config.QuestionText);
             if (answers.Length > _answerButtons.Length)
                 throw new InvalidOperationException("Too many answers for button list");
             
