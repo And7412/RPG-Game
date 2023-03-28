@@ -1,30 +1,39 @@
 ﻿using RPG.Shared.Dialog;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace RPG.CharacterCreation
 {
     public class CreateNamePlayerDialog : Dialog<DialogCreateNamePlayerArg, DialogCreateNamePlayerResult>
     {
-        [SerializeField] private TextMeshProUGUI register_username;
-        string username;
+        [SerializeField] private TextMeshProUGUI _register_username;
+        [SerializeField] private Button _exitButton;
+        [SerializeField] private EnterKeyObserver _enterObserver;
 
-        protected override void OnOpen(DialogCreateNamePlayerArg arg)
+        private string _playerName;
+
+        protected override void OnAwake()
         {
-            username = register_username.text;
+            base.OnAwake();
+            _exitButton.onClick.AddListener(OnClickToExitButton);
+            _enterObserver.EnterEvent += OnClickToExitButton;
+        }
+
+        private void OnClickToExitButton()
+        {
+            _playerName = _register_username.text;
+            SetResult(new DialogCreateNamePlayerResult(name));
         }
 
     }
-    public class DialogCreateNamePlayerArg : DialogArgs
-    {
-    }
+
+    public class DialogCreateNamePlayerArg : DialogArgs{}
     
     public class DialogCreateNamePlayerResult: DialogResult
     {
         public string Name { get; }
-        DialogCreateNamePlayerResult(string name)
+        public DialogCreateNamePlayerResult(string name)
         {
             Name = name;
         }
