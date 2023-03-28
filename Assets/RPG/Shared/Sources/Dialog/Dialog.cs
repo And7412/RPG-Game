@@ -1,11 +1,12 @@
 ﻿using System.Threading.Tasks;
+using RPG.Shared.Animations;
 using UnityEngine;
 
 namespace RPG.Shared.Dialog
 {
     public abstract class Dialog<V,T> : MonoBehaviour where V:DialogArgs where T : DialogResult
     {
-        [SerializeField] private Canvas _canvas;
+        [SerializeField] private BoolAnimator _animator;
         
         private TaskCompletionSource<T> _dialogCompletionSource;
 
@@ -16,8 +17,7 @@ namespace RPG.Shared.Dialog
 
         private void Open()
         {
-            //TODO animation
-            _canvas.enabled = true;
+            _animator.Show();
         }
 
         public async Task<T> Run(V args)
@@ -36,8 +36,7 @@ namespace RPG.Shared.Dialog
 
         private void Close()
         {
-            //TODO animation
-            _canvas.enabled = false;
+            _animator.Hide();
         }
 
         protected virtual void OnOpen(V args) {}

@@ -878,6 +878,9 @@ GameObject:
   - component: {fileID: 37927396946750719}
   - component: {fileID: 37927396946750718}
   - component: {fileID: 37927396946750690}
+  - component: {fileID: 8320267800124817408}
+  - component: {fileID: 8033326188186592014}
+  - component: {fileID: 583854525007747902}
   m_Layer: 5
   m_Name: CharacterCreationDialog
   m_TagString: Untagged
@@ -914,7 +917,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 37927396946750713}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
@@ -979,7 +982,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc996f77ad101cb458e9f7188990df7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _canvas: {fileID: 37927396946750716}
+  _animator: {fileID: 583854525007747902}
   _answerButtons:
   - {fileID: 37927397674835636}
   - {fileID: 37927396708789725}
@@ -988,6 +991,50 @@ MonoBehaviour:
   - {fileID: 37927396885090255}
   - {fileID: 37927396616938502}
   _questionText: {fileID: 37927398012642124}
+--- !u!225 &8320267800124817408
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 37927396946750713}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
+--- !u!95 &8033326188186592014
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 37927396946750713}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 22100000, guid: d792036cb83989c4ab7f2fb1a2a5656d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &583854525007747902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 37927396946750713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e72df2b250151d4e9b74adf5724f67d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _boolParameter: Visible
 --- !u!1 &37927397415422837
 GameObject:
   m_ObjectHideFlags: 0
@@ -1020,10 +1067,10 @@ RectTransform:
   m_Father: {fileID: 37927396946750717}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 822, y: 413}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &37927397415422840
 CanvasRenderer:
