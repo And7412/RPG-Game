@@ -26,6 +26,12 @@ namespace RPG.CharacterCreation
             SetResult(new DialogCreateNamePlayerResult(name));
         }
 
+        protected override void OnClose(DialogCreateNamePlayerResult args)
+        {
+            base.OnClose(args);
+            _enterObserver.EnterEvent -= OnClickToExitButton;
+        }
+
     }
 
     public class DialogCreateNamePlayerArg : DialogArgs{}

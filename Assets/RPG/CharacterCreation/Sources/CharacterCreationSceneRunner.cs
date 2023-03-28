@@ -16,7 +16,7 @@ namespace RPG.CharacterCreation
 
         protected override async void Run(CharacterCreationArgs args)
         {
-            var name = _createNameDialog.Run(new DialogCreateNamePlayerArg());
+            var name = await _createNameDialog.Run(new DialogCreateNamePlayerArg());
             var attributes = await _questionnare.Run();
         }
     }

@@ -368,7 +368,7 @@ PrefabInstance:
     - target: {fileID: 37927396946750716, guid: f47d00a5a6dfa3049bf322ddfe850046,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 37927396946750717, guid: f47d00a5a6dfa3049bf322ddfe850046,
         type: 3}
@@ -672,10 +672,20 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3145152924512033597, guid: a4d3eb9b2da8a494ba60f9921af83238,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5729282102263623794, guid: a4d3eb9b2da8a494ba60f9921af83238,
         type: 3}
       propertyPath: m_Name
       value: CharacterNameDialog
+      objectReference: {fileID: 0}
+    - target: {fileID: 5729282102263623798, guid: a4d3eb9b2da8a494ba60f9921af83238,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5729282102263624073, guid: a4d3eb9b2da8a494ba60f9921af83238,
         type: 3}

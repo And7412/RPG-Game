@@ -5,7 +5,7 @@ namespace RPG.Shared.Dialog
     public class EnterKeyObserver : MonoBehaviour
     {
         public event Action EnterEvent;
-        private readonly KeyCode _key = KeyCode.KeypadEnter;
+        [SerializeField]private KeyCode _key = KeyCode.KeypadEnter;
 
         private void Update()
         {
