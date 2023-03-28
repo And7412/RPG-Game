@@ -6,34 +6,27 @@ using UnityEngine;
 
 namespace RPG.CharacterCreation
 {
-    public class CreateNamePlayer : Dialog<DialogCreateNamePlayerArg, DialogCreateNamePlayerResult>
+    public class CreateNamePlayerDialog : Dialog<DialogCreateNamePlayerArg, DialogCreateNamePlayerResult>
     {
-        public TMP_Text _text;
-        public TextMeshProUGUI register_username;
+        [SerializeField] private TextMeshProUGUI register_username;
         string username;
 
         protected override void OnOpen(DialogCreateNamePlayerArg arg)
         {
-            _text = arg._text;
-
             username = register_username.text;
         }
 
     }
-    public class DialogCreateNamePlayerArg:DialogArgs
+    public class DialogCreateNamePlayerArg : DialogArgs
     {
-        public TMP_Text _text;
-        DialogCreateNamePlayerArg(TMP_Text text)
-        {
-            _text = text;
-        }
     }
+    
     public class DialogCreateNamePlayerResult: DialogResult
     {
-        public string _name;
+        public string Name { get; }
         DialogCreateNamePlayerResult(string name)
         {
-            _name = name;
+            Name = name;
         }
     }
 }
