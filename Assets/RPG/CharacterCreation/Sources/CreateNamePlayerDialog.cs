@@ -1,4 +1,5 @@
-﻿using RPG.Shared.Dialog;
+﻿using Core.Patterns.ServiceLocator;
+using RPG.Shared.Dialog;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,6 +11,7 @@ namespace RPG.CharacterCreation
         [SerializeField] private TextMeshProUGUI _register_username;
         [SerializeField] private Button _exitButton;
         [SerializeField] private EnterKeyObserver _enterObserver;
+        [SerializeField] private string _confirmDialogQuestion="Начать как {0}";
 
         private string _playerName;
 
@@ -21,10 +23,16 @@ namespace RPG.CharacterCreation
             
         }
 
-        private void OnClickToExitButton()
+        private async void OnClickToExitButton()
         {
             _playerName = _register_username.text;
-            SetResult(new DialogCreateNamePlayerResult(name));
+            var dialogsService = ServiceLocator.Instance.GetService<DialogsService>();
+            var confirmString = string.Format(_confirmDialogQuestion, _playerName);
+            var confirmResult = await dialogsService.InvokeYesNoDialog(new DialogConfirmArgs(confirmString));
+            if (confirmResult.Confirm)
+            {
+                SetResult(new DialogCreateNamePlayerResult(_playerName));
+            }
         }
 
         protected override void OnClose(DialogCreateNamePlayerResult args)

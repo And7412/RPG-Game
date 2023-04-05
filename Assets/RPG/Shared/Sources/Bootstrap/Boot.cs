@@ -2,6 +2,7 @@
 using Core.Saves;
 using RPG.CharacterCreation;
 using RPG.MainMenu;
+using RPG.Shared.Dialog;
 using RPG.Shared.Scenes;
 using RPG.Shared.UserData;
 using UnityEngine;
@@ -12,6 +13,7 @@ namespace RPG.Shared
     {
         [SerializeField] private SceneController _sceneController;
         [SerializeField] private LoadScreen _loadScreen;
+        [SerializeField] private DialogsService _dialogService;
 
         private void Awake()
         {
@@ -25,6 +27,7 @@ namespace RPG.Shared
             var userSaveSystem = new UserSaveSystem(userStorage);
 
             locator.Register(userSaveSystem);
+            locator.Register(_dialogService);
         }
 
         private void LoadNextScene(UserSaveSystem userSave)

@@ -529,6 +529,9 @@ GameObject:
   - component: {fileID: 5432966081703003908}
   - component: {fileID: 5260988208764404348}
   - component: {fileID: 5305901060649445975}
+  - component: {fileID: 7780519222344018826}
+  - component: {fileID: 1313363528362726205}
+  - component: {fileID: 6991779997962733421}
   m_Layer: 5
   m_Name: Yes No dialod
   m_TagString: Untagged
@@ -569,8 +572,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a104efd3e16ec714eb1c1e5c783d4471, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _animator: {fileID: 1313363528362726205}
   _text: {fileID: 5847328914164352826}
-  _canvas: {fileID: 5260988208764404348}
   _buttonYes: {fileID: 6219234316098495598}
   _buttonNo: {fileID: 5336190428047254187}
 --- !u!223 &5260988208764404348
@@ -611,6 +614,50 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!225 &7780519222344018826
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6051061588098185847}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!114 &1313363528362726205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6051061588098185847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e72df2b250151d4e9b74adf5724f67d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _boolParameter: Visible
+--- !u!95 &6991779997962733421
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6051061588098185847}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 477a0cfda1ad49c4887754ff2ed1882b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7804908223865583519
 GameObject:
   m_ObjectHideFlags: 0
