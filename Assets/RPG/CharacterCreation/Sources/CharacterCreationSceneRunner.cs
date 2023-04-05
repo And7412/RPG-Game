@@ -14,6 +14,7 @@ namespace RPG.CharacterCreation
 
         private PlayerSave _playerSave = new PlayerSave();
         private PlayerAttributes _playerAttributes = new PlayerAttributes(0,0,0,0,0,0,0);
+        private PlayerLevel _playerLevel = new PlayerLevel(0, 1, 100, Metagame.Difficulty.Medium);
 
         public PlayerAttributes PlayerAttributes => _playerAttributes;
 
@@ -35,7 +36,7 @@ namespace RPG.CharacterCreation
             
             
             _userSave.Name=name.Name;
-            _userSave.PlayerSave = SetPlayerSave()
+            _userSave.PlayerSave = SetPlayerSave(name.Name);
         }
         private PlayerSave SetPlayerSave(string name)
         {
@@ -46,8 +47,8 @@ namespace RPG.CharacterCreation
             save.Xp = 0;
             save.Money = 100;
             save.Difficulty = (int) Metagame.Difficulty.Medium;
-            save.Quests = new PlayerSave.Quest[_questDataBase]();
-            
+            save.Quests = new PlayerSave.Quest[_questDataBase.Quests.Capacity];
+            save.Stamina = _playerLevel.GetMaxHealth(100);
             return save;
         }
     }
