@@ -17,9 +17,7 @@ namespace RPG.Shared
 
         private void Awake()
         {
-            
-            DontDestroyOnLoad(_loadScreen.gameObject);
-
+            SetDontDestroy();
             _sceneController.Initialize();
             
             var locator = ServiceLocator.Initialize();
@@ -28,6 +26,14 @@ namespace RPG.Shared
 
             locator.Register(userSaveSystem);
             locator.Register(_dialogService);
+            
+            LoadNextScene(userSaveSystem);
+        }
+
+        private void SetDontDestroy()
+        {
+            DontDestroyOnLoad(_loadScreen.gameObject);
+            DontDestroyOnLoad(_dialogService.gameObject);
         }
 
         private void LoadNextScene(UserSaveSystem userSave)

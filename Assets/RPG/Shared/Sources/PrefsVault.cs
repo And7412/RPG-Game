@@ -44,7 +44,7 @@ namespace Core.Saves
     [Serializable]
     public class PreferencesKeysVault
     {
-        public string[] Keys;
+        public string[] Keys = new string[0];
     }
 }
 

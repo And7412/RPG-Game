@@ -23,7 +23,10 @@ namespace Core.Saves
         public static T Load<T>() where T : new()
         {
             var key = typeof(T).Name;
-            CheckKey(key);
+            var hasKey = CheckKey(key);
+
+            if (!hasKey)
+                return new T();
 
             var data = PlayerPrefs.GetString(typeof(T).Name);
             T result;
@@ -43,7 +46,10 @@ namespace Core.Saves
         public static T LoadByName<T>(string name) where T : new()
         {
             var key = GetSaveName(typeof(T), name);
-            CheckKey(key);
+            var hasKey = CheckKey(key);
+
+            if (!hasKey)
+                return new T();
 
             var saveName = GetSaveName(typeof(T), name);
             var data = PlayerPrefs.GetString(saveName);
@@ -64,7 +70,10 @@ namespace Core.Saves
         public static void DeleteSave<T>()
         {
             var key = typeof(T).Name;
-            CheckKey(key);
+            var hasKey = CheckKey(key);
+            
+            if (!hasKey)
+                throw new ArgumentException($"Preferences not contains key {key}");
 
             PlayerPrefs.DeleteKey(key);
         }
@@ -72,7 +81,10 @@ namespace Core.Saves
         public static void DeleteSaveByName<T>(string name)
         {
             var key = GetSaveName(typeof(T), name);
-            CheckKey(key);
+            var hasKey = CheckKey(key);
+            
+            if (!hasKey)
+                throw new ArgumentException($"Preferences not contains key {key}");
 
             PlayerPrefs.DeleteKey(key);
         }
@@ -85,10 +97,9 @@ namespace Core.Saves
             return saveType.Name + name;
         }
 
-        private static void CheckKey(string key)
+        private static bool CheckKey(string key)
         {
-            if (!PlayerPrefs.HasKey(key))
-                throw new ArgumentException($"Preferences not contains key {key}");
+            return PlayerPrefs.HasKey(key);
         }
     }
 }
