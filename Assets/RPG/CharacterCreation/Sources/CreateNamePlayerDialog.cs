@@ -18,6 +18,7 @@ namespace RPG.CharacterCreation
             base.OnAwake();
             _exitButton.onClick.AddListener(OnClickToExitButton);
             _enterObserver.EnterEvent += OnClickToExitButton;
+            
         }
 
         private void OnClickToExitButton()
