@@ -11,7 +11,9 @@ namespace RPG.CharacterCreation
         [SerializeField] private CharacterCreationQuestionnare _questionnare;
         [SerializeField] private Shared.SystemData.QuestDataBase _questDataBase;
         [SerializeField] private CreateNamePlayerDialog _createNameDialog;
+        [SerializeField] private PlayerConfig _config;
 
+        private FinalPlayerStatCreate<PlayerConfig> _statCreate;
         private PlayerSave _playerSave = new PlayerSave();
         private PlayerAttributes _playerAttributes = new PlayerAttributes(0,0,0,0,0,0,0);
         private PlayerLevel _playerLevel = new PlayerLevel(0, 1, 100, Metagame.Difficulty.Medium);
@@ -27,6 +29,7 @@ namespace RPG.CharacterCreation
 
         protected override async void Run(CharacterCreationArgs args)
         {
+            _statCreate = new FinalPlayerStatCreate<PlayerConfig>(_playerLevel, Metagame.Difficulty.Medium);
             var name = await _createNameDialog.Run(new DialogCreateNamePlayerArg());
             var attributes = await _questionnare.Run();
             foreach(AttributeMock mock in attributes)
@@ -48,7 +51,8 @@ namespace RPG.CharacterCreation
             save.Money = 100;
             save.Difficulty = (int) Metagame.Difficulty.Medium;
             save.Quests = new PlayerSave.Quest[_questDataBase.Quests.Capacity];
-            save.Stamina = _playerLevel.GetMaxHealth(100);
+            save.Stamina = _statCreate.SetMaxStramina(_config,_playerAttributes);
+            save.Health = _statCreate.SetMaxHelse(_config);
             return save;
         }
     }

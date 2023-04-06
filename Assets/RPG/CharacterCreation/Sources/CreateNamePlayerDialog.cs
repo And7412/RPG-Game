@@ -8,10 +8,11 @@ namespace RPG.CharacterCreation
 {
     public class CreateNamePlayerDialog : Dialog<DialogCreateNamePlayerArg, DialogCreateNamePlayerResult>
     {
-        [SerializeField] private TextMeshProUGUI _register_username;
+        [SerializeField] private TMP_InputField _register_username;
         [SerializeField] private Button _exitButton;
         [SerializeField] private EnterKeyObserver _enterObserver;
         [SerializeField] private string _confirmDialogQuestion="Начать как {0}";
+        [SerializeField] private int _maxCharacters=16;
 
         private string _playerName;
 
@@ -20,7 +21,16 @@ namespace RPG.CharacterCreation
             base.OnAwake();
             _exitButton.onClick.AddListener(OnClickToExitButton);
             _enterObserver.EnterEvent += OnClickToExitButton;
-            
+            _register_username.onValueChanged.AddListener(OnPlayerNameChanged);
+        }
+
+        private void OnPlayerNameChanged(string name)
+        {
+            if (name.Length > _maxCharacters)
+            {
+                _register_username.text = name.Substring(0,_maxCharacters);
+            }
+
         }
 
         private async void OnClickToExitButton()

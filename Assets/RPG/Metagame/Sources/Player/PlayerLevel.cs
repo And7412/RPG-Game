@@ -8,11 +8,8 @@ namespace RPG.Metagame.Player
         public int XpToNextLevel { get; private set; }
 
         private int _difficultyFactor=1;
-        private const int ConstantFactor = 100;
 
         private readonly int _xpRatio = 100;
-
-        private int StatModifier => (Level-1) * ConstantFactor / _difficultyFactor;
 
         public PlayerLevel(int xp, int lvl, int xpRatio, Difficulty difficulty)
         {
@@ -34,22 +31,13 @@ namespace RPG.Metagame.Player
             SetDifficultyFactor(difficulty);
         }
 
-        public int GetMaxStamina(int defaultMaxStamina)
-        {
-            return defaultMaxStamina + StatModifier;
-        }
-
-        public int GetMaxHealth(int defaultMaxHealth)
-        {
-            return defaultMaxHealth + StatModifier;
-        }
-
         public void IncreaseXp(int value)
         {
             if (value < 0)
                 throw new ArgumentException("xp is lower then zero");
 
-            Xp += value;
+            var xp = value * ((float)Difficulty.Medium / _difficultyFactor);
+            Xp = (int)xp;
             CheckXp();
         }
 

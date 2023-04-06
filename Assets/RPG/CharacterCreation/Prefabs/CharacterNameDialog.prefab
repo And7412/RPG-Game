@@ -521,11 +521,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 2850330599530907198}
-  _register_username: {fileID: 5729282102771241316}
+  _register_username: {fileID: 5729282102771241319}
   _exitButton: {fileID: 8006531604184851406}
   _enterObserver: {fileID: 1765538059100689000}
   _confirmDialogQuestion: "\u041D\u0430\u0447\u0430\u0442\u044C \u043A\u0430\u043A
     {0}"
+  _maxCharacters: 16
 --- !u!114 &1765538059100689000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -618,7 +619,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 17.76001, y: -25}
+  m_AnchoredPosition: {x: 17.519, y: -25}
   m_SizeDelta: {x: 559.03436, y: 170}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5729282102771241318
@@ -848,7 +849,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -2.8, y: -142.8}
+  m_AnchoredPosition: {x: -0.000012159, y: -62.718}
   m_SizeDelta: {x: 358.39355, y: 126.436554}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5729282103813138101

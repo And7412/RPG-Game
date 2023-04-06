@@ -11,6 +11,7 @@ namespace RPG.Metagame.Player
         private readonly PlayerStat _stamina;
         private readonly Money _money;
         private readonly Inventory _inventory;
+        private readonly FinalPlayerStatCreate<PlayerConfig> _finalPlayerStat;
 
         public IPlayerStat Health => _health;
         public IPlayerStat Stamina => _stamina;
@@ -26,10 +27,11 @@ namespace RPG.Metagame.Player
         {
             PlayerLevel level = new PlayerLevel(save.Xp, save.Level, config.XpRatio, save.DifficultyEnum);
             Name = save.Name;
-            _health = new PlayerStat(level.GetMaxHealth(config.MaxHealth));
+            _finalPlayerStat = new FinalPlayerStatCreate<PlayerConfig>(level, save.DifficultyEnum);
+            _health = new PlayerStat(_finalPlayerStat.SetMaxHelse(config));
             _health.Set(save.Health);
 
-            _stamina = new PlayerStat(level.GetMaxStamina(config.MaxStamina));
+            _stamina = new PlayerStat(save.Stamina);
             _stamina.Set(save.Stamina);
 
             var money = save.Money;
