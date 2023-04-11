@@ -1,27 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static RPG.Shared.UserData.PlayerSave;
 
-namespace RPG.Shared.SystemData
+namespace RPG.Quests
 {
     [CreateAssetMenu(menuName = "RPG/QuestsDatabase", fileName = "QuestDatabase")]
     public class QuestDataBase : ScriptableObject
     {
-        [SerializeField] private List<Quest> _quests;
+        [SerializeField] private List<QuestConfig> _quests;
 
-        public List<Quest> Quests => _quests;
+        public List<QuestConfig> Quests => _quests;
         private void OnValidate()
         {
             var ids = new List<string>();
-            var quests = new List<Quest>();
+            var quests = new List<QuestConfig>();
 
             foreach (var quest in _quests)
             {
-                if (!ids.Contains(quest.Id))
+                if (!ids.Contains(quest.ID))
                 {
                     quests.Add(quest);
-                    ids.Add(quest.Id);
+                    ids.Add(quest.ID);
                 }
             }
 

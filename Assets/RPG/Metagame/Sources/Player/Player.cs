@@ -2,6 +2,7 @@
 using RPG.Shared;
 using System.Linq;
 using RPG.Shared.UserData;
+using RPG.Shared.UserData.HeroSave;
 
 namespace RPG.Metagame.Player
 {
@@ -11,7 +12,7 @@ namespace RPG.Metagame.Player
         private readonly PlayerStat _stamina;
         private readonly Money _money;
         private readonly Inventory _inventory;
-        private readonly FinalPlayerStatCreate<PlayerConfig> _finalPlayerStat;
+        private readonly HeroStatCalculator<PlayerConfig> _finalPlayerStat;
 
         public IPlayerStat Health => _health;
         public IPlayerStat Stamina => _stamina;
@@ -21,24 +22,27 @@ namespace RPG.Metagame.Player
         public IPlayerLevelStat Level => _level;
         public string Name { get; }
 
-        private PlayerLevel _level;
+        private HeroLevel _level;
 
-        public Player(PlayerConfig config, PlayerSave save)
+        public Player(PlayerConfig config, HeroData save, Difficulty difficulty, string name)
         {
-            PlayerLevel level = new PlayerLevel(save.Xp, save.Level, config.XpRatio, save.DifficultyEnum);
-            Name = save.Name;
-            _finalPlayerStat = new FinalPlayerStatCreate<PlayerConfig>(level, save.DifficultyEnum);
-            _health = new PlayerStat(_finalPlayerStat.SetMaxHelse(config));
-            _health.Set(save.Health);
+            HeroLevel level = new HeroLevel(save.LevelData.Xp, save.LevelData.Level, config.XpRatio, difficulty);
+            Name = name;
+            _finalPlayerStat = new HeroStatCalculator<PlayerConfig>(level, difficulty);
+            _health = new PlayerStat(_finalPlayerStat.SetMaxHealth(config));
+            //TODO
+            //_health.Set(save.Health);
 
-            _stamina = new PlayerStat(save.Stamina);
-            _stamina.Set(save.Stamina);
+            //TODO
+            // _stamina = new PlayerStat(save.Stamina);
+            // _stamina.Set(save.Stamina);
 
-            var money = save.Money;
+            var money = save.InventoryData.Money;
             _money = new Money(money);
 
             _inventory = new Inventory();
 
+            //TODO
             //foreach(var item in save.InventoryItems)
             //{
             //    _inventory.AddItems(item.Id, item.Count);
@@ -57,13 +61,10 @@ namespace RPG.Metagame.Player
             //PrefsProvider.SavePlayerHealth(_health.Value);
         }
 
-        public PlayerSave GetSave()
+        public HeroData GetSave()
         {
-            return new PlayerSave
+            return new HeroData()
             {
-                Name = Name,
-                Level = _level.Level,
-                Xp = _level.Xp,
                 //TODO
             };
 

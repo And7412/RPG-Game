@@ -1,7 +1,7 @@
 ﻿using System;
 namespace RPG.Metagame.Player
 {
-    public class PlayerLevel : IPlayerLevelStat
+    public class HeroLevel : IPlayerLevelStat
     {
         public int Xp { get; private set; }
         public int Level { get; private set; }
@@ -11,7 +11,7 @@ namespace RPG.Metagame.Player
 
         private readonly int _xpRatio = 100;
 
-        public PlayerLevel(int xp, int lvl, int xpRatio, Difficulty difficulty)
+        public HeroLevel(int xp, int lvl, int xpRatio, Difficulty difficulty)
         {
             if (xp < 0 || lvl < 0 || _xpRatio <= 0)
             {

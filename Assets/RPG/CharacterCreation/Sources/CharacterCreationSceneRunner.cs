@@ -1,24 +1,16 @@
-﻿using RPG.Shared;
-using UnityEngine;
+﻿using RPG.Metagame;
 using RPG.Metagame.Player;
+using RPG.Shared;
 using RPG.Shared.UserData;
-using System.Threading.Tasks;
+using RPG.Shared.UserData.HeroSave;
+using UnityEngine;
 
 namespace RPG.CharacterCreation
 {
     public class CharacterCreationSceneRunner : SceneRunner<CharacterCreationArgs>
     {
         [SerializeField] private CharacterCreationQuestionnare _questionnare;
-        [SerializeField] private Shared.SystemData.QuestDataBase _questDataBase;
         [SerializeField] private CreateNamePlayerDialog _createNameDialog;
-        [SerializeField] private PlayerConfig _config;
-
-        private FinalPlayerStatCreate<PlayerConfig> _statCreate;
-        private PlayerSave _playerSave = new PlayerSave();
-        private PlayerAttributes _playerAttributes = new PlayerAttributes(0,0,0,0,0,0,0);
-        private PlayerLevel _playerLevel = new PlayerLevel(0, 1, 100, Metagame.Difficulty.Medium);
-
-        public PlayerAttributes PlayerAttributes => _playerAttributes;
 
         public UserSave _userSave;
 
@@ -29,31 +21,68 @@ namespace RPG.CharacterCreation
 
         protected override async void Run(CharacterCreationArgs args)
         {
-            _statCreate = new FinalPlayerStatCreate<PlayerConfig>(_playerLevel, Metagame.Difficulty.Medium);
             var name = await _createNameDialog.Run(new DialogCreateNamePlayerArg());
             var attributes = await _questionnare.Run();
+            var playerAttributesModel = new PlayerAttributes(0,0,0,0,0,0,0);
+            
             foreach(AttributeMock mock in attributes)
             {
-                _playerAttributes.AddSkill(mock.Name, mock.Value);
+                playerAttributesModel.AddSkill(mock.Name, mock.Value);
             }
             
+            //TODO choose difficulty window
+            var difficulty = Difficulty.Medium;
             
-            _userSave.Name=name.Name;
-            _userSave.PlayerSave = SetPlayerSave(name.Name);
+            //TODO where to find user save for overwrite?
+            //TODO in user save system add save method with date time saving
+            var userSave = CreateUserSave(name.Name, playerAttributesModel, difficulty);
         }
-        private PlayerSave SetPlayerSave(string name)
+        
+        private UserSave CreateUserSave(string name, PlayerAttributes attributesModel, Difficulty difficulty)
         {
-            PlayerSave save;
-            save = new PlayerSave();
+            var save = new UserSave();
+
             save.Name = name;
-            save.Level = 1;
-            save.Xp = 0;
-            save.Money = 100;
-            save.Difficulty = (int) Metagame.Difficulty.Medium;
-            save.Quests = new PlayerSave.Quest[_questDataBase.Quests.Capacity];
-            save.Stamina = _statCreate.SetMaxStramina(_config,_playerAttributes);
-            save.Health = _statCreate.SetMaxHelse(_config);
+            save.Difficulty = (int) difficulty;
+            save.PlayerHeroData = CreatePlayer(attributesModel);
+
             return save;
+        }
+
+        private HeroData CreatePlayer(PlayerAttributes attributesModel)
+        {
+            var attributesData = new HeroAttributesData()
+            {
+                Strength = attributesModel.GetPoints(AttributeName.Strength),
+                Agility = attributesModel.GetPoints(AttributeName.Agility),
+                Diligence = attributesModel.GetPoints(AttributeName.Diligence),
+                Endurance = attributesModel.GetPoints(AttributeName.Endurance),
+                Genius = attributesModel.GetPoints(AttributeName.Genius),
+                Intelligence = attributesModel.GetPoints(AttributeName.Intelligence),
+                Speed = attributesModel.GetPoints(AttributeName.Speed)
+            };
+            var heroLevelData = new HeroLevelData()
+            {
+                Level = 1,
+                Xp = 0
+            };
+
+            var inventoryData = new InventoryData()
+            {
+                InventoryItems = new InventoryItemCountData[0],
+                Money = 100
+            };
+
+            var heroData = new HeroData()
+            {
+                LevelData = heroLevelData,
+                Attributes = attributesData,
+                CurrentHealthPercent = 1f,
+                CurrentStaminaPercent = 1f,
+                InventoryData = inventoryData
+            };
+
+            return heroData;
         }
     }
 }

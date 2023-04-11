@@ -6,6 +6,6 @@ namespace RPG.Shared.UserData
     {
         public string Name { get; set; }
         public int Money { get; set; }
-        public InventoryItemCount[] Inventory { get; set; }
+        public InventoryItemCountData[] Inventory { get; set; }
     }
 }

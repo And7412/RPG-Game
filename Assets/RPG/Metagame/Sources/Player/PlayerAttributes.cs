@@ -24,7 +24,7 @@ namespace RPG.Metagame.Player
             skill.AddPoints(count);
         }
 
-        public int HowManyPoint(AttributeName name)
+        public int GetPoints(AttributeName name)
         {
             return _skills[name].Value;
         }
