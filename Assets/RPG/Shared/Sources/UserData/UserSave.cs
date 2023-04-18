@@ -15,5 +15,14 @@ namespace RPG.Shared.UserData
         public int Difficulty { get; set; } = 1;
         
         public Difficulty DifficultyEnum => (Difficulty) Difficulty;
+        
+        public void CopyFrom(UserSave save)
+        {
+            Name = save.Name;
+            PlayerHeroData = save.PlayerHeroData;
+            QuestJournalData = save.QuestJournalData;
+            VendorsData = save.VendorsData;
+            Difficulty = save.Difficulty;
+        }
     }
 }

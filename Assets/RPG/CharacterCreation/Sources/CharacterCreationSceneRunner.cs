@@ -3,6 +3,7 @@ using Core.Saves;
 using RPG.Metagame;
 using RPG.Metagame.Player;
 using RPG.Shared;
+using RPG.Shared.Dialog;
 using RPG.Shared.UserData;
 using RPG.Shared.UserData.HeroSave;
 using UnityEngine;
@@ -13,6 +14,7 @@ namespace RPG.CharacterCreation
     {
         [SerializeField] private CharacterCreationQuestionnare _questionnare;
         [SerializeField] private CreateNamePlayerDialog _createNameDialog;
+        [SerializeField] private DiffilcultyDialog _diffilcultyDialog;
 
         public UserSave _userSave;
 
@@ -31,15 +33,14 @@ namespace RPG.CharacterCreation
             {
                 playerAttributesModel.AddSkill(mock.Name, mock.Value);
             }
+
+            var difficulty = await _diffilcultyDialog.Run(new DialogArgs());
             
-            //TODO choose difficulty window
-            var difficulty = Difficulty.Medium;
-            
-            //TODO where to find user save for overwrite?
             //TODO in user save system add save method with date time saving
-            var userSave = CreateUserSave(name.Name, playerAttributesModel, difficulty);
-            UserSaveSystem saveSystem = new UserSaveSystem(new UserStorage(), userSave);
-            saveSystem.Save(userSave.Name);
+            var userSave = CreateUserSave(name.Name, playerAttributesModel, difficulty.Difficulty);
+            var saveSystem = ServiceLocator.Instance.GetService<UserSaveSystem>();
+            
+            saveSystem.RewriteSave(userSave);
         }
         
         private UserSave CreateUserSave(string name, PlayerAttributes attributesModel, Difficulty difficulty)

@@ -1,18 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using RPG.Metagame;
 using RPG.Shared.Dialog;
-using RPG.Metagame;
-using System.Threading.Tasks;
-using TMPro;
+using UnityEngine;
 
-namespace RPG.CharacterCreation.DiffilcultyDialog
+namespace RPG.CharacterCreation
 {
     public class DiffilcultyDialog : Dialog<DialogArgs, DifficultyDialogResult>
     {
         [SerializeField] private CharacterCreationDifficultyButton[] _buttons;
-        [SerializeField] private TMP_Text _textTMPro;
-        [SerializeField] private string _text;
 
         protected override void OnOpen(DialogArgs args)
         {
@@ -28,10 +22,10 @@ namespace RPG.CharacterCreation.DiffilcultyDialog
     }
     public class DifficultyDialogResult : DialogResult
     {
-        private Difficulty _difficulty;
+        public Difficulty Difficulty { get; }
         public DifficultyDialogResult(Difficulty difficulty)
         {
-            difficulty = _difficulty;
+            Difficulty = difficulty;
         }
     }
 }
