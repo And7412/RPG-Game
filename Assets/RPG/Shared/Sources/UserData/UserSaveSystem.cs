@@ -8,25 +8,31 @@ namespace RPG.Shared.UserData
     public class UserSaveSystem
     {
         private readonly UserStorage _storage;
-        private UserSave _currentSave;
+        public UserSave CurrentSave { get; private set; }
 
         public UserSaveSystem(UserStorage storage)
         {
             _storage = storage;
-            _currentSave = GetDefaultSave();
+            CurrentSave = GetDefaultSave();
         }
 
         public UserSaveSystem(UserStorage storage,UserSave save)
         {
             _storage = storage;
-            _currentSave = save;
+            CurrentSave = save;
         }
         
         public void RewriteSave(UserSave save)
         {
-            _currentSave.CopyFrom(save);
-            _currentSave.SaveDate = DateTime.Now.ToBinary();
-            _storage.SaveByName(_currentSave, _currentSave.Name);
+            CurrentSave.CopyFrom(save);
+            CurrentSave.SaveDate = DateTime.Now.ToBinary();
+            _storage.SaveByName(CurrentSave, CurrentSave.Name);
+        }
+
+        public void RewriteSaveFromBuffer(UserSaveBuffer buffer)
+        {
+            var save = buffer.BuildSave();
+            RewriteSave(save);
         }
 
         public bool DoesSaveExist(string name)

@@ -1,7 +1,8 @@
 ﻿using System;
+
 namespace RPG.Metagame.Player
 {
-    public class HeroLevel : IPlayerLevelStat
+    public class HeroLevel : ILevelStat
     {
         public int Xp { get; private set; }
         public int Level { get; private set; }
@@ -67,7 +68,7 @@ namespace RPG.Metagame.Player
         }
     }
 
-    public interface IPlayerLevelStat
+    public interface ILevelStat
     {
         int Xp { get; }
         int Level { get; }

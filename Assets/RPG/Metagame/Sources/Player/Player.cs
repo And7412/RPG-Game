@@ -6,20 +6,21 @@ using RPG.Shared.UserData.HeroSave;
 
 namespace RPG.Metagame.Player
 {
-    public class Player : IPlayerTrade
+    public class Player : IPlayerTrade, ISavable<HeroData>
     {
         private readonly PlayerStat _health;
         private readonly PlayerStat _stamina;
         private readonly Money _money;
         private readonly Inventory _inventory;
         private readonly HeroStatCalculator<PlayerConfig> _finalPlayerStat;
+        private readonly PlayerAttributes _attributes;
 
         public IPlayerStat Health => _health;
         public IPlayerStat Stamina => _stamina;
         public Money Money => _money;
 
         public IInventoryRead Inventory => _inventory;
-        public IPlayerLevelStat Level => _level;
+        public ILevelStat Level => _level;
         public string Name { get; }
 
         private HeroLevel _level;
@@ -47,6 +48,8 @@ namespace RPG.Metagame.Player
             //{
             //    _inventory.AddItems(item.Id, item.Count);
             //}
+
+            _attributes = new PlayerAttributes(save.Attributes);
         }
 
         public void Hit()
@@ -61,13 +64,11 @@ namespace RPG.Metagame.Player
             //PrefsProvider.SavePlayerHealth(_health.Value);
         }
 
-        public HeroData GetSave()
+        public HeroData GetForSave()
         {
-            return new HeroData()
-            {
-                //TODO
-            };
-
+            var attributes = _attributes.GetForSave();
+            //TODO 
+            return new HeroData();
         }
     }
 }

@@ -10,7 +10,7 @@ using UnityEngine.UI;
 
 namespace RPG.GameMap
 {
-    public class GameMap : SceneRunner<GameMapArgs>
+    public class GameMapSceneRunner : SceneRunner<GameMapArgs>
     {
         [SerializeField] private PlayerConfig _playerConfig;
         [SerializeField] private Button _quit;
@@ -37,9 +37,8 @@ namespace RPG.GameMap
 
         private void Initialize(GameMapArgs args)
         {
-            //var save = ServiceLocator.Instance
-            //    .GetService<UserSaveSystem>()
-            //    .Load<PlayerSave>();
+            var saveSystem = ServiceLocator.Instance.GetService<UserSaveSystem>();
+            //TODO load
 
             //_exitDialog = new ExitDialog();
 

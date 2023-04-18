@@ -1,23 +1,21 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-namespace RPG.Shared.UserData
+﻿namespace RPG.Shared.UserData
 {
-    public class UserSaveBuffer
+    public abstract class UserSaveBuffer
     {
-        private readonly UserSaveSystem _saveSystem;
+        protected UserSave Save => _save;
         private readonly UserSave _save;
 
-        public UserSaveBuffer(UserSaveSystem saveSystem, UserSave save)
+        public UserSaveBuffer(UserSave save)
         {
-            _saveSystem = saveSystem;
             _save = save;
         }
 
-        public void SaveLevel(int xp, int lv)
+        public UserSave BuildSave()
         {
-            _save.PlayerHeroData.LevelData.Xp = xp;
-            _save.PlayerHeroData.LevelData.Level = lv;
+            DoBuild();
+            return Save;
         }
+
+        protected abstract void DoBuild();
     }
 }
