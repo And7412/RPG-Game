@@ -17,10 +17,29 @@ namespace RPG.Shared.UserData
             CurrentSave = GetDefaultSave();
         }
 
+        public UserSaveSystem(UserStorage storage,UserSave save)
+        {
+            _storage = storage;
+            CurrentSave = save;
+        }
+
         public void Save(string name)
         {
             CurrentSave.SaveDate = DateTime.Now.ToBinary();
             _storage.SaveByName(CurrentSave, name);
+        }
+
+        public void SaveCurrentSave()
+        {
+            CurrentSave.SaveDate = DateTime.Now.ToBinary();
+            _storage.SaveByName(CurrentSave, CurrentSave.Name);
+        }
+
+        public void SaveCurrentSave(UserSave save)
+        {
+            CurrentSave = save;
+            CurrentSave.SaveDate = DateTime.Now.ToBinary();
+            _storage.SaveByName(CurrentSave, CurrentSave.Name);
         }
 
         public bool DoesSaveExist(string name)

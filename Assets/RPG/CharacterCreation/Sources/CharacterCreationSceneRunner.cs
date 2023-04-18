@@ -1,4 +1,6 @@
-﻿using RPG.Metagame;
+﻿using Core.Patterns.ServiceLocator;
+using Core.Saves;
+using RPG.Metagame;
 using RPG.Metagame.Player;
 using RPG.Shared;
 using RPG.Shared.UserData;
@@ -36,6 +38,8 @@ namespace RPG.CharacterCreation
             //TODO where to find user save for overwrite?
             //TODO in user save system add save method with date time saving
             var userSave = CreateUserSave(name.Name, playerAttributesModel, difficulty);
+            UserSaveSystem saveSystem = new UserSaveSystem(new UserStorage(), userSave);
+            saveSystem.Save(userSave.Name);
         }
         
         private UserSave CreateUserSave(string name, PlayerAttributes attributesModel, Difficulty difficulty)
@@ -45,7 +49,7 @@ namespace RPG.CharacterCreation
             save.Name = name;
             save.Difficulty = (int) difficulty;
             save.PlayerHeroData = CreatePlayer(attributesModel);
-
+            
             return save;
         }
 
