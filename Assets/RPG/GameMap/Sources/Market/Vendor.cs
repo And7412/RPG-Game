@@ -10,6 +10,7 @@ namespace RPG.GameMap.Shop
         private Inventory _inventory;
         
         public string Name { get; }
+        public string Id { get; }
 
         public Vendor(VendorConfig config)
         {
