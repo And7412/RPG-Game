@@ -13,7 +13,7 @@ namespace RPG.Metagame.InventorySystem
         [SerializeField] private InventorySection _consumeSection;
         [SerializeField] private InventorySection _miscSection;
         [SerializeField] private InventorySection _questSection;
-
+        
         private InventorySection[] _sections;
         private ItemConfig[] _itemsConfig;
 
@@ -22,6 +22,7 @@ namespace RPG.Metagame.InventorySystem
         public IInventorySectionRead ConsumeSection => _consumeSection;
         public IInventorySectionRead MiscSection => _miscSection;
         public IInventorySectionRead QuestSection => _questSection;
+        public IInventorySectionRead[] Sections => _sections;
 
         public Inventory()
         {

@@ -21,16 +21,35 @@ public class HeroStatCalculator<T> where T: HeroConfig
         _difficulty = (int)difficulty;
     }
     
-    public int Calculate(T config, PlayerAttributes attributes)
-    {
-        _stamina = _level.Level * config.MaxStamina + (attributes.GetPoints(AttributeName.Agility)*10) + _armorFactorStamina;
-        _stamina *= (ConstantFactor/_difficulty );
-        return _stamina;
-    }
+    //public int Calculate(T config, PlayerAttributes attributes)//Is the name correct?
+    //{
+    //    _stamina = _level.Level * config.MaxStamina + (attributes.GetPoints(AttributeName.Agility)*10) + _armorFactorStamina;
+    //    _stamina *= (ConstantFactor/_difficulty );
+    //    return _stamina;
+    //}
     public int SetMaxHealth(T config)
     {
         _health = _level.Level * config.MaxHealth + _armorFactorHealth;
         _health *= ConstantFactor / _difficulty;
         return _health;
+    }
+
+    public int SetMaxHealth(T config, PlayerAttributes attributes)
+    {
+        _health = _level.Level * config.MaxHealth + _armorFactorHealth + attributes.GetPoints(AttributeName.Endurance) * 10;
+        _health *= ConstantFactor / _difficulty;
+        return _health;
+    }
+
+    public int SetMaxStamin(T config)
+    {
+        _stamina = _level.Level * config.MaxStamina + _armorFactorStamina;
+        return _stamina;
+    }
+
+    public int SetMaxStamin(T config, PlayerAttributes attributes)
+    {
+        _stamina = _level.Level * config.MaxStamina + _armorFactorStamina + attributes.GetPoints(AttributeName.Endurance)*10;
+        return _stamina;
     }
 }
