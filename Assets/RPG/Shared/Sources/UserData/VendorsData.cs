@@ -5,7 +5,7 @@ namespace RPG.Shared.UserData
     [Serializable]
     public class VendorsData
     {
-        public VendorSave[] VendorSave = new VendorSave[0];
+        public VendorSave[] VendorSaves = new VendorSave[0];
     }
 }
 

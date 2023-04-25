@@ -17,7 +17,8 @@ namespace RPG.GameMap
         {
             _player = player;
             _saveSystem = ServiceLocator.Instance.GetService<UserSaveSystem>();
-            _buffer = new GameMapUserSaveBuffer(_saveSystem.CurrentSave, _player);
+            //TODO
+            //_buffer = new GameMapUserSaveBuffer(_saveSystem.CurrentSave, _player);
         }
         
         public void SaveData()

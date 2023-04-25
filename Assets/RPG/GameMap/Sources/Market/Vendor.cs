@@ -1,8 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using RPG.Metagame.InventorySystem;
 using RPG.Shared.UserData;
-using UnityEngine;
 
 namespace RPG.GameMap.Shop
 {
@@ -10,29 +8,34 @@ namespace RPG.GameMap.Shop
     {
         private Money _money;
         private Inventory _inventory;
+        
+        public string Name { get; }
 
         public Vendor(VendorConfig config)
         {
             _money = new Money(config.DefaultMoneyValue);
             _inventory = new Inventory();
+            Name = config.Name;
         }
+        
         public VendorSave GetForSave()
         {
-            var VendorSave = new VendorSave();
-            VendorSave.Money = _money.Value;
+            var vendorSave = new VendorSave();
+            vendorSave.Money = _money.Value;
             List<InventoryItemCountData> inventoryItems = new List<InventoryItemCountData>();
+            
             foreach(var section in _inventory.Sections)
             {
-                foreach(var j in section.Cells)
+                foreach(var cell in section.Cells)
                 {
-                    var i = new InventoryItemCountData();
-                    i.Id = j.Config.Id;
-                    i.Count = j.Amount;
-                    inventoryItems.Add(i);
+                    var data = new InventoryItemCountData();
+                    data.Id = cell.Config.Id;
+                    data.Count = cell.Amount;
+                    inventoryItems.Add(data);
                 }
             }
-            VendorSave.Inventory = inventoryItems.ToArray();
-            VendorSave.Name = this.ToString();
+            vendorSave.Inventory = inventoryItems.ToArray();
+            vendorSave.Name = Name;
             return new VendorSave();
         }
     }
