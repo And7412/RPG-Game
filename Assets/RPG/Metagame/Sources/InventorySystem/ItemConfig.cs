@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using RPG.Shared;
+using UnityEngine;
 namespace RPG.Metagame.InventorySystem
 {
     public abstract class ItemConfig : ScriptableObject
@@ -11,7 +12,7 @@ namespace RPG.Metagame.InventorySystem
 
         private void OnValidate()
         {
-            _idResult = InventorySlot.ToString() + _id;
+            _idResult = IdCreator.GetItemId(InventorySlot, _id);
         }
 
         public int GetCapacity()

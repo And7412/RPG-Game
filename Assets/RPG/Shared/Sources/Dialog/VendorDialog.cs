@@ -1,11 +1,10 @@
-﻿using RPG.Metagame.Player;
-using RPG.Shared.Dialog;
+﻿using System;
 using RPG.Metagame.InventorySystem;
 using RPG.Metagame.InventorySystem.View;
-using System;
+using RPG.Shared.Dialog;
 using UnityEngine;
 
-namespace RPG.GameMap.Shop
+namespace RPG.GameMap.MarketSystem
 {
     public class VendorDialog : Dialog<TradeDialogArgs, TradeDialogResult>
     {

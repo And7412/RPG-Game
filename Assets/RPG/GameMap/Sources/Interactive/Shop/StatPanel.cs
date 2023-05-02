@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-namespace RPG.GameMap.Shop
+namespace RPG.GameMap.MarketSystem
 {
     public class StatPanel : MonoBehaviour
     {

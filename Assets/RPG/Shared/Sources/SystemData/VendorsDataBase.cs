@@ -1,11 +1,11 @@
-﻿using RPG.GameMap.Shop;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using RPG.GameMap.MarketSystem;
 using UnityEngine;
 
 namespace RPG.Shared.SystemData
 {
     [CreateAssetMenu(menuName = "RPG/VedorsDatabase", fileName = "VedorsDatabase")]
-    public class VenderDataBase : ScriptableObject
+    public class VendorsDataBase : ScriptableObject
     {
         [SerializeField] private List<VendorConfig> _vendors;
 

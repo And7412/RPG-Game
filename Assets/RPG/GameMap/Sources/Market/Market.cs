@@ -1,8 +1,7 @@
-﻿using RPG.GameMap.Shop;
-using System.Linq;
-using System;
-using RPG.Shared.SystemData;
+﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using RPG.Shared.SystemData;
 using RPG.Shared.UserData;
 
 namespace RPG.GameMap.MarketSystem
@@ -11,7 +10,7 @@ namespace RPG.GameMap.MarketSystem
     {
         private readonly Vendor[] _vendors;
 
-        public Market(VenderDataBase dataBase)
+        public Market(VendorsDataBase dataBase)
         {
             List<Vendor> listVendors=new List<Vendor>();
 

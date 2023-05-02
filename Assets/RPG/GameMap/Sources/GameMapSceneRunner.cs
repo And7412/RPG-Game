@@ -1,5 +1,5 @@
 ﻿using Core.Patterns.ServiceLocator;
-using RPG.GameMap.Shop;
+using RPG.GameMap.MarketSystem;
 using RPG.GameMap.TavernSystem;
 using RPG.Metagame.Player;
 using RPG.Shared;
@@ -12,6 +12,7 @@ namespace RPG.GameMap
 {
     public class GameMapSceneRunner : SceneRunner<GameMapArgs>
     {
+        [SerializeField] private GameMapDataSaver _dataSaver;
         [SerializeField] private PlayerConfig _playerConfig;
         [SerializeField] private Button _quit;
         [SerializeField] private Button _save;
@@ -38,6 +39,7 @@ namespace RPG.GameMap
         private void Initialize(GameMapArgs args)
         {
             var saveSystem = ServiceLocator.Instance.GetService<UserSaveSystem>();
+            
             //TODO load
 
             //_exitDialog = new ExitDialog();
@@ -47,6 +49,8 @@ namespace RPG.GameMap
             //_player.SetMaxHP();
             //_tavern.Initialize(_player);
             //_market.Initialize(_player);
+            
+            //_dataSaver.InitializeBuffer(_player, market);
         }
 
         private void Save()

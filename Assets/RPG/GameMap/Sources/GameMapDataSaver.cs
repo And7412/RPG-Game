@@ -13,10 +13,10 @@ namespace RPG.GameMap
         private UserSaveBuffer _buffer;
         private UserSaveSystem _saveSystem;
 
-        public void InitializeBuffer(Player player,Market market)
+        public void InitializeBuffer(Player player, MarketInstance market)
         {
             _saveSystem = ServiceLocator.Instance.GetService<UserSaveSystem>();
-            _buffer = new GameMapUserSaveBuffer(_saveSystem.CurrentSave, player,market);
+            _buffer = new GameMapUserSaveBuffer(_saveSystem.CurrentSave, player, market.Save);
         }
         
         public void SaveData()

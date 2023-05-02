@@ -2,7 +2,7 @@
 using RPG.Metagame.InventorySystem;
 using RPG.Shared.UserData;
 
-namespace RPG.GameMap.Shop
+namespace RPG.GameMap.MarketSystem
 {
     public class Vendor : ISavable<VendorSave>
     {
@@ -11,12 +11,15 @@ namespace RPG.GameMap.Shop
         
         public string Name { get; }
         public string Id { get; }
+        public int Money => _money.Value;
+        public IInventoryRead Inventory => _inventory;
 
         public Vendor(VendorConfig config)
         {
             _money = new Money(config.DefaultMoneyValue);
             _inventory = new Inventory();
             Name = config.Name;
+            Id = config.Id;
         }
         
         public VendorSave GetForSave()
