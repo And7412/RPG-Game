@@ -7,6 +7,12 @@ namespace RPG.Metagame.InventorySystem
         [SerializeField] private Sprite _sprite;
         [SerializeField] private ItemRarity itemRarity = ItemRarity.Simple;
         public abstract InventorySlotType InventorySlot { get; }
+        private string _idResult;
+
+        private void OnValidate()
+        {
+            _idResult = InventorySlot.ToString() + _id;
+        }
 
         public int GetCapacity()
         {
@@ -21,7 +27,7 @@ namespace RPG.Metagame.InventorySystem
         }
 
         public Sprite Sprite => _sprite;
-        public string Id => _id;
+        public string Id => _idResult;
         public ItemRarity ItemRarity => itemRarity; 
     }
 }
