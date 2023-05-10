@@ -1,5 +1,6 @@
 ﻿using Core.Patterns.ServiceLocator;
 using Core.Saves;
+using RPG.MainMenu;
 using RPG.Metagame;
 using RPG.Metagame.Player;
 using RPG.Shared;
@@ -36,11 +37,11 @@ namespace RPG.CharacterCreation
 
             var difficulty = await _diffilcultyDialog.Run(new DialogArgs());
             
-            //TODO in user save system add save method with date time saving
             var userSave = CreateUserSave(name.Name, playerAttributesModel, difficulty.Difficulty);
             var saveSystem = ServiceLocator.Instance.GetService<UserSaveSystem>();
             
             saveSystem.RewriteSave(userSave);
+            SceneController.LoadMainMenu(new MainMenuArgs());
         }
         
         private UserSave CreateUserSave(string name, PlayerAttributes attributesModel, Difficulty difficulty)
