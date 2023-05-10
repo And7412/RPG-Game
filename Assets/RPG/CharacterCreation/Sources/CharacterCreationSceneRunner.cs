@@ -19,11 +19,6 @@ namespace RPG.CharacterCreation
 
         public UserSave _userSave;
 
-        protected override CharacterCreationArgs GetTestArgs()
-        {
-            return new CharacterCreationArgs();
-        }
-
         protected override async void Run(CharacterCreationArgs args)
         {
             var name = await _createNameDialog.Run(new DialogCreateNamePlayerArg());

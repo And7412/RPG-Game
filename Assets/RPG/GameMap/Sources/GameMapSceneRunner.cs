@@ -14,10 +14,8 @@ namespace RPG.GameMap
     {
         [SerializeField] private GameMapDataSaver _dataSaver;
         [SerializeField] private PlayerConfig _playerConfig;
-        [SerializeField] private Button _quit;
-        [SerializeField] private Button _save;
         [SerializeField] private Tavern _tavern;
-        [SerializeField] private Market _market;
+        [SerializeField] private MarketInstance _market;
 
         [SerializeField] private string _textExitDialog;
         [SerializeField] private string _textExitButtonToMainMenu;
@@ -25,11 +23,6 @@ namespace RPG.GameMap
 
         private ExitDialog _exitDialog;
         private Player _player;
-
-        protected override GameMapArgs GetTestArgs()
-        {
-            return new GameMapArgs();
-        }
 
         protected override void Run(GameMapArgs args)
         {
@@ -39,18 +32,17 @@ namespace RPG.GameMap
         private void Initialize(GameMapArgs args)
         {
             var saveSystem = ServiceLocator.Instance.GetService<UserSaveSystem>();
-            
-            //TODO load
 
-            //_exitDialog = new ExitDialog();
 
-            //_player = new Player(_playerConfig, save);
+            _exitDialog = new ExitDialog();
 
-            //_player.SetMaxHP();
-            //_tavern.Initialize(_player);
-            //_market.Initialize(_player);
-            
-            //_dataSaver.InitializeBuffer(_player, market);
+            _player = new Player(_playerConfig, args.Save.PlayerHeroData, args.Save.DifficultyEnum, args.Save.Name);
+
+            _player.SetMaxHP();
+            _tavern.Initialize(_player);
+            _market.Initialize(_player);
+
+            _dataSaver.InitializeBuffer(_player, _market);
         }
 
         private void Save()

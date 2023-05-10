@@ -6,9 +6,10 @@ namespace RPG.GameMap
 {
     public class GameMapArgs : SceneArgs
     {
-        public GameMapArgs()
+        public UserSave Save;
+        public GameMapArgs(UserSave save)
         {
-
+            Save = save;
         }
 
     }
