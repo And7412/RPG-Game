@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e468efdc10f0c794ea448d27272f4206, type: 3}
   m_Name: BuyerConfig
   m_EditorClassIdentifier: 
+  _defaultDefaultMoneyValue: 100
   _inventory:
     _weaponSection:
       _cells:
@@ -41,3 +42,5 @@ MonoBehaviour:
       _cells: []
     _questSection:
       _cells: []
+  _id: Lem228
+  _name: 
