@@ -262,9 +262,11 @@ GameObject:
   m_Component:
   - component: {fileID: 6582956659298402646}
   - component: {fileID: 595337910165823484}
-  - component: {fileID: 5907178087336342772}
   - component: {fileID: 5796636556841304561}
   - component: {fileID: 8850760573581855825}
+  - component: {fileID: 8574559719283327283}
+  - component: {fileID: 7806026121619731670}
+  - component: {fileID: 7610718115507634612}
   m_Layer: 5
   m_Name: ExitDialog
   m_TagString: Untagged
@@ -316,28 +318,6 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!114 &5907178087336342772
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3612838989100020940}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
-  m_ReferencePixelsPerUnit: 100
-  m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
-  m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
-  m_PhysicalUnit: 3
-  m_FallbackScreenDPI: 96
-  m_DefaultSpriteDPI: 96
-  m_DynamicPixelsPerUnit: 1
 --- !u!114 &5796636556841304561
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -367,10 +347,54 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3331965033d41464fbda9ce87e1e4c0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _canvas: {fileID: 595337910165823484}
+  _animator: {fileID: 7610718115507634612}
   _text: {fileID: 5855233028727717893}
   _buttonMainMenu: {fileID: 2374239034008560041}
   _ExitButton: {fileID: 8029174372040112513}
+--- !u!225 &8574559719283327283
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3612838989100020940}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!95 &7806026121619731670
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3612838989100020940}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 477a0cfda1ad49c4887754ff2ed1882b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &7610718115507634612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3612838989100020940}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e72df2b250151d4e9b74adf5724f67d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _boolParameter: Visible
 --- !u!1 &4105700866878517058
 GameObject:
   m_ObjectHideFlags: 0

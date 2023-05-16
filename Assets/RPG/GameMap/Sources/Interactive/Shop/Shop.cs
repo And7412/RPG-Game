@@ -1,5 +1,6 @@
 ﻿using RPG.Metagame.Player;
 using RPG.Shared;
+using RPG.Shared.Animations;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,7 +9,7 @@ namespace RPG.GameMap.MarketSystem
     public class Shop : MonoBehaviour
     {
         [SerializeField] private string _id;
-        [SerializeField] private Canvas _canvas;
+        [SerializeField] private BoolAnimator _animator;
         [SerializeField] private Button _vendorButton;
         [SerializeField] private Button _exitButton;
         [SerializeField] private VendorDialog _vendorDialog;
@@ -45,12 +46,12 @@ namespace RPG.GameMap.MarketSystem
         public void Hide()
         {
             Opened = false;
-            _canvas.enabled = false;
+            _animator.Hide();
         }
 
         public void Show()
         {
-            _canvas.enabled = true;
+            _animator.Show();
             Opened = true;
         }
     }

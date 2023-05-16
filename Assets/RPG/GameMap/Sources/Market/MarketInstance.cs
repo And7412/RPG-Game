@@ -1,5 +1,6 @@
 ﻿using RPG.Metagame.Player;
 using RPG.Shared;
+using RPG.Shared.Animations;
 using RPG.Shared.SystemData;
 using RPG.Shared.UserData;
 using UnityEngine;
@@ -12,7 +13,7 @@ namespace RPG.GameMap.MarketSystem
         [SerializeField] private VendorsDataBase _vendorsDataBase;
         [SerializeField] private ShopIcon[] _shopButtons;
         [SerializeField] private PointClickHandler _mapButton;
-        [SerializeField] private Canvas _canvas;
+        [SerializeField] private BoolAnimator _boolAnimator;
         [SerializeField] private Button _exitButton;
 
         public ISavable<VendorsData> Save => _model;
@@ -41,12 +42,12 @@ namespace RPG.GameMap.MarketSystem
 
         private void OnExitClicked()
         {
-            _canvas.enabled = false;
+            _boolAnimator.Hide();
         }
 
         private void MapButtonOnClicked()
         {
-            _canvas.enabled = true;
+            _boolAnimator.Show();
         }
 
         private void OnDestroy()

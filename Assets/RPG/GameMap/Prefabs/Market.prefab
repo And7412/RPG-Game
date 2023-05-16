@@ -613,6 +613,9 @@ GameObject:
   - component: {fileID: 5667172416344896285}
   - component: {fileID: 1459103877833928315}
   - component: {fileID: 8353672314044157136}
+  - component: {fileID: 6985394330207511258}
+  - component: {fileID: 517835139977195882}
+  - component: {fileID: 4260448251381369327}
   m_Layer: 5
   m_Name: Market
   m_TagString: Untagged
@@ -709,8 +712,52 @@ MonoBehaviour:
   _shopButtons:
   - {fileID: 217038181778994214}
   _mapButton: {fileID: 0}
-  _canvas: {fileID: 5667172416344896285}
+  _boolAnimator: {fileID: 517835139977195882}
   _exitButton: {fileID: 9063844790436990226}
+--- !u!95 &6985394330207511258
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2924694230689152833}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 22100000, guid: 4858f48f0743d7b4d9dfddd8acf33968, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &517835139977195882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2924694230689152833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e72df2b250151d4e9b74adf5724f67d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _boolParameter: Visible
+--- !u!225 &4260448251381369327
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2924694230689152833}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &3629624034991498796
 GameObject:
   m_ObjectHideFlags: 0
@@ -1224,7 +1271,7 @@ PrefabInstance:
     - target: {fileID: 4088337946383634976, guid: c064fe404f313084b8992e214f79f08c,
         type: 3}
       propertyPath: m_Size
-      value: 0.98648375
+      value: 0.9722106
       objectReference: {fileID: 0}
     - target: {fileID: 4088337946383634976, guid: c064fe404f313084b8992e214f79f08c,
         type: 3}
@@ -1264,7 +1311,7 @@ PrefabInstance:
     - target: {fileID: 6201772570595806186, guid: c064fe404f313084b8992e214f79f08c,
         type: 3}
       propertyPath: m_Size
-      value: 0.98648375
+      value: 0.9722106
       objectReference: {fileID: 0}
     - target: {fileID: 6201772570595806186, guid: c064fe404f313084b8992e214f79f08c,
         type: 3}

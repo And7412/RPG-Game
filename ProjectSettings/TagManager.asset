@@ -47,6 +47,9 @@ TagManager:
   - name: UI
     uniqueID: 2777296175
     locked: 0
+  - name: MainUI
+    uniqueID: 3742187375
+    locked: 0
   - name: Loading
     uniqueID: 1525693013
     locked: 0
