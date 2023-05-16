@@ -7,7 +7,7 @@ namespace RPG.Shared.UserData.HeroSave
     {
         public HeroLevelData LevelData = new HeroLevelData();
         public InventoryData InventoryData = new InventoryData();
-        public HeroAttributesData Attributes { get; set; }
+        public HeroAttributesData Attributes { get; set; } = new HeroAttributesData();
         public float CurrentHealthPercent { get; set; }
         public float CurrentStaminaPercent { get; set; }
     }

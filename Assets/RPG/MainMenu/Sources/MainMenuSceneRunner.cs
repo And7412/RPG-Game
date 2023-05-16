@@ -21,8 +21,9 @@ namespace RPG.MainMenu
         protected override void Run(MainMenuArgs args)
         {
             _startButton.onClick.AddListener(OnStartButtonClicked);
-            var userSave = ServiceLocator.Instance.GetService<UserSaveSystem>();
-            _text.text = userSave.CurrentSave.Name;
+            var userSaveSystem = ServiceLocator.Instance.GetService<UserSaveSystem>();
+            _text.text = userSaveSystem.CurrentSave.Name;
+            _userSave = userSaveSystem.CurrentSave;
 
             _exitButton.onClick.AddListener(OnExitButtonClicked);
         }
