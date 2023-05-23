@@ -1,27 +1,26 @@
 ﻿using RPG.Metagame.InventorySystem;
-using RPG.Shared;
-using System.Linq;
 using RPG.Shared.UserData;
 using RPG.Shared.UserData.HeroSave;
 
-namespace RPG.Metagame.Player
+namespace RPG.Metagame.Heroes.Player
 {
-    public class Player : IPlayerTrade, ISavable<HeroData>
+    public class Player : IPlayer, ISavable<HeroData>
     {
         private readonly PlayerStat _health;
-        private readonly PlayerStat _stamina;
+        private readonly PlayerStat _mana;
         private readonly Money _money;
         private readonly Inventory _inventory;
         private readonly HeroStatCalculator<PlayerConfig> _finalPlayerStat;
         private readonly PlayerAttributes _attributes;
 
-        public IPlayerStat Health => _health;
-        public IPlayerStat Stamina => _stamina;
+        public IStat Health => _health;
+        public IStat Mana => _mana;
         public Money Money => _money;
 
         public IInventoryRead Inventory => _inventory;
         public ILevelStat Level => _level;
         public string Name { get; }
+        public IGetAttribute GetAttribute => _attributes;
 
         private HeroLevel _level;
 
@@ -70,6 +69,13 @@ namespace RPG.Metagame.Player
             //TODO 
             return new HeroData();
         }
+    }
+    public interface IPlayer: IPlayerTrade
+    {
+        IStat Mana { get; }
+        IStat Health { get; }
+        ILevelStat Level { get; }
+        IGetAttribute GetAttribute { get; }
     }
 }
 

@@ -1,4 +1,4 @@
-﻿using RPG.Metagame.Player;
+﻿using RPG.Metagame.Heroes.Player;
 using System;
 using UnityEngine;
 

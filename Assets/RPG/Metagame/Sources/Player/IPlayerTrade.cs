@@ -1,6 +1,6 @@
 ﻿using RPG.Metagame.InventorySystem;
 
-namespace RPG.Metagame.Player
+namespace RPG.Metagame.Heroes.Player
 {
     public interface IPlayerTrade
     {

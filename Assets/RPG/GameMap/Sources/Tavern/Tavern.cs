@@ -2,7 +2,7 @@
 using RPG.GameMap.TavernSystem;
 using RPG.Shared;
 using UnityEngine;
-using RPG.Metagame.Player;
+using RPG.Metagame.Heroes.Player;
 
 namespace RPG.GameMap.TavernSystem
 {

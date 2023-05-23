@@ -1,12 +1,11 @@
 ﻿using Core.Patterns.ServiceLocator;
 using RPG.GameMap.MarketSystem;
 using RPG.GameMap.TavernSystem;
-using RPG.Metagame.Player;
+using RPG.Metagame.Heroes.Player;
 using RPG.Shared;
 using RPG.Shared.Dialog;
 using RPG.Shared.UserData;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace RPG.GameMap
 {

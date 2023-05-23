@@ -2,7 +2,7 @@
 using RPG.Metagame.InventorySystem;
 using UnityEngine;
 
-namespace RPG.Metagame.Player
+namespace RPG.Metagame.Heroes.Player
 {
     [CreateAssetMenu(fileName = "PlayerConfig", menuName = "RPG/Heroes/PlayerConfig", order = 0)]
     public class PlayerConfig : HeroConfig

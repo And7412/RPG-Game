@@ -2,9 +2,9 @@
 using RPG.Shared.UserData;
 using RPG.Shared.UserData.HeroSave;
 
-namespace RPG.Metagame.Player
+namespace RPG.Metagame.Heroes.Player
 {
-    public class PlayerAttributes : ISavable<HeroAttributesData>
+    public class PlayerAttributes : ISavable<HeroAttributesData>, IGetAttribute
     {
         private readonly Dictionary<AttributeName, Attribute> _skills;
 
@@ -56,6 +56,11 @@ namespace RPG.Metagame.Player
                 Strength = GetPoints(AttributeName.Strength)
             };
         }
+    }
+
+    public interface IGetAttribute
+    {
+        int GetPoints(AttributeName name);
     }
 
     public class Attribute

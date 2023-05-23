@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using RPG.Metagame.InventorySystem;
 using UnityEngine;
 
-namespace RPG.Metagame.Player
+namespace RPG.Metagame.Heroes.Player
 {
     public class PlayerTrade
     {

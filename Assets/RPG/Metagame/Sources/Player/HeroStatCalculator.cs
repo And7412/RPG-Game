@@ -1,9 +1,6 @@
 ﻿using RPG.Metagame;
 using RPG.Metagame.Heroes;
-using RPG.Metagame.Player;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using RPG.Metagame.Heroes.Player;
 
 public class HeroStatCalculator<T> where T: HeroConfig
 {

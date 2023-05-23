@@ -1,6 +1,6 @@
-﻿namespace RPG.Metagame.Player
+﻿namespace RPG.Metagame.Heroes
 {
-    public interface IPlayerStat
+    public interface IStat
     {
         int MaxValue { get;}
         int Value { get;}

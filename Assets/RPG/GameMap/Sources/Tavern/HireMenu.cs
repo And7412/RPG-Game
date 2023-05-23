@@ -1,7 +1,5 @@
-﻿using RPG.GameMap.TavernSystem;
-using RPG.Metagame.Player;
+﻿using RPG.Metagame.Heroes.Player;
 using RPG.Shared.Dialog;
-using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;

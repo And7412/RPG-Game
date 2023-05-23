@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace RPG.Metagame.Player
+namespace RPG.Metagame.Heroes.Player
 {
-    public class PlayerStat : IPlayerStat
+    public class PlayerStat : IStat
     {
         public int MaxValue { get;}
         public int Value { get; private set; }

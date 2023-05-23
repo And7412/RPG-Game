@@ -1,8 +1,7 @@
 ﻿using Core.Patterns.ServiceLocator;
-using Core.Saves;
 using RPG.MainMenu;
 using RPG.Metagame;
-using RPG.Metagame.Player;
+using RPG.Metagame.Heroes.Player;
 using RPG.Shared;
 using RPG.Shared.Dialog;
 using RPG.Shared.UserData;

@@ -1,8 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using Core.Patterns.ServiceLocator;
+﻿using Core.Patterns.ServiceLocator;
 using RPG.GameMap.MarketSystem;
-using RPG.Metagame.Player;
+using RPG.Metagame.Heroes.Player;
 using RPG.Shared.UserData;
 using UnityEngine;
 

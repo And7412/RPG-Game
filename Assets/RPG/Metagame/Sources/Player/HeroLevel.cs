@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace RPG.Metagame.Player
+namespace RPG.Metagame.Heroes.Player
 {
     public class HeroLevel : ILevelStat
     {
