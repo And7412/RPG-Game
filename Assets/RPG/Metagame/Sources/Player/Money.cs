@@ -1,11 +1,11 @@
 ﻿using System;
+using Core.Patterns.EventValue;
 
 namespace RPG.Metagame.InventorySystem
 {
     public class Money
     {
-        public int Value { get; private set; }
-        public event Action<int> MoneyChanged;
+        public EventValue<int> Value { get; private set; }
 
         public Money(int value)
         {
@@ -14,7 +14,7 @@ namespace RPG.Metagame.InventorySystem
                 throw new ArgumentException();
             }
 
-            Value = value;
+            Value.Value = value;
         }
 
         public void Increase(int value)
@@ -22,25 +22,23 @@ namespace RPG.Metagame.InventorySystem
             if (value < 0)
                 throw new ArgumentException("value is lower then zero");
 
-            Value += value;
-            MoneyChanged?.Invoke(Value);
+            Value.Value += value;
         }
 
         public bool TryDecrease(int value)
         {
-            if (Value < value)
+            if (Value.Value < value)
             {
                 return false;
             }
             
-            Value -= value;
-            MoneyChanged?.Invoke(Value);
+            Value.Value -= value;
             return true;
         }
 
         public bool IsEnough(int value)
         {
-            return Value >= value;
+            return Value.Value >= value;
         }
     }
 }

@@ -21,8 +21,8 @@ namespace RPG.GameMap.MarketSystem
         {
             _pMoney = new Money(args.PlayerMoney);
             _vMoney = new Money(args.VendorMoney);
-            _playerMoneyText.Initialized(_pMoney.Value);
-            _vendorMoneyText.Initialized(_vMoney.Value);
+            _playerMoneyText.Initialized(_pMoney.Value.Value);
+            _vendorMoneyText.Initialized(_vMoney.Value.Value);
             _vendorInventory.Initialize(args.VendorInventory);
             _vendorInventory.Show();
             _playerInventory.Initialize(args.PlayerInventory);

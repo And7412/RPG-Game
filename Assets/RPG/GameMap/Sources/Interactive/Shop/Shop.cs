@@ -39,7 +39,7 @@ namespace RPG.GameMap.MarketSystem
 
         private async void OnVendorClick()
         {
-            var args = new TradeDialogArgs(_player.Money.Value,_vendor.Money, _player.Inventory, _vendor.Inventory);
+            var args = new TradeDialogArgs(_player.Money.Value.Value,_vendor.Money, _player.Inventory, _vendor.Inventory);
             await _vendorDialog.Run(args);
         }
 

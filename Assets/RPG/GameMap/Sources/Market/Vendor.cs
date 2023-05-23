@@ -11,7 +11,7 @@ namespace RPG.GameMap.MarketSystem
         
         public string Name { get; }
         public string Id { get; }
-        public int Money => _money.Value;
+        public int Money => _money.Value.Value;
         public IInventoryRead Inventory => _inventory;
 
         public Vendor(VendorConfig config)
@@ -25,7 +25,7 @@ namespace RPG.GameMap.MarketSystem
         public VendorSave GetForSave()
         {
             var vendorSave = new VendorSave();
-            vendorSave.Money = _money.Value;
+            vendorSave.Money = _money.Value.Value;
             List<InventoryItemCountData> inventoryItems = new List<InventoryItemCountData>();
             
             foreach(var section in _inventory.Sections)
