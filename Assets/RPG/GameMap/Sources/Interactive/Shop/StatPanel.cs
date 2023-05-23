@@ -2,14 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
+
 namespace RPG.GameMap.MarketSystem
 {
     public class StatPanel : MonoBehaviour
     {
         [SerializeField] private TMP_Text _money;
-        public void Initialized(int x)
+        [SerializeField] private Scrollbar _scrolBarHelse;
+        public void Initialized(int money)
         {
-            _money.text = $"{x}" ;
+            _money.text = $"{money}" ;
+            //while (helse < 1)
+            //{
+            //    helse = helse % 10;
+            //}
+            //_scrolBarHelse.size = helse;
         }
     }
 }
