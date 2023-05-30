@@ -1,4 +1,5 @@
 ﻿using System;
+using RPG.Metagame.InventorySystem;
 
 namespace RPG.Shared.UserData
 {
@@ -7,6 +8,12 @@ namespace RPG.Shared.UserData
     {
         public string Id { get; set; }
         public int Count { get; set; }
+
+        public InventoryItemCountData(IInventoryCell cell)
+        {
+            Id = cell.Config.Id;
+            Count = cell.Amount;
+        }
     }
 }
 

@@ -5,7 +5,7 @@ namespace RPG.Metagame.InventorySystem
 {
     public class Money
     {
-        public EventValue<int> Value { get; private set; }
+        public EventValue<int> Value { get; private set; } = new EventValue<int>();
 
         public Money(int value)
         {

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using RPG.Shared.UserData;
 using UnityEngine;
 
 namespace RPG.Metagame.InventorySystem
@@ -13,7 +14,7 @@ namespace RPG.Metagame.InventorySystem
         [SerializeField] private InventorySection _consumeSection;
         [SerializeField] private InventorySection _miscSection;
         [SerializeField] private InventorySection _questSection;
-        
+
         private InventorySection[] _sections;
         private ItemConfig[] _itemsConfig;
 
@@ -23,8 +24,22 @@ namespace RPG.Metagame.InventorySystem
         public IInventorySectionRead MiscSection => _miscSection;
         public IInventorySectionRead QuestSection => _questSection;
         public IInventorySectionRead[] Sections => _sections;
+        
+        public Money Money { get; private set; }
 
         public Inventory()
+        {
+            _sections = new []
+            {
+                _weaponSection = new InventorySection(InventorySlotType.Weapon),
+                _armorSection = new InventorySection(InventorySlotType.Armor),
+                _consumeSection = new InventorySection(InventorySlotType.Consume),
+                _miscSection = new InventorySection(InventorySlotType.Misc),
+                _questSection = new InventorySection(InventorySlotType.Quest)
+            };
+        }
+        
+        public Inventory(InventoryData data)
         {
             _sections = new []
             {
@@ -72,6 +87,7 @@ namespace RPG.Metagame.InventorySystem
         IInventorySectionRead ConsumeSection { get; }
         IInventorySectionRead MiscSection { get; }
         IInventorySectionRead QuestSection { get; }
+        Money Money { get; }
     }
 }
 

@@ -8,14 +8,12 @@ namespace RPG.Metagame.Heroes.Player
     {
         private readonly PlayerStat _health;
         private readonly PlayerStat _mana;
-        private readonly Money _money;
         private readonly Inventory _inventory;
         private readonly HeroStatCalculator<PlayerConfig> _finalPlayerStat;
         private readonly PlayerAttributes _attributes;
 
         public IStat Health => _health;
         public IStat Mana => _mana;
-        public Money Money => _money;
 
         public IInventoryRead Inventory => _inventory;
         public ILevelStat Level => _level;
@@ -38,8 +36,6 @@ namespace RPG.Metagame.Heroes.Player
             // _stamina.Set(save.Stamina);
 
             var money = save.InventoryData.Money;
-            _money = new Money(money);
-
             _inventory = new Inventory();
 
             //TODO

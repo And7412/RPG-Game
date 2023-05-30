@@ -1,14 +1,16 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 
-public class StatView : MonoBehaviour
+namespace RPG.Metagame.MainUI
 {
-    [SerializeField] private TMP_Text _value; 
-
-    public void ValueSet(int value)
+    public class StatView : MonoBehaviour
     {
-        _value.SetText(value.ToString());
+        [SerializeField] private TMP_Text _value; 
+
+        public void SetValue(int value)
+        {
+            _value.SetText(value.ToString());
+        }
     }
 }
+

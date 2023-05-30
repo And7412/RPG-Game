@@ -6,7 +6,13 @@ namespace Core.Patterns.EventValue
     {
         public T Value
         {
-            get => _value;
+            get
+            {
+                if (_value == null)
+                    return default;
+                
+                return _value;
+            }
             set
             {
                 _value = value;
@@ -16,6 +22,11 @@ namespace Core.Patterns.EventValue
 
         private T _value;
         public event Action<T> Changed;
+
+        public EventValue()
+        {
+            _value = default;
+        }
     }
 }
 

@@ -15,6 +15,7 @@ namespace RPG.CharacterCreation
         [SerializeField] private CharacterCreationQuestionnare _questionnare;
         [SerializeField] private CreateNamePlayerDialog _createNameDialog;
         [SerializeField] private DiffilcultyDialog _diffilcultyDialog;
+        [SerializeField] private CharacterBasicInventory _basicInventory;
 
         public UserSave _userSave;
 
@@ -67,12 +68,7 @@ namespace RPG.CharacterCreation
                 Xp = 0
             };
 
-            var inventoryData = new InventoryData()
-            {
-                InventoryItems = new InventoryItemCountData[0],
-                Money = 100
-            };
-
+            var inventoryData = new InventoryData(_basicInventory.GetResultInventory());
             var heroData = new HeroData()
             {
                 LevelData = heroLevelData,
