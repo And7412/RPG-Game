@@ -6,23 +6,14 @@ using UnityEngine;
 
 namespace RPG.Metagame.InventorySystem
 {
-    [Serializable]
+    
     public class Inventory : IInventoryRead
     {
-        [SerializeField] private InventorySection _weaponSection;
-        [SerializeField] private InventorySection _armorSection;
-        [SerializeField] private InventorySection _consumeSection;
-        [SerializeField] private InventorySection _miscSection;
-        [SerializeField] private InventorySection _questSection;
-
+        
         private InventorySection[] _sections;
         private ItemConfig[] _itemsConfig;
 
-        public IInventorySectionRead WeaponSection => _weaponSection;
-        public IInventorySectionRead ArmorSection => _armorSection;
-        public IInventorySectionRead ConsumeSection => _consumeSection;
-        public IInventorySectionRead MiscSection => _miscSection;
-        public IInventorySectionRead QuestSection => _questSection;
+        
         public IInventorySectionRead[] Sections => _sections;
         
         public Money Money { get; private set; }
