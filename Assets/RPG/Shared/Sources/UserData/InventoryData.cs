@@ -13,6 +13,7 @@ namespace RPG.Shared.UserData
         public InventoryData(IInventoryRead inventoryRead)
         {
             var items = new List<InventoryItemCountData>();
+            //TODO load data from inventory
             AddCellsToItemsList(inventoryRead.WeaponSection.Cells, items);
             AddCellsToItemsList(inventoryRead.ArmorSection.Cells, items);
             AddCellsToItemsList(inventoryRead.MiscSection.Cells, items);

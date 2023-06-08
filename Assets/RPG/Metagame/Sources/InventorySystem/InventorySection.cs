@@ -6,15 +6,16 @@ using UnityEngine;
 
 namespace RPG.Metagame.InventorySystem
 {
-    [Serializable]
     public class InventorySection:IInventorySectionRead
     {
-        [SerializeField] private List<InventoryCell> _cells = new List<InventoryCell>();
+        private readonly List<InventoryCell> _cells = new List<InventoryCell>();
         public IReadOnlyList<IInventoryCell> Cells => _cells;
         public InventorySlotType Slot { get; }
         public string currentObject { get; private set; }
         
 
+        //TODO Create constructor from inventory section config
+        //TODO Create constructor from slot type & items ienumerable
         public InventorySection(InventorySlotType inventorySlot)
         {
             Slot = inventorySlot;

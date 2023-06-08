@@ -6,27 +6,24 @@ using UnityEngine;
 
 namespace RPG.Metagame.InventorySystem
 {
-    
     public class Inventory : IInventoryRead
     {
-        
         private InventorySection[] _sections;
         private ItemConfig[] _itemsConfig;
-
         
         public IInventorySectionRead[] Sections => _sections;
         
         public Money Money { get; private set; }
 
-        public Inventory()
+        public Inventory(InventoryConfig config)
         {
             _sections = new []
             {
-                _weaponSection = new InventorySection(InventorySlotType.Weapon),
-                _armorSection = new InventorySection(InventorySlotType.Armor),
-                _consumeSection = new InventorySection(InventorySlotType.Consume),
-                _miscSection = new InventorySection(InventorySlotType.Misc),
-                _questSection = new InventorySection(InventorySlotType.Quest)
+                new InventorySection(config.WeaponSection),
+                new InventorySection(config.ArmorSection),
+                new InventorySection(config.MiscSection),
+                new InventorySection(config.ConsumeSection),
+                new InventorySection(config.QuestSection)
             };
         }
         
@@ -34,6 +31,7 @@ namespace RPG.Metagame.InventorySystem
         {
             _sections = new []
             {
+                //TODO fill sections from inventory data
                 _weaponSection = new InventorySection(InventorySlotType.Weapon),
                 _armorSection = new InventorySection(InventorySlotType.Armor),
                 _consumeSection = new InventorySection(InventorySlotType.Consume),
@@ -62,22 +60,23 @@ namespace RPG.Metagame.InventorySystem
 
         //TODO bool HasItem(ItemConfig item)
 
-        public InventorySection GetInventorySection(ItemConfig item)
+        private InventorySection GetInventorySection(ItemConfig item)
         {
             var section = _sections.FirstOrDefault(x => x.Slot == item.InventorySlot);
             if (section == null)
                 throw new ArgumentException($"Cant find section {item.InventorySlot}");
             return section;
         }
+
+        public IInventorySectionRead GetReadonlyInventorySection(InventorySlotType slotType)
+        {
+            //TODO
+        }
     }
 
     public interface IInventoryRead
     {
-        IInventorySectionRead WeaponSection { get; }
-        IInventorySectionRead ArmorSection { get; }
-        IInventorySectionRead ConsumeSection { get; }
-        IInventorySectionRead MiscSection { get; }
-        IInventorySectionRead QuestSection { get; }
+        IInventorySectionRead GetReadonlyInventorySection(InventorySlotType slotType);
         Money Money { get; }
     }
 }
