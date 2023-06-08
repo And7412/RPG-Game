@@ -31,5 +31,10 @@ namespace RPG.Shared.UserData
                 list.Add(itemData);
             }
         }
+        
+        public InventoryItemCountData[] GetItemsForCell(InventorySlotType slotType)
+        {
+            
+        }
     }
 }

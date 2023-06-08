@@ -8,11 +8,13 @@ namespace RPG.Shared.UserData
     {
         public string Id { get; set; }
         public int Count { get; set; }
+        public int ItemType { get; set; }
 
         public InventoryItemCountData(IInventoryCell cell)
         {
             Id = cell.Config.Id;
             Count = cell.Amount;
+            ItemType = (int)cell.Config.InventorySlot;
         }
     }
 }

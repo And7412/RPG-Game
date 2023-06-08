@@ -31,12 +31,11 @@ namespace RPG.Metagame.InventorySystem
         {
             _sections = new []
             {
-                //TODO fill sections from inventory data
-                _weaponSection = new InventorySection(InventorySlotType.Weapon),
-                _armorSection = new InventorySection(InventorySlotType.Armor),
-                _consumeSection = new InventorySection(InventorySlotType.Consume),
-                _miscSection = new InventorySection(InventorySlotType.Misc),
-                _questSection = new InventorySection(InventorySlotType.Quest)
+                new InventorySection(InventorySlotType.Weapon),
+                new InventorySection(InventorySlotType.Armor),
+                new InventorySection(InventorySlotType.Consume),
+                new InventorySection(InventorySlotType.Misc),
+                new InventorySection(InventorySlotType.Quest)
             };
         }
 

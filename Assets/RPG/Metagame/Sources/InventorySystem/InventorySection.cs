@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Core.Patterns.ServiceLocator;
+using RPG.Shared.UserData;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,11 +18,18 @@ namespace RPG.Metagame.InventorySystem
 
         //TODO Create constructor from inventory section config
         //TODO Create constructor from slot type & items ienumerable
-        public InventorySection(InventorySlotType inventorySlot)
+        public InventorySection(InventoryItemCountData[] inventorySlots , InventorySlotType slotType)
         {
-            Slot = inventorySlot;
+            Slot = slotType;
+            foreach(var inventorySlot in inventorySlots)
+            {
+                ServiceLocator.Instance.GetService<UserSaveSystem>();
+            }
         }
-
+        public InventorySection(InventorySectionConfig inventorySectionConfig)
+        {
+            Slot = inventorySectionConfig.Slot;
+        }
         public void AddItems(ItemConfig item, int count)
         {
             var cell = GetCell(item.Id);
